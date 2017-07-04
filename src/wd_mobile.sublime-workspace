@@ -1,0 +1,1908 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sel",
+				"selected"
+			],
+			[
+				"se",
+				"search"
+			],
+			[
+				"po",
+				"pos\tposition: ${1:relative};"
+			],
+			[
+				"pso",
+				"pos-a\tposition: absolute;"
+			],
+			[
+				"p",
+				"placeholder\tAttr"
+			],
+			[
+				"ke",
+				"keydown\t.keydown()"
+			],
+			[
+				"ex",
+				"extradata"
+			],
+			[
+				"com",
+				"component〔variable〕"
+			],
+			[
+				"lp",
+				"lp_li_a"
+			],
+			[
+				"key",
+				"keyup〔function〕"
+			],
+			[
+				"aj",
+				"ajax"
+			],
+			[
+				"hide",
+				"hidden"
+			],
+			[
+				"set",
+				"setShow"
+			],
+			[
+				"_this",
+				"_this.setHide"
+			],
+			[
+				"fou",
+				"focus\t.focus()"
+			],
+			[
+				"tabl",
+				"tableBox"
+			],
+			[
+				"t",
+				"template\tTag"
+			],
+			[
+				"new",
+				"newSrc"
+			],
+			[
+				"init",
+				"initLoad"
+			],
+			[
+				"sea",
+				"searchInput"
+			],
+			[
+				"s",
+				"setAttribute〔function〕"
+			],
+			[
+				"tr",
+				"trArr"
+			],
+			[
+				"get",
+				"get\t$.get()"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"chil",
+				"childNodes"
+			],
+			[
+				"inpu",
+				"inputBox"
+			],
+			[
+				"borderr",
+				"border-radius"
+			],
+			[
+				"ru",
+				"runoob"
+			],
+			[
+				"data",
+				"datagrid"
+			],
+			[
+				"col",
+				"columns〔variable〕"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"inner",
+				"innerHTML"
+			],
+			[
+				"table",
+				"tableContent"
+			],
+			[
+				"src",
+				"source\tTag"
+			],
+			[
+				"ec",
+				"each\t.each()"
+			],
+			[
+				"ech",
+				"each\t$.each()"
+			],
+			[
+				"temp",
+				"tempBlock〔variable〕"
+			],
+			[
+				"contain",
+				"containerStr〔variable〕"
+			],
+			[
+				"User",
+				"UserSchema〔variable〕"
+			],
+			[
+				"node-",
+				"node-delete"
+			],
+			[
+				"style",
+				"styleValue〔variable〕"
+			],
+			[
+				"css",
+				"cssNameNum〔variable〕"
+			],
+			[
+				"styl",
+				"styleValue〔variable〕"
+			],
+			[
+				"su",
+				"substring"
+			],
+			[
+				"inde",
+				"indexOf"
+			],
+			[
+				"mis",
+				"missionWindow"
+			],
+			[
+				"tar",
+				"targetText"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"app",
+				"application〔class〕"
+			],
+			[
+				"tim",
+				"timeInterval〔variable〕"
+			],
+			[
+				"ball",
+				"ballArrCounter"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"T",
+				"TWEEN"
+			],
+			[
+				"sp",
+				"speedY"
+			],
+			[
+				"ran",
+				"randomBetween"
+			],
+			[
+				"start",
+				"startValue"
+			],
+			[
+				"0x",
+				"0x06CCCC"
+			],
+			[
+				"ng-",
+				"ng-controller=〔attribute〕"
+			],
+			[
+				"lin",
+				"lineNum"
+			],
+			[
+				"poin",
+				"pointsArr"
+			],
+			[
+				"so",
+				"sourceName"
+			],
+			[
+				"loop",
+				"loopSource"
+			],
+			[
+				"JSON",
+				"JSON.stringify"
+			],
+			[
+				"join",
+				"join_on〔variable〕"
+			],
+			[
+				"tab",
+				"tableL"
+			],
+			[
+				"tem",
+				"tempArray〔variable〕"
+			],
+			[
+				"left",
+				"leftTableField〔variable〕"
+			],
+			[
+				"J",
+				"JSON.stringify($scope.tempList"
+			],
+			[
+				"too",
+				"toolkit〔variable〕"
+			],
+			[
+				"root",
+				"rootUrl"
+			],
+			[
+				"node",
+				"nodeState"
+			],
+			[
+				"hive",
+				"hive_source"
+			],
+			[
+				"python",
+				"pythonEditView"
+			],
+			[
+				"meta",
+				"metagridConInfo"
+			],
+			[
+				"pas",
+				"password"
+			],
+			[
+				"hol",
+				"holeInfo"
+			],
+			[
+				"ro",
+				"random〔function〕"
+			],
+			[
+				"js",
+				"jsplumbTestMy"
+			],
+			[
+				"serv",
+				"services"
+			],
+			[
+				"show",
+				"show_num〔function〕"
+			],
+			[
+				"choice",
+				"choice_allSys"
+			],
+			[
+				"source",
+				"sourceData"
+			],
+			[
+				"to",
+				"toolkit"
+			],
+			[
+				"hea",
+				"headers"
+			],
+			[
+				"point",
+				"pointStart〔argument〕"
+			],
+			[
+				"prob",
+				"probeArray"
+			],
+			[
+				"ini",
+				"initGraph"
+			],
+			[
+				"htm",
+				"htmlStr〔variable〕"
+			],
+			[
+				"Com",
+				"ComplexCustomOverlay〔class〕"
+			],
+			[
+				"load",
+				"loadTurnOut"
+			],
+			[
+				"for",
+				"for\tfor"
+			],
+			[
+				"bo",
+				"bower_components\tbower_components"
+			],
+			[
+				"cre",
+				"createElement〔function〕"
+			],
+			[
+				"r",
+				"rgba()"
+			],
+			[
+				"v",
+				"videoList"
+			],
+			[
+				"don",
+				"downloadId"
+			],
+			[
+				"vid",
+				"videoItem〔variable〕"
+			],
+			[
+				"vi",
+				"videoItem"
+			],
+			[
+				"MIN",
+				"min-height"
+			],
+			[
+				"select",
+				"selectState"
+			],
+			[
+				"has",
+				"hasDownload"
+			],
+			[
+				"over",
+				"overflow-y"
+			],
+			[
+				"a",
+				"absolute"
+			],
+			[
+				"test",
+				"testManage"
+			],
+			[
+				"ge",
+				"getElementsByTagNameNS〔function〕"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"scro",
+				"scrollTop〔function〕"
+			],
+			[
+				"sc",
+				"scrollTop\t.scrollTop()"
+			],
+			[
+				"change",
+				"changeContent〔function〕"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"ma",
+				"margin: 〔property〕"
+			],
+			[
+				"close",
+				"closeWin"
+			],
+			[
+				"min",
+				"min-height: 〔property〕"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"te",
+				"textarea\tTag"
+			],
+			[
+				"ser",
+				"services"
+			],
+			[
+				"line",
+				"line-height: 〔property〕"
+			],
+			[
+				"do",
+				"dotted〔value〕"
+			],
+			[
+				"scree",
+				"screenSize〔variable〕"
+			],
+			[
+				"def",
+				"defaultDefinition"
+			],
+			[
+				"right",
+				"border-right: 〔property〕"
+			],
+			[
+				"border",
+				"border-top: 〔property〕"
+			],
+			[
+				"full",
+				"fullScreen"
+			],
+			[
+				"curr",
+				"currentDefinition"
+			],
+			[
+				"current",
+				"currentTime"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "App.vue",
+			"settings":
+			{
+				"buffer_size": 1657,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/dist/index.html",
+			"settings":
+			{
+				"buffer_size": 653,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.js",
+			"settings":
+			{
+				"buffer_size": 406,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/index.html",
+			"settings":
+			{
+				"buffer_size": 311,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/User/JSC.sublime-build",
+					""
+				],
+				[
+					"Packages/User/nodeConsole.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/nodeConsole.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "in",
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"isnta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"git:c",
+				"Git: Checkout Tag"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"packages",
+				"Preferences: Browse Packages"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Function"
+			],
+			[
+				"setting",
+				"Preferences: Settings - User"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"Package Control:i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 368.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"import urllib.request, os;pf = 'Package Control.sublime-package';ipp = sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp)else None;urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen('http://sublime.wbond.net/' + pf.replace(' ', '%20')).read());print('Please restart Sublime Text to finish installation')",
+			"import urllib.request, os;",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())",
+			"import urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())",
+			"import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation')",
+			"view.run_command('example')",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/config",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/dist",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/src",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/src/assets",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/src/components"
+	],
+	"file_history":
+	[
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/src/main.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/src/components/firstcomponent.vue",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/index.html",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/config/index.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/dist/index.html",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/build/webpack.prod.conf.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/src/router/index.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/build/webpack.dev.conf.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/build/dev-server.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/build/webpack.base.conf.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/build/build.js",
+		"/Users/zxs/Documents/personal/learningSpace/cordova/hello/www/index.html",
+		"/Users/zxs/Documents/personal/learningSpace/cordova/hello/www/js/index.js",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/package.json",
+		"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/.babelrc",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/package.json",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/src/index.html",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/src/App.vue",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/src/main.js",
+		"/Users/zxs/Documents/workSpace/俄罗斯方块/Tetris/game/index.html",
+		"/Users/zxs/Documents/workSpace/俄罗斯方块/Tetris/game/View.js",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/node_modules/element-ui/lib/theme-default/index.css",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/node_modules/element-ui/lib/badge.js",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/node_modules/element-ui/lib/theme-default/tree.css",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/node_modules/element-ui/packages/tree/src/tree-node.vue",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/README.md",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/node_modules/vue/dist/vue.min.js",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/index.html",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/gulpfile.js",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/package.json",
+		"/Users/zxs/Documents/workSpace/万达/elementUI_l/node_modules/element-ui/src/index.js",
+		"/Users/zxs/Documents/workSpace/俄罗斯方块/Tetris/game/Model.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/gxy/2011_gxysf.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/lib/layui/lay/modules/form.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/lib/layui/lay/form.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/gxy/2011_gxysf.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/public/js/commonGgwsUtil.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/jkda/2011_grjkdaxx.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/lib/layui/css/layui.css",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/jkda/2011_grjkdaxx_s.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/jkda/2011_grjkdaxx_p.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/gxy/gxyzx.html",
+		"/Users/zxs/Documents/workSpace/万达/wd-vue/index.html",
+		"/Users/zxs/Documents/workSpace/万达/wd-vue/src/pages/list.vue",
+		"/Users/zxs/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Users/zxs/Library/Application Support/Sublime Text 3/Installed Packages/VueFormatter.sublime-package/.vuebeautifyrc",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/src/datagrid.js",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/gulpfile.js",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/demo.html",
+		"/Users/zxs/Documents/workSpace/万达/mint-ui-example/node_modules/mint-ui/lib/style.css",
+		"/Users/zxs/Documents/workSpace/万达/mintUI/projectname/package.json",
+		"/Users/zxs/Documents/workSpace/万达/mintUI/projectname/.babelrc",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/.gitignore",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/dist/demo.html",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/dist/layui-plus0.1-backup.js",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/package.json",
+		"/Users/zxs/Documents/personal/learningSpace/webpackL/package.json",
+		"/Users/zxs/Documents/personal/learningSpace/webpackL/webpack.config.js",
+		"/Users/zxs/Documents/personal/learningSpace/webpackL/index.html",
+		"/Users/zxs/Documents/personal/learningSpace/webpackL/dist/bundle.js",
+		"/Users/zxs/Documents/personal/learningSpace/webpackL/app/index.js",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/README.md",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/src/combogrid.js",
+		"/Users/zxs/Documents/workSpace/万达/layuiPlus/dist/layui-plus0.1.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/lib/jquery-easyui/jquery.min.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/layui-plus0.1.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/test.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/datagrid.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/untitled",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/combogrid.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/data.json",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/index.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/ggws/jkda/2011_grjkdaxx.js",
+		"/Users/zxs/Documents/personal/vueL/my-project/src/components/Hello.vue",
+		"/Users/zxs/Desktop/index.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/crbgl/crbbgkgl/crbbgkgl.html",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/lib/layui/layui.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/swbggl/swbggl/swbg_list.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/crbgl/crbbgkgl/crbbgkgl.js",
+		"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs/login/login.html",
+		"/Users/zxs/Documents/workSpace/cordova/hello/platforms/android/res/xml/config.xml",
+		"/Users/zxs/Documents/workSpace/cordova/hello/platforms/android/assets/www/cordova_plugins.js",
+		"/Users/zxs/export CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL=fil",
+		"/Users/zxs/.bash_profile",
+		"/Users/zxs/.bashrc",
+		"/private/etc/paths",
+		"/Users/zxs/Documents/workSpace/antd/my-app/package.json",
+		"/Users/zxs/PycharmProjects/first/stories/三国演义之曹操篇全.txt",
+		"/Users/zxs/PycharmProjects/first/stories/【大乔密献退曹计】【完】.txt",
+		"/Users/zxs/PycharmProjects/first/stories/【三国重生为蛇】【1-171】【未完】.txt",
+		"/Users/zxs/Downloads/mysql-5.7.13-osx10.11-x86_64/mysql-5.7.13-osx10.11-x86_64/README",
+		"/Users/zxs/Documents/personal/storyStealer/xln.txt",
+		"/Users/zxs/Downloads/5.1.Chart.html",
+		"/Users/zxs/Documents/personal/websocket/index.html",
+		"/Users/zxs/Documents/personal/websocket/main.js",
+		"/Users/zxs/Documents/personal/websocket/node/so.js",
+		"/Users/zxs/Downloads/bower.json",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/lib/jsPlumb-toolkit-anuglar/js/jsPlumbToolkit-1.1.4.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/bower_components/angular-codemirror/lib/AngularCodeMirror.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/missionFusion/missionFusion.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataFusion/dataFusion.controller.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/missionFusion/missionFusionSave.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataMix/dataMix.dataServer.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataMix/dataMix.directive.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/jsplumbTest/jsplumbTest.controller.js",
+		"/Volumes/WebStorm20162/SN.txt",
+		"/Users/zxs/Documents/personal/electron/electron-quick-start/package.json",
+		"/Users/zxs/Documents/personal/electron/electron-quick-start/main.js",
+		"/Users/zxs/Documents/personal/nodeSpace/bookDemo/models/users_model.js",
+		"/Users/zxs/Documents/personal/算法/counter.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataMix/dataMix.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataFusion/dataFusion.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/nav/nav.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/index.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/main.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/jsplumbTestMy/dataMix.controller.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/jsplumbTestMy/dataMix.directive.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataMix/jsplumbTestMy.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataFusion/dataFusion.dataService.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/res/config.json",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/jsplumbTestMy/jsplumbTestMy.controller.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/common/dataServer.js",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/css/pumb_cz.css",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/lib/jsPlumb-toolkit-anuglar/app.css",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/jsplumbTestMy/jsplumbTestMy.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/dist/css/combined.css",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/missionFusion/progressBar.html",
+		"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataSourceMap/dataSourceMap.controller.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/build",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs",
+			"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/node_modules",
+			"/Users/zxs/Documents/workSpace/万达/elementUI_l/element-starter/node_modules/element-ui/lib/theme-default",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs",
+			"/Users/zxs/Documents/workSpace/万达/layuiPlus/src",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/lib/layui",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app/webs",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jshtml/his/app",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/dataMix",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/missionFusion",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/bower_components",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/personal/threejsSpace/learning-threejs",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/personal/threejsSpace/learning-threejs",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules/jsplumbTestMy",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/css",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/SmartCityXj/css",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/css",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1215/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1209/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1209/smartCity/modules/importWorkManage",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1209/smartCity",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity1209/smartCity/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity/smartCityProject/modules",
+			"/Users/zxs/Documents/workSpace/hisun/wisdomCity/smartCityProject",
+			"/Users/zxs/Documents/workSpace/hisun/大数据侦查项目/git/P_gis/js",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/js",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/html",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/modules/experienceShare",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/modules",
+			"/Users/zxs/Downloads/blur-admin-1.2.0/src",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/html",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/html",
+			"/Users/zxs/Downloads/Player-SDK-master/html-samples",
+			"/Users/zxs/Downloads/Player-SDK-master",
+			"/Users/zxs/Downloads/jiankeppt",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline/html",
+			"/Users/zxs/Documents/workSpace/hisun/ckt/ArchOnlineSchoolMobile/ArchOnlineSchoolApp/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/modules/html5videoPlayer",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/modules",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/modules/html5videoPlayer",
+			"/Users/zxs/Documents/workSpace/zxsSpace/npmLaboratory/node_modules",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/html",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src/modules",
+			"/Users/zxs/Documents/workSpace/zxsSpace/npmLaboratory",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jiankePro/trunk/jkonline_danica/jkonline",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe 2",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/script",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html/index",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html/index",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html/index",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe/html/index",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jkonline_forMe",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jianke/jkonline/html",
+			"/Users/zxs/Documents/workSpace/workFromSvn/jianke/jkonline",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src",
+			"/Users/zxs/Documents/workSpace/gitSpace/hisun/archonlineschoolmobile/mobile/static",
+			"/Users/zxs/Documents/workSpace/gitSpace/test/archonlineschoolmobilestaticangular/src/css",
+			"/Users/zxs/Documents/workSpace/hisun/dist/noAngularSpace/archonlineschoolmobile/mobile/static",
+			"/Users/zxs/Documents/workSpace/gitSpace/hisun/archonlineschoolmobile/mobile/static",
+			"/Users/zxs/Documents/workSpace/hisunT/LittleChat/WebRoot",
+			"/Users/zxs/Documents/workSpace/hisunT/LittleChat/src/com/hisuntech/chat",
+			"/Users/zxs/Desktop/LittleChat1/LittleChat",
+			"/Users/zxs/Desktop/LittleChat1/LittleChat/WebRoot",
+			"/Users/zxs/Documents/workSpace/workFromSvn/svnSpace/NurseMobile/assets/www/nurseManager/mobile/assets",
+			"/Users/zxs/Documents/workSpace/workFromSvn/svnSpace/NurseMobile/assets/www/nurseManager/mobile/assets/js",
+			"/Users/zxs/Desktop/LittleChat1/LittleChat/WebRoot",
+			"/Users/zxs/Desktop/LittleChat1/LittleChat/WebRoot/js",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src/modules",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame",
+			"/Users/zxs/Documents/workSpace/workFromSvn/svnSpace/HIP_Web_Client/gulp",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src/modules/memberManage/modal",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame/src/modules",
+			"/Users/zxs/Documents/workSpace/sixMix/manager/LiuHeFrame"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"output",
+			"publicPath",
+			"buildDir",
+			"publicPath",
+			"inject",
+			"index.html",
+			"slotContents",
+			"queryDataBySql",
+			"defaultProps",
+			"handleClose",
+			"demonstration",
+			"block",
+			".ql-editor .ql-align-center",
+			"            \n",
+			"searchPart",
+			".el-tree",
+			".el-tree-node__content",
+			"36px",
+			".el-tree-node__content",
+			".el-tree-node__label",
+			"element-ui/lib/theme-default/index.css",
+			".el-tree-node__label",
+			"保存",
+			"submit(save_btn)",
+			"saveGrdaxx",
+			"保存",
+			"trigger",
+			"save_bt",
+			"indexof",
+			"search",
+			"dl",
+			"extraValue",
+			"ysid",
+			"extra",
+			"ysid",
+			"join",
+			"ysid",
+			"JSON.string",
+			"join",
+			"form",
+			"var form",
+			"form",
+			".form",
+			".use",
+			"layui_form",
+			"layui",
+			"init",
+			"个人基本信息表",
+			"责任医生",
+			"selectRow",
+			"console.log",
+			"xb",
+			"eslint",
+			"button",
+			"click",
+			"onGripDragOver",
+			"mouseup",
+			"                    \n",
+			"field",
+			"==3",
+			"verify",
+			"必填项不能",
+			"focus()",
+			"val",
+			"save",
+			"selects",
+			"必填项不能为空",
+			"必填项",
+			"focuse",
+			"必填",
+			"save",
+			"selected",
+			"disabled",
+			"render = ",
+			"render",
+			"selectedText",
+			"disabled",
+			"xb",
+			"TIPS",
+			"selects",
+			"render",
+			"rander",
+			"data",
+			"ycbs",
+			"render",
+			"loadGrjkda",
+			"责任医生",
+			"*责任医生",
+			"shde",
+			")*",
+			"*$",
+			"*",
+			"search",
+			"<dd",
+			"left",
+			"check",
+			"follow",
+			"orien",
+			"死亡报告新增",
+			"orien",
+			"dl",
+			"<dd",
+			"shde",
+			"死者生前病史及症状体症：",
+			"死亡调查记录",
+			"<dd",
+			"getZrtd",
+			"rygx",
+			"wgdm",
+			"网格地址",
+			"dd",
+			"现住址区划",
+			"bgbh",
+			"layui-input-inline",
+			"select",
+			"createBlock",
+			"createB",
+			"action",
+			"include: paths.appSrc,",
+			"query",
+			"(淫色淫色ＷＷＷ．4567q.c0m)",
+			"(淫色淫色4567Ｑ.ＣＯＭ)",
+			"(淫色淫色4567q.c0M)",
+			"”",
+			"“",
+			"cancel",
+			"labels.cancel",
+			"jtk-dialog-button jtk-dialog-button-cancel"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"\"",
+			"true",
+			"gulp",
+			"",
+			"hive_source",
+			"",
+			"\"",
+			"widget://modules/html5videoPlayer/video_course_player_html5.html",
+			",",
+			":",
+			",",
+			":",
+			"// var myVideo = document.getElementById('myVideo');",
+			"\"/assets",
+			"//console.log(",
+			"",
+			" ",
+			"<h6 ng-click=\"cancel()\" class=\"close\" ng-if=\"!config.noCloseX\"><i>x</i></h6>",
+			"    <h6 ng-click=\"cancel()\" class=\"close\"><i>x</i></h6>",
+			"col-xs",
+			"(",
+			")",
+			"userInfo",
+			"value: \"4\",",
+			"value: \"3\",",
+			"value: \"2\",",
+			"value: \"1\",",
+			" ",
+			"\"optionsShow\": false",
+			"\"",
+			";",
+			"interfaceObj.interfaceUrl",
+			"//debugger",
+			"\\\"",
+			"loadVersionList",
+			"08月",
+			"'",
+			"’",
+			"window.location.href",
+			"debugger;window.location.href"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "App.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1553,
+								1553
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 147.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/dist/index.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 653,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								653,
+								653
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 406,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								301,
+								301
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/zxs/Documents/workSpace/万达/moblie_mint/wd_moblie/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								310,
+								310
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 207.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 112.0
+	},
+	"pinned_build_system": "",
+	"project": "wd_mobile.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"webpack.config.js",
+				"mobile_sys/node_modules/webpack-hot-middleware/example/webpack.config.js"
+			],
+			[
+				"yhgl.js",
+				"app/webs/jcsjgl/yhgl/yhgl.js"
+			],
+			[
+				"element-ui/lib/theme-default/index.css",
+				"element-starter/node_modules/element-ui/lib/theme-default/index.css"
+			],
+			[
+				"theme-default/index.css",
+				"element-starter/node_modules/element-ui/lib/theme-default/index.css"
+			],
+			[
+				"element-ui/src/index.js",
+				"node_modules/element-ui/src/index.js"
+			],
+			[
+				"vue.min",
+				"node_modules/vue/dist/vue.min.js"
+			],
+			[
+				"app/lib/layui/css/layui.css",
+				"app/lib/layui/css/layui.css"
+			],
+			[
+				"app/lib/layui/layui-plus0.1.js",
+				"app/lib/layui/layui-plus0.1.js"
+			],
+			[
+				"2011",
+				"app/webs/ggws/jkda/2011_grjkdaxx.js"
+			],
+			[
+				"webpack.base.conf.js",
+				"build/webpack.base.conf.js"
+			],
+			[
+				"style.css",
+				"node_modules/mint-ui/lib/style.css"
+			],
+			[
+				"layui-plus0.1.js",
+				"app/lib/layui/layui-plus0.1.js"
+			],
+			[
+				"layui.css",
+				"app/lib/layui/css/layui.css"
+			],
+			[
+				"jquery.min.js",
+				"app/lib/jquery-easyui/jquery.min.js"
+			],
+			[
+				"form.js",
+				"app/lib/layui/lay/modules/form.js"
+			],
+			[
+				"2011_grjkdaxx",
+				"app/webs/ggws/jkda/2011_grjkdaxx.js"
+			],
+			[
+				"lib/layui/layui",
+				"app/lib/layui/layui.js"
+			],
+			[
+				"cordova_plugins.js",
+				"platforms/android/assets/www/cordova_plugins.js"
+			],
+			[
+				"config.xm",
+				"platforms/android/res/xml/config.xml"
+			],
+			[
+				"login",
+				"his/app/webs/login/login.html"
+			],
+			[
+				"神雕",
+				"神雕后传——幻淫记一作者xuan820915.txt"
+			],
+			[
+				"三国",
+				"三国轶闻情色三国全作者不详.txt"
+			],
+			[
+				"index.css",
+				"css/index.css"
+			],
+			[
+				"jspul",
+				"modules/jsplumbTest/jsplumbTest.controller.js"
+			],
+			[
+				"js",
+				"modules/jsplumbTestMy/jsplumbTestMy.controller.js"
+			],
+			[
+				"data",
+				"common/dataServer.js"
+			],
+			[
+				"pum",
+				"css/pumb_cz.css"
+			],
+			[
+				"app.css",
+				"lib/jsPlumb-toolkit-anuglar/app.css"
+			],
+			[
+				"app",
+				"lib/jsPlumb-toolkit-anuglar/app.css"
+			],
+			[
+				"更新",
+				"documents/更新代码流程规范"
+			],
+			[
+				"scrollnum",
+				"common/scrollNum.js"
+			],
+			[
+				"impor",
+				"modules/importSource/importSource.controller.js"
+			],
+			[
+				"代码",
+				"documents/更新代码流程规范"
+			],
+			[
+				"dataser",
+				"common/dataServer.js"
+			],
+			[
+				"leadingindata",
+				"modules/leadingInData/leadingInData.controller.js"
+			],
+			[
+				"jsplumbm",
+				"modules/jsplumbTestMy/jsplumbTestMy.controller.js"
+			],
+			[
+				"jsplumbtestmy.controller",
+				"modules/jsplumbTestMy/jsplumbTestMy.controller.js"
+			],
+			[
+				"jsplumbtoolkit-defaults.css",
+				"lib/jsPlumb-toolkit-anuglar/css/jsPlumbToolkit-defaults.css"
+			],
+			[
+				"missionfusionsave",
+				"modules/missionFusion/missionFusionSave.html"
+			],
+			[
+				"jsplumbtoolkit-demo",
+				"lib/jsPlumb-toolkit-anuglar/css/jsPlumbToolkit-demo.css"
+			],
+			[
+				"main.js",
+				"main.js"
+			],
+			[
+				"importsource.controller.js",
+				"modules/importSource/importSource.controller.js"
+			],
+			[
+				"daydispatchstatus",
+				"modules/dayDispatchStatus/dayDispatchStatus.html"
+			],
+			[
+				"importworkrunstatus",
+				"modules/importWorkRunStatus/importWorkRunStatus.html"
+			],
+			[
+				"importworksourcedis.html",
+				"modules/importWorkSourceDis/importWorkSourceDis.html"
+			],
+			[
+				"metas",
+				"modules/metadataCreate/metasystemCreate.html"
+			],
+			[
+				"me",
+				"modules/metadataManage/metadataManage.html"
+			],
+			[
+				"datasou",
+				"modules/dataSourceMap/dataSourceMap.html"
+			],
+			[
+				"lea",
+				"modules/leadingInData/leadingInData.html"
+			],
+			[
+				"sectornav",
+				"css/sectorNav.css"
+			],
+			[
+				"importsource",
+				"modules/importSource/importSource.html"
+			],
+			[
+				"new",
+				"modules/newDataSource/newDataSource.html"
+			],
+			[
+				"choicedatasource.controller",
+				"smartCity/modules/importWorkManage/choiceDataSource.controller.js"
+			],
+			[
+				"choicedatasource",
+				"smartCity/modules/importWorkManage/choiceDataSource.controller.js"
+			],
+			[
+				"alert",
+				"smartCity/css/alert.css"
+			],
+			[
+				"targettable.controller.js",
+				"smartCity/modules/publicSafe/targetTable.controller.js"
+			],
+			[
+				"databases.controller",
+				"smartCity/modules/newDataSource/databases.controller.js"
+			],
+			[
+				"nav.html",
+				"smartCity/modules/nav/nav.html"
+			],
+			[
+				"fusiontarget.controller",
+				"smartCity/modules/fusionTarget/fusionTarget.controller.js"
+			],
+			[
+				"mata",
+				"smartCity/modules/metadataManage/metadataManage.controller.js"
+			],
+			[
+				"choicedatasource.html",
+				"smartCity/modules/importWorkManage/choiceDataSource.html"
+			],
+			[
+				"choicedatasource.controller.js",
+				"smartCity/modules/importWorkManage/choiceDataSource.controller.js"
+			],
+			[
+				"importw",
+				"smartCity/modules/importWorkManage/importWorkManage.html"
+			],
+			[
+				"importworkrunstatus.controller.js",
+				"smartCity/modules/importWorkRunStatus/importWorkRunStatus.controller.js"
+			],
+			[
+				"importworksourcedis.controller.js",
+				"smartCity/modules/importWorkSourceDis/importWorkSourceDis.controller.js"
+			],
+			[
+				"importworksource",
+				"smartCity/modules/importWorkSourceDis/importWorkSourceDis.controller.js"
+			],
+			[
+				"databases",
+				"smartCity/modules/newDataSource/databases.controller.js"
+			],
+			[
+				"databases.controller.js",
+				"smartCity/modules/newDataSource/databases.controller.js"
+			],
+			[
+				"metadatacreate.controller.js",
+				"smartCity/modules/metadataCreate/metadataCreate.controller.js"
+			],
+			[
+				"mfdatasourse",
+				"smartCity/modules/missionFusion/mfDatasourse.html"
+			],
+			[
+				"mfoperation",
+				"smartCity/modules/missionFusion/mfOperation.html"
+			],
+			[
+				"missionfusion",
+				"smartCity/modules/missionFusion/missionFusion.html"
+			],
+			[
+				"datafusion",
+				"smartCity/modules/dataFusion/dataFusion.html"
+			],
+			[
+				"dataf",
+				"smartCity/modules/dataFusion/dataFusion.html"
+			],
+			[
+				"databasesctrl",
+				"smartCity/modules/newDataSource/databases.controller.js"
+			],
+			[
+				"metaunitcreate",
+				"smartCity/modules/metadataCreate/metaunitCreate.html"
+			],
+			[
+				"importsource.html",
+				"modules/importSource/importSource.html"
+			],
+			[
+				"newdatasource.html",
+				"modules/newDataSource/newDataSource.html"
+			],
+			[
+				"metasystemcreate",
+				"modules/metadataCreate/metasystemCreate.html"
+			],
+			[
+				"frame3",
+				"html/frame3.html"
+			],
+			[
+				"f",
+				"html/frame4.html"
+			],
+			[
+				"loadingmanager",
+				"modules/loadingManager/loadingManager.controller.js"
+			],
+			[
+				"startup_hp_frame",
+				"startup_hp_frame.html"
+			],
+			[
+				"startup_hp_window",
+				"startup_hp_window.html"
+			],
+			[
+				"myexperiencelist",
+				"modules/experienceShare/modules/myExperienceList/myExperienceList.html"
+			],
+			[
+				"downloadvideo.html",
+				"modules/downloadVideo/downloadVideo.html"
+			],
+			[
+				"fr",
+				"html/frame4.html"
+			],
+			[
+				"frame4",
+				"html/frame4.html"
+			],
+			[
+				"html4",
+				"html/frame4.html"
+			],
+			[
+				"more",
+				"html/more.html"
+			],
+			[
+				"fram",
+				"html/frame0.html"
+			],
+			[
+				"sina",
+				"sina.html"
+			],
+			[
+				"question_up_frame",
+				"html/index/question_up_frame.html"
+			],
+			[
+				"info",
+				"info.html"
+			],
+			[
+				"qr",
+				"js/qrcode.js"
+			],
+			[
+				"angu",
+				"script/libs/angular.min.js"
+			],
+			[
+				"offline_course_window",
+				"html/index/offline_course_window.html"
+			],
+			[
+				"video_course_window",
+				"html/index/video_course_window.html"
+			],
+			[
+				"mycourse_learnrecord_frame",
+				"html/center/myCourse_learnRecord_frame.html"
+			],
+			[
+				"login_frame.html",
+				"html/center/login_frame1.html"
+			],
+			[
+				"ta",
+				"modules/LittleChat/src/directChat/tag\": \"广告\","
+			],
+			[
+				"dire",
+				"modules/LittleChat/src/directChat/directChat.controller.js"
+			],
+			[
+				"myo",
+				"html/center/myOrder_frame1.html"
+			],
+			[
+				"add",
+				"html/basic/add_comment_frame.html"
+			],
+			[
+				"serv",
+				"html/index/service_chat_window.html"
+			],
+			[
+				"html",
+				"modules/html5videoPlayer/html5videoPlayer.controller.js"
+			],
+			[
+				"service_chat_window",
+				"html/index/service_chat_window.html"
+			],
+			[
+				"index.js",
+				"js/index.js"
+			],
+			[
+				"cart_confirm_frame1",
+				"html/carts/cart_confirm_frame1.html"
+			],
+			[
+				"cart_confirm_window",
+				"html/carts/cart_confirm_window.html"
+			],
+			[
+				"cour",
+				"js/course1.js"
+			],
+			[
+				"html5",
+				"modules/html5videoPlayer/html5videoPlayer.controller.js"
+			],
+			[
+				"cou",
+				"js/course1.js"
+			],
+			[
+				"video_course_player_html5",
+				"modules/html5videoPlayer/video_course_player_html5.html"
+			],
+			[
+				"vi",
+				"modules/html5videoPlayer/video_course_player_html5.html"
+			],
+			[
+				"user",
+				"userinfo.html"
+			],
+			[
+				"my_appmt",
+				"mobile/static/my_appmt.html"
+			],
+			[
+				"orderstage1",
+				"mobile/static/orderstage1.html"
+			],
+			[
+				"index.con",
+				"src/modules/index/index.controller.js"
+			],
+			[
+				"index.html",
+				"src/modules/index/index.html"
+			],
+			[
+				"style",
+				"src/css/style.css"
+			],
+			[
+				"index.co",
+				"src/modules/index/index.controller.js"
+			],
+			[
+				"index.da",
+				"src/modules/index/index.dataService.js"
+			],
+			[
+				"datas",
+				"src/sys/dataServ.services.js"
+			],
+			[
+				"pro",
+				"mobile/static/productlist.html"
+			],
+			[
+				"cart",
+				"mobile/static/cart.html"
+			],
+			[
+				"require",
+				"mobile/static/script/libs/require.js"
+			],
+			[
+				"main",
+				"src/modules/mainLayout/mainLayout.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 417.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

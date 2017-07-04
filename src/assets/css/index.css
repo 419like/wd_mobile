@@ -1,0 +1,47 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.green {
+    background: #3dbbaa;
+}
+
+.font18 {
+    font-size: 18px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+.font14 {
+    font-size: 12px;
+}
+
+.margin20{
+	margin-top: 20px;
+}
+
+.margin10{
+    margin-top: 10px;
+}
+.center {
+    text-align: center;
+}
+
+.flex{
+	display: flex;
+}
+.flex1{
+	flex:1;
+}
+.topBar {
+    height: 40px;
+}
+
+.footBar {
+    height: 44px;
+}
+.font-green{
+    color: #3dbbaa;
+}

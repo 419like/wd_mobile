@@ -4,9 +4,10 @@
         <div class="topBar"></div>
         <div class="personInfo">
             <img class="imgBox" :src=headImg @click="editInfo()">
-            <span class="unLogin" @click="goUrl('/login')">点击登录</span>
+            <span v-show="!number" class="unLogin" @click="goUrl('/login')">点击登录</span>
+            <span v-show="number" class="unLogin" @click="goUrl('/editUserInfo')" v-text="number"></span>
         </div>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
+        <mt-cell title="设置" label="描述信息" is-link></mt-cell>
         <mt-cell title="标题" label="描述信息" is-link></mt-cell>
         <mt-cell title="标题" label="描述信息" is-link></mt-cell>
         <mt-cell title="标题" label="描述信息" is-link></mt-cell>
@@ -32,6 +33,7 @@ export default {
                 msg: '个人中心',
                 list: [],
                 headImg: 'http://www.czgongzuo.com/Files/PerPhoto/photoman.gif',
+                number:''
             }
         },
         methods: {
@@ -45,6 +47,11 @@ export default {
             },
             goUrl(url){
                 this.$router.push({path:url})
+            }
+        },
+        mounted(){
+            if(window.config.userId){
+                this.number = window.config.userNum
             }
         },
         components: {

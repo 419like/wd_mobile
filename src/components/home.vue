@@ -138,7 +138,7 @@
             <div class="line1"></div>
             <div class="title1 paddingL10">
                 <icon name="hospital-o" scale="0.8"></icon>
-                <span>医院服务</span>
+                <span>推荐医院</span>
                 <span class="more">全部医院&nbsp;>></span>
             </div>
             <mt-cell title="标题" label="描述信息" is-link></mt-cell>

@@ -17,8 +17,8 @@
         </div>
         <mt-progress :value=33.3*step>
         </mt-progress>
-        <div v-if="step==1">
-            <mt-field label="电话号码" placeholder="请输入电话号码" v-model="password"></mt-field>
+        <div v-show="step==1">
+            <mt-field label="电话号码" placeholder="请输入电话号码" v-model="number"></mt-field>
             <div class="btnCenter">
                 <button class="mint-button mint-button--primary mint-button--large green" @click="goStep(2)">
                     <!---->
@@ -26,7 +26,7 @@
                 </button>
             </div>
         </div>
-        <div v-if="step==2">
+        <div v-show="step==2">
             <mt-field label="验证码" placeholder="请输入验证码"></mt-field>
             <div class="btnCenter">
                 <button class="mint-button mint-button--primary mint-button--large green" @click="goStep(3)">
@@ -35,7 +35,7 @@
                 </button>
             </div>
         </div>
-        <div v-if="step==3">
+        <div v-show="step==3">
             <mt-field label="密码" placeholder="请输入密码" :type="passwordShow?'':'password'" v-model="password">
                 <div class="showBtn" @click="transShow()">
                     <icon v-if="passwordShow" name="eye" scale="1.3"></icon>
@@ -58,18 +58,32 @@ export default {
                 msg: '注册',
                 list: [],
                 step: 1,
-                passwordShow:false,
-                password:''
+                passwordShow: false,
+                password: '',
+                number: ''
             }
         },
         methods: {
             register() {
-                
+                let password = this.passwordFix(this.password);
+                debugger
+                let params = {
+                    sjh: this.number + '',
+                    lx: "1",
+                    mm: password
+                }
+                this.api.Regist(params)
+                    .then(res => {
+                        this.$toast('注册成功！')
+                        window.config.userId = res.id;
+                        window.config.userNum = this.number;
+                        this.$router.back();
+                    })
             },
             goStep(step) {
                 this.step = step;
             },
-            transShow(){
+            transShow() {
                 this.passwordShow = !this.passwordShow;
             }
         },
@@ -79,18 +93,20 @@ export default {
 }
 </script>
 <style scoped>
-.showBtn{
-    position:absolute;
-    right:30px;
-    top:-10px;
+.showBtn {
+    position: absolute;
+    right: 30px;
+    top: -10px;
     font-size: 20px;
-    color:#999999;
-    width:20px;
-    height:20px;
+    color: #999999;
+    width: 20px;
+    height: 20px;
 }
-.btnCenter{
-    margin:10px;
+
+.btnCenter {
+    margin: 10px;
 }
+
 .register {
     float: right;
     color: #408000;

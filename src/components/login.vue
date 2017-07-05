@@ -6,8 +6,8 @@
         <div class="center">
             <img class="logoImg" src="http://www.wondersgroup.com/wp-content/themes/wonders2016/images/logo.png">
         </div>
-        <mt-field label="用户名" placeholder="请输入电话号码"></mt-field>
-        <mt-field label="密码" placeholder="请输入密码" type="password"></mt-field>
+        <mt-field label="用户名" placeholder="请输入电话号码" v-model="number"></mt-field>
+        <mt-field label="密码" placeholder="请输入密码" v-model="password" type="password"></mt-field>
         <div class="loginBtn">
             <button class="mint-button mint-button--primary mint-button--large green" @click="login()">
                 <!---->
@@ -35,7 +35,9 @@ export default {
     data() {
             return {
                 msg: '登录',
-                list: []
+                list: [],
+                number: '',
+                password: ''
             }
         },
         methods: {
@@ -45,28 +47,48 @@ export default {
                 })
             },
             login() {
+                let password = this.passwordFix(this.password);
+                let params = {
+                    sjh: this.number + '',
+                    mm: password
+                }
+                this.api.Login(params)
+                    .then(res => {
+                        this.$toast('登录成功！')
+                        debugger
+                        console.log(res);
+                        window.config.userId = res.data[0].id;
+                        window.config.userNum = this.number;
+                        this.$router.back();
+                    })
+            }
+        },
+        created() {
+            if (window.config.userId) {
                 this.$router.back();
             }
         },
         components: {
 
-        }
+        },
 }
 </script>
 <style scoped>
-.logoImg{
-    width:80%;
+.logoImg {
+    width: 80%;
 }
-.tip{
-    color:#808080;
+
+.tip {
+    color: #808080;
 }
+
 .icon {
     width: 60px;
 }
 
 .otherLoginBox {
     padding-top: 20px;
-    margin-top:50px;
+    margin-top: 50px;
     border-top: 1px solid #B3B3B3;
 }
 

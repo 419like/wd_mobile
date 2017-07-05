@@ -11,9 +11,8 @@ Vue.component('icon', Icon)
 
 import router from './router'
 
-import VueResource from 'vue-resource'
-Vue.use(VueResource);
-
+import api from '@/fetch/api.js';
+Vue.prototype.api = api;
 
 import App from './App'
 
@@ -22,22 +21,22 @@ import 'mint-ui/lib/style.css';
 import './assets/css/index.css'
 Vue.use(MintUI);
 
+import md5 from 'js-md5';
 
 const app = new Vue({
     router,
     render: h => h(App)
 }).$mount('#app')
 
-
 Vue.prototype.goback = function() {
     router.back();
 }
-
 Vue.prototype.passwordFix = function(word) {
     var len = 64 - word.length;
     for (var i = 0; i < len; i++) {
         word = word + '0'
     }
+    word = md5(word);
     return word;
 }
 
@@ -47,6 +46,8 @@ document.addEventListener('deviceready', function() {
 
 
 window.config = {
+    userId:'',
+    userNum:'',
     rootUrl: 'http://125.69.67.12:7080/hisapi'
 }
 

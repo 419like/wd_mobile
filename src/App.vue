@@ -4,6 +4,9 @@
     </div>
 </template>
 <script type="text/javascript">
+
+import md5 from 'js-md5';
+
 export default {
     data() {
         return {
@@ -11,9 +14,9 @@ export default {
         }
     }, mounted() {
     	let _this = this;
-        setTimeout(function() {
+        setTimeout(()=> {
         	document.getElementById('mask').style.display = 'none'
-        })
+        });
     }
 }
 </script>

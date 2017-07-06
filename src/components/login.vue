@@ -55,10 +55,13 @@ export default {
                 this.api.Login(params)
                     .then(res => {
                         this.$toast('登录成功！')
-                        debugger
-                        console.log(res);
                         window.config.userId = res.data[0].id;
                         window.config.userNum = this.number;
+                        let loginObj = {
+                            userId:res.data[0].id,
+                            userNum:this.number
+                        }
+                        this.$store.commit('login',loginObj);
                         this.$router.back();
                     })
             }

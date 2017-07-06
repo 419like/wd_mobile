@@ -1,6 +1,9 @@
 import Vue from 'vue'
 
 
+import store from '@/store'
+
+
 import axios from 'axios';
 Vue.prototype.axios = axios;
 
@@ -25,6 +28,7 @@ import md5 from 'js-md5';
 
 const app = new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app')
 

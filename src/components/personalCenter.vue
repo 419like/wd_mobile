@@ -4,60 +4,22 @@
         <div class="topBar"></div>
         <div class="personInfo">
             <img class="imgBox" :src=headImg @click="editInfo()">
-            <span v-show="!number" class="unLogin" @click="goUrl('/login')">点击登录</span>
-            <span v-show="number" class="unLogin" @click="showInfo()" v-text="number"></span>
+            <span v-show="!loginState" class="unLogin" @click="goUrl('/login')">点击登录</span>
+            <span v-show="loginState" class="Login" @click="showInfo()" v-text="userNum"></span>
         </div>
-        <mt-cell title="设置" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-        <mt-cell title="标题" label="描述信息" is-link></mt-cell>
+        <mt-cell title="设置" label="描述信息" is-link @click.native="showConfig()"></mt-cell>
         <div class="footBar"></div>
-        <mt-popup class="holePage" v-model="popupVisible" position="right">
-            <div class="holePage">
-                <mt-header fixed :title=msg class="green"></mt-header>
-                <div class="holeHeight">
-                    <div class="topBar"></div>
-                    <mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
-                    <mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
-                    <mt-field label="密码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
-                    <mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
-                    <mt-field label="网站" placeholder="请输入网址" type="url" v-model="website"></mt-field>
-                    <mt-field label="数字" placeholder="请输入数字" type="number" v-model="number"></mt-field>
-                    <mt-field label="生日" placeholder="请输入生日" type="date" v-model="birthday"></mt-field>
-                    <mt-field label="自我介绍" placeholder="自我介绍" type="textarea" rows="4" v-modal="introduction"></mt-field>
-                    <mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
-                    <mt-field label="网站" placeholder="请输入网址" type="url" v-model="website"></mt-field>
-                    <mt-field label="数字" placeholder="请输入数字" type="number" v-model="number"></mt-field>
-                    <mt-field label="生日" placeholder="请输入生日" type="date" v-model="birthday"></mt-field>
-                    <mt-field label="自我介绍" placeholder="自我介绍" type="textarea" rows="4" v-modal="introduction"></mt-field>
-                    <mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
-                    <mt-field label="网站" placeholder="请输入网址" type="url" v-model="website"></mt-field>
-                    <mt-field label="数字" placeholder="请输入数字" type="number" v-model="number"></mt-field>
-                    <mt-field label="生日" placeholder="请输入生日" type="date" v-model="birthday"></mt-field>
-                    <mt-field label="自我介绍" placeholder="自我介绍" type="textarea" rows="4" v-modal="introduction"></mt-field>
-                    <mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
-                    <mt-field label="网站" placeholder="请输入网址" type="url" v-model="website"></mt-field>
-                    <mt-field label="数字" placeholder="请输入数字" type="number" v-model="number"></mt-field>
-                    <mt-field label="生日" placeholder="请输入生日" type="date" v-model="birthday"></mt-field>
-                    <mt-field label="自我介绍" placeholder="自我介绍" type="textarea" rows="4" v-modal="introduction"></mt-field>
-                </div>
-            </div>
+        <mt-popup class="holePage" v-model="personinfoVisible" position="right">
+            <personinfo @close="closeInfo" />
+        </mt-popup>
+        <mt-popup class="holePage" v-model="personConfigVisible" position="right">
+            <person-config @close="closeConfig" />
         </mt-popup>
     </div>
 </template>
 <script type="text/javascript">
+import personinfo from '@/components/personinfo';
+import personConfig from '@/components/personConfig';
 export default {
     data() {
             return {
@@ -65,7 +27,8 @@ export default {
                 list: [],
                 headImg: 'http://www.czgongzuo.com/Files/PerPhoto/photoman.gif',
                 number: '',
-                popupVisible: false
+                personinfoVisible: false,
+                personConfigVisible:false
             }
         },
         methods: {
@@ -83,17 +46,35 @@ export default {
                 })
             },
             showInfo() {
-                this.popupVisible = true;
+                this.personinfoVisible = true;
+            },
+            closeInfo() {
+                this.personinfoVisible = false;
+            },
+            showConfig() {
+                this.personConfigVisible = true;
+            },
+            closeConfig() {
+                this.personConfigVisible = false;
             }
         },
-        mounted() {
-            if (window.config && window.config.userId) {
-                this.number = window.config.userNum
-            }
-        },
-        components: {
+        created() {
 
         },
+        mounted() {
+            
+        },
+        components: {
+            personinfo,personConfig
+        },
+        computed: {
+            loginState() {
+                return this.$store.getters.loginState;
+            },
+            userNum(){
+                return this.$store.getters.userNum;
+            }
+        }
 }
 
 //拍照成功后回调
@@ -107,6 +88,19 @@ function takeFail(message) {
 }
 </script>
 <style scoped>
+.Login {
+    position: absolute;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    height: 30px;
+    line-height: 30px;
+    width: 110px;
+    text-align: center;
+    left: 100px;
+    top: 35px;
+}
+
 .unLogin {
     position: absolute;
     color: #fff;

@@ -141,63 +141,62 @@
                 <span>推荐医院</span>
                 <span class="more">全部医院&nbsp;>></span>
             </div>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
-            <mt-cell title="标题" label="描述信息" is-link></mt-cell>
+            <mt-cell v-for="item in items" :title="item.text" label="描述信息" is-link="" @click.native="goHis(item)"></mt-cell>
         </div>
         <div class="footBar"></div>
     </div>
 </template>
 <script type="text/javascript">
 export default {
-
+    data() {
+            return {
+                items: []
+            }
+        },
+        methods:{
+            goHis(item){
+                console.log(item);
+                this.$router.push({
+                    path: '/hospitalPage/'+JSON.stringify(item)
+                })
+            }
+        },
+        mounted() {
+            let params = {
+                length:'5',
+            }
+            this.api.GetHisList(params).then(
+                res=>{
+                    console.log(res);
+                    this.items = res.data;
+                }, err=>{
+                    console.log(err);
+                })
+        }
 }
 </script>
 <style scoped>
-.more{
+.more {
     float: right;
     font-size: 12px;
 }
-.paddingL10{
-    padding-left: 5px;
-}
-.bottomLine{
+
+
+.bottomLine {
     border-bottom: 1px solid #CCCCCC;
-    height:60px;
+    height: 60px;
 }
-.iconbox1{
-    height:30px;
+
+.iconbox1 {
+    height: 30px;
 }
+
 .text1 {
     font-size: 12px;
     color: #7F7F7F;
 }
 
-.title1 {
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-    color: #3dbbaa;
-    border-bottom: 1px solid #CCCCCC;
-}
 
-.line1 {
-    height: 3px;
-    background: #CCCCCC;
-}
 
 .topBar {
     height: 40px;

@@ -8,7 +8,7 @@
         </div>
         <mt-field label="用户名" placeholder="请输入电话号码" v-model="number"></mt-field>
         <mt-field label="密码" placeholder="请输入密码" v-model="password" type="password"></mt-field>
-        <div class="loginBtn">
+        <div class="centerBtn">
             <button class="mint-button mint-button--primary mint-button--large green" @click="login()">
                 <!---->
                 <label class="mint-button-text font18">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</label>
@@ -54,12 +54,12 @@ export default {
                 }
                 this.api.Login(params)
                     .then(res => {
-                        this.$toast('登录成功！')
-                        window.config.userId = res.data[0].id;
-                        window.config.userNum = this.number;
+                        this.$toast('登录成功！');
+                        console.log(res);
                         let loginObj = {
                             userId:res.data[0].id,
-                            userNum:this.number
+                            userNum:this.number,
+                            password:password
                         }
                         this.$store.commit('login',loginObj);
                         this.$router.back();
@@ -67,7 +67,7 @@ export default {
             }
         },
         created() {
-            if (window.config.userId) {
+            if (this.$store.getters.loginState) {
                 this.$router.back();
             }
         },
@@ -97,10 +97,6 @@ export default {
 
 .extra {
     padding: 10px;
-}
-
-.loginBtn {
-    margin: 10px;
 }
 
 .register {

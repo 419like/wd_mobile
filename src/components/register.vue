@@ -66,7 +66,6 @@ export default {
         methods: {
             register() {
                 let password = this.passwordFix(this.password);
-                debugger
                 let params = {
                     sjh: this.number + '',
                     lx: "1",
@@ -77,6 +76,12 @@ export default {
                         this.$toast('注册成功！')
                         window.config.userId = res.id;
                         window.config.userNum = this.number;
+                        let loginObj = {
+                            userId:res.id,
+                            userNum:this.number,
+                            password:password,
+                        }
+                        this.$store.commit('login',loginObj);
                         this.$router.back();
                     })
             },

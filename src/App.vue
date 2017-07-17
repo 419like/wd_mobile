@@ -1,26 +1,58 @@
 <template>
     <div id="app">
-        <div v-if="maskShow" class="mask">fuck</div>
-        <router-view></router-view>
+        <div v-if="maskShow" class="mask flex center">
+            <icon scale="3" class="fa-pulse icon" name="spinner"></icon>
+        </div>
+        <router-view keep-alive transition transition-mode="out-in"></router-view>
     </div>
 </template>
 <script type="text/javascript">
-
 export default {
     data() {
-        return {
-        }
+        return {}
     }, mounted() {
-    	let _this = this;
-        setTimeout(()=> {
-        	document.getElementById('mask').style.display = 'none'
+        let _this = this;
+        setTimeout(() => {
+            document.getElementById('mask').style.display = 'none'
         });
-    },computed:{
-        maskShow(){
+
+
+        let userInfo = this.$store.getters.localUserInfo;
+        if (userInfo && userInfo.userId) {
+            let params = {
+                sjh: userInfo.userNum + '',
+                mm: userInfo.password
+            }
+            this.api.Login(params)
+                .then(res => {
+                    let loginObj = {
+                        userId: res.data[0].id,
+                        userNum: userInfo.userNum,
+                        password: userInfo.password
+                    }
+                    this.$store.commit('login', loginObj);
+                    this.$toast('登录成功！')
+                })
+        }
+    }, computed: {
+        maskShow() {
             return this.$store.state.maskShow;
         }
     }
 }
 </script>
 <style scoped>
+.fa-pulse {
+    animation: fa-spin 1s infinite steps(8);
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    font-size: 30px;
+    color: #fff;
+}
 </style>

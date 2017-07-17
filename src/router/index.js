@@ -2,23 +2,33 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-import index from '../components/index'
-import consult from '../components/consult'
-import healthRecord from '../components/healthRecord'
-import personalCenter from '../components/personalCenter'
-
+const index = resolve => {
+    require(['../components/index.vue'], resolve)
+};
+const consult = resolve => {
+    require(['../components/consult.vue'], resolve)
+};
+const healthRecord = resolve => {
+    require(['../components/healthRecord.vue'], resolve)
+};
+const personalCenter = resolve => {
+    require(['../components/personalCenter.vue'], resolve)
+};
 const login = resolve => {
     require(['../components/login.vue'], resolve)
 };
-
 const register = resolve => {
     require(['../components/register.vue'], resolve)
 }
-
 const home = resolve => {
     require(['../components/home.vue'], resolve)
 }
-
+const hospitalPage = resolve => {
+    require(['../components/hospitalPage/hospitalPage.vue'], resolve);
+}
+const acticle = resolve => {
+    require(['../components/acticle/acticle.vue'], resolve);
+}
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -37,7 +47,13 @@ const routes = [
         }, {
             path: '/index/personalCenter',
             component: personalCenter
-        }]
+        }, ]
+    }, {
+        path: '/hospitalPage/:info',
+        component: hospitalPage
+    },{
+        path: '/acticle/:info',
+        component: acticle
     }
 ]
 const router = new Router({

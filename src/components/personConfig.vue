@@ -5,7 +5,7 @@
         </mt-header>
         <div class="holeHeight">
             <div class="topBar"></div>
-            <div class="centerBtn">
+            <div v-show="loginState" class="centerBtn">
                 <button class="mint-button mint-button--primary mint-button--large green" @click="loginOut()">
                     <!---->
                     <label class="mint-button-text font18">退&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出</label>
@@ -37,6 +37,9 @@ export default {
 
         },
         computed: {
+            loginState() {
+                return this.$store.getters.loginState;
+            },
 
         }
 }

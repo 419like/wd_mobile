@@ -57,12 +57,22 @@ export default {
                         this.$toast('登录成功！');
                         console.log(res);
                         let loginObj = {
-                            userId:res.data[0].id,
-                            userNum:this.number,
+                            userId:res.user[0].id,
+                            userNum:params.sjh,
                             password:password
                         }
+                        if(res.user[0].hzid){
+                            this.$store.commit('treatmentCardBind',res.user[0].hzid);
+                        }
                         this.$store.commit('login',loginObj);
-                        this.$router.back();
+                        // this.api.getTreatmentCardInfo({userid:loginObj.userId}).then(res=>{
+                        //     if(res.user[0]){
+                        //         this.$store.commit('treatmentCardBind',res.user[0].hzid);
+                        //         console.log('用户已绑定。');
+                        //     }
+
+                        // })
+                        // this.$router.back();
                     })
             }
         },

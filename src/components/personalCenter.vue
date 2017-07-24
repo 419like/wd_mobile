@@ -7,6 +7,13 @@
             <span v-show="!loginState" class="unLogin" @click="goUrl('/login')">点击登录</span>
             <span v-show="loginState" class="Login" @click="showInfo()" v-text="userNum"></span>
         </div>
+        <div v-show="!bindState">
+            <mt-cell title="就诊卡绑定" label="" is-link @click.native="showTreatmentCard()"></mt-cell>
+        </div>
+        <div v-show="bindState">
+            <mt-cell title="就诊卡信息(已绑定)" label="" is-link @click.native="showTreatmentCard()" ></mt-cell>
+        </div>
+        
         <mt-cell title="设置" label="描述信息" is-link @click.native="showConfig()"></mt-cell>
         <div class="footBar"></div>
         <mt-popup class="holePage" v-model="personinfoVisible" position="right">
@@ -56,13 +63,16 @@ export default {
             },
             closeConfig() {
                 this.personConfigVisible = false;
+            },
+            showTreatmentCard(){
+                this.$router.push({
+                    path:'/treatmentCardBind',
+                })
             }
         },
         created() {
-
         },
         mounted() {
-            
         },
         components: {
             personinfo,personConfig
@@ -73,6 +83,9 @@ export default {
             },
             userNum(){
                 return this.$store.getters.userNum;
+            },
+            bindState(){
+                return this.$store.getters.bindState;
             }
         }
 }

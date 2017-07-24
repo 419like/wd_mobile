@@ -45,9 +45,17 @@ export default {
             }
         },
         mounted() {
-            this.$router.push({
-                path: '/index/' + 'home'
-            });
+            let url = this.$router.currentRoute.path.split('/')[2];
+            if(url){
+                this.selected = url;
+            }else{
+                this.$router.push({
+                    path: '/index/home'
+                })
+            }
+        },
+        created(){
+
         }
 
 }

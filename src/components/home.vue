@@ -136,7 +136,7 @@
         </div>
         <div>
             <div class="line1"></div>
-            <div class="title1 paddingL10">
+            <div class="title1 paddingL5">
                 <icon name="hospital-o" scale="0.8"></icon>
                 <span>推荐医院</span>
                 <span class="more">全部医院&nbsp;>></span>
@@ -180,8 +180,6 @@ export default {
     float: right;
     font-size: 12px;
 }
-
-
 .bottomLine {
     border-bottom: 1px solid #CCCCCC;
     height: 60px;

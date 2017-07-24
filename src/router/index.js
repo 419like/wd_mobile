@@ -29,6 +29,9 @@ const hospitalPage = resolve => {
 const acticle = resolve => {
     require(['../components/acticle/acticle.vue'], resolve);
 }
+const treatmentCardBind = resolve => {
+    require(['../components/treatmentCardBind/treatmentCardBind.vue'], resolve);
+}
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -54,6 +57,9 @@ const routes = [
     },{
         path: '/acticle/:info',
         component: acticle
+    },{
+        path:'/treatmentCardBind',
+        component:treatmentCardBind
     }
 ]
 const router = new Router({

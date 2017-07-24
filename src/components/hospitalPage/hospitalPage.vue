@@ -19,7 +19,7 @@
         </div>
         <div>
             <div class="line1"></div>
-            <div class="title1 paddingL10">
+            <div class="title1 paddingL5">
                 <icon name="hospital-o" scale="0.8"></icon>
                 <span>机构列表</span>
             </div>
@@ -27,7 +27,7 @@
         </div>
         <div>
             <div class="line1"></div>
-            <div class="title1 paddingL10">
+            <div class="title1 paddingL5">
                 <icon name="hospital-o" scale="0.8"></icon>
                 <span>医院简介</span>
             </div>

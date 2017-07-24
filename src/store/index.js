@@ -5,7 +5,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
         maskShow:false,
-        userInfo:{}
+        userInfo:{},
+        hzid:''
     },
     mutations:{
         maskShow(state,value){
@@ -18,6 +19,10 @@ const store = new Vuex.Store({
         loginOut(state){
         	window.localStorage.setItem("userInfo",JSON.stringify({}));
         	state.userInfo = {};
+            state.hzid = '';
+        },
+        treatmentCardBind(state,value){
+            state.hzid = value;
         }
     },
     getters:{
@@ -30,7 +35,15 @@ const store = new Vuex.Store({
     	},
     	localUserInfo(state,getters){
     		return JSON.parse(window.localStorage.getItem("userInfo"));
-    	}
+    	},
+        userId(state, getters){
+            let userId = state.userInfo.userId;
+            return userId;
+        },
+        bindState(state, getters){
+            let bindState = !!(state.hzid)
+            return bindState;
+        }
     }
 })
 export default store;

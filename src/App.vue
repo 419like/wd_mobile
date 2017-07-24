@@ -15,8 +15,6 @@ export default {
         setTimeout(() => {
             document.getElementById('mask').style.display = 'none'
         });
-
-
         let userInfo = this.$store.getters.localUserInfo;
         if (userInfo && userInfo.userId) {
             let params = {
@@ -26,12 +24,20 @@ export default {
             this.api.Login(params)
                 .then(res => {
                     let loginObj = {
-                        userId: res.data[0].id,
+                        userId: res.user[0].id,
                         userNum: userInfo.userNum,
                         password: userInfo.password
                     }
                     this.$store.commit('login', loginObj);
-                    this.$toast('登录成功！')
+                    if(res.user[0].hzid){
+                        this.$store.commit('treatmentCardBind',res.user[0].hzid);
+                    }
+                    this.$toast('登录成功！');
+                    // this.api.getTreatmentCardInfo({userid:loginObj.userId}).then(res=>{
+                    //         if(res.data[0]){
+                    //             console.log('用户已绑定。');
+                    //         }
+                    //     });
                 })
         }
     }, computed: {

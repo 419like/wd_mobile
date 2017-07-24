@@ -68,6 +68,49 @@
     border-bottom: 1px solid #CCCCCC;
 }
 
-.paddingL10 {
-    padding-left: 5px;
+.paddingL5 {
+    padding-left: 10px;
+}
+.listItem{
+    padding-left:10px;
+    height:48px;
+    line-height:48px;
+}
+.itemTitle{
+    width:105px;
+}
+.selectBox{
+    border-radius: 5px;
+    width:220px;
+    height:400px;
+    background: #fff;
+}
+.selectList{
+    height:350px;
+    overflow-y:scroll;
+}
+.selectHead{
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    font-size:20px;
+    color:#666666;
+    border-bottom: 1px solid #666666;
+}
+.pCenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selectItem{
+    height:40px;
+    border-bottom: 1px solid #B3B3B3;
+    line-height: 40px;
+    width:100%;
+    overflow-x: auto;
+
+}
+.itemText{
+    margin-left:10px;
+    white-space:nowrap;
 }

@@ -40,6 +40,7 @@ export default {
                     let data = res.data;
                     if (data.length) {
                         data = data[0];
+                        data.nr = decodeURIComponent(data.nr)
                     } else {
                         data = {
                             nr: '',

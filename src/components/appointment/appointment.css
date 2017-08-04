@@ -1,0 +1,108 @@
+.dateBox{
+	/*background: #FF6666;*/
+	width:50px;
+	height:50px;
+	color:#7F7F7F;
+	display: inline-block;
+}
+.choose{
+	background: #FF6666;
+	color:#fff;
+}
+.dateContainer{
+	display: inline-block;
+	width:100%;
+	overflow-x: auto;
+	white-space: nowrap;
+
+}
+.dateText1{
+	margin-top:10px;
+	text-align: center;
+	font-size: 12px;
+}
+.dateText2{
+	text-align: center;
+	font-size: 12px;
+}
+.costText{
+	display: inline-block;
+	width:60px;
+	color:#FF6666;
+	font-size: 15px;
+	margin-top:10px;
+	text-align: center;
+}
+.t1{
+	display: inline-block;
+	width:70px;
+	font-size: 14px;
+	color:#7F7F7F;
+	text-align: right;
+}
+.t2{
+	display: inline-block;
+	width:50px;
+	font-size: 16px;
+	color:#333333;
+	text-align: center;
+}
+.t0{
+
+	display: inline-block;
+	width:60px;
+	font-size: 18px;
+	font-weight: bold;
+	color:#4C4C4C;
+}
+.leftIcon {
+    background: #B3B3B3;
+    color: #fff;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+.weekText{
+	font-size: 0px;
+	white-space:none;
+	height:14px;
+	color:#4C4C4C;
+}
+.btnArea{
+	width:80px;
+	text-align: center;
+}
+.weekText span{
+	font-size: 12px;
+	border:1px solid #E6E6E6;
+	display: inline-block;
+	width:30px;
+	height:14px;
+	line-height: 14px;
+	text-align: center;
+}
+.weekText span.current{
+	background: #FF6666;
+	color:#FFFFFF;
+}
+.registerBtn{
+	width:60px;
+	height:20px;
+	background: #3dbbaa;
+	color:#fff;
+	font-size: 14px;
+	margin-left:10px;
+}
+.chargeBox {
+    width: 250px;
+    height:500px;
+    border: 1px solid #B3B3B3;
+    background: #efefef;
+    position: relative;
+}
+.rightBottom{
+	position: absolute;
+	right:10px;
+	bottom: 10px;
+}

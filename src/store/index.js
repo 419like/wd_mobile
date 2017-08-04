@@ -43,6 +43,10 @@ const store = new Vuex.Store({
         bindState(state, getters){
             let bindState = !!(state.hzid)
             return bindState;
+        },
+        getHzid(state,getters){
+            let hzid = state.hzid;
+            return hzid;
         }
     }
 })

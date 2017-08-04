@@ -116,5 +116,30 @@ export default {
   treatmentCardBind(params, config) {
     return fetch('rest/commitData/080201/1', params)
   },
+  /**
+   * 获取排班列表
+   */
+  getWorkList(params, config) {
+    return fetch('rest/queryDataBySql/010301/1', params)
+  },
+  /**
+   * 获取挂号收费信息
+   */
+  getRegisterCharging(params, config) {
+    return fetch('rest/queryDataBySql/010301/2', params)
+  },
+  /**
+   * 生成收费单号
+   */
+  getRegisterNum(params, config) {
+    return fetch('rest/queryDataBySql/010301/7', params)
+  },
+  /**
+   * 门诊挂号
+   */
+  register(params, config) {
+    return fetch('rest/commitData/080201/2', params)
+  },
+
 
 }

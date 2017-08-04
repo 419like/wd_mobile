@@ -11,11 +11,8 @@
             <mt-field label="就诊卡卡号" placeholder="请输入就诊卡卡号" v-model="card.num"></mt-field>
             <mt-field label="姓名" placeholder="请输入姓名" v-model="card.name"></mt-field>
             <mt-field label="身份证号" placeholder="请输入手机号" v-model="card.idCard"></mt-field>
-            <div class="listItem flex" @click="selectRelation()">
-                <span class="itemTitle">关系</span>
-                <span class="shortWord">{{relation.label}}</span>
-                <icon name="angle-down" scale="1.8" class="itemDownIcn"></icon>
-            </div>
+            <mb-select :config="selectConfig" v-model="relation">
+            </mb-select>
         </div>
         <div class="centerBtn">
             <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">
@@ -23,28 +20,10 @@
                 <label class="mint-button-text font18">绑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</label>
             </button>
         </div>
-        <div class="mask pCenter" v-if="relationSelect" >
-            <div class="outTouch" @click="closeWin()">
-                
-            </div>
-            <div class="selectBox">
-                <div class="selectHead">
-                    选择关系
-                </div>
-                <div class="selectList">
-                    <div class="selectItem" v-for="item in options" @click="selectItem(item);">
-                        <span class="itemText">
-                            <icon name="square-o" scale="1" v-show="!(item==relation)"></icon>
-                            <icon name="check-square-o" scale="1" v-show="item==relation"></icon>
-                            <span>{{item.label}}</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 <script type="text/javascript">
+import mbSelect from '@/components/common/mbSelect/mbSelect.vue';
 export default {
     data() {
             return {
@@ -59,78 +38,61 @@ export default {
                     tel:''
                 },
                 relationSelect:false,
-                options:[
-                  {
-                    value: '0',
-                    label: '本人',
-                  },
-                  {
-                    label: '配偶',
-                    value: '1'
-                  },
-                  {
-                    label: '子',
-                    value: '2'
-                  },
-                  {
-                    label: '女',
-                    value: '3'
-                  },
-                  {
-                    label: '孙子、孙女或外孙子、外孙女',
-                    value: '4'
-                  },
-                  {
-                    label: '父母',
-                    value: '5'
-                  },
-                  {
-                    label: '祖父母或外祖父母',
-                    value: '6'
-                  },
-                  {
-                    label: '兄、弟、姐、妹',
-                    value: '7'
-                  },
-                  {
-                    label: '其他',
-                    value: '9'
-                  }
-                ],
-                relation:{
-
-                },
+                relation:{},
+                selectConfig:{
+                    title:'关系',
+                    winTitle:'选择关系',
+                    valueFeild:'value',
+                    textFeild:'label',
+                    options:[
+                      {
+                        value: '0',
+                        label: '本人',
+                      },
+                      {
+                        label: '配偶',
+                        value: '1'
+                      },
+                      {
+                        label: '子',
+                        value: '2'
+                      },
+                      {
+                        label: '女',
+                        value: '3'
+                      },
+                      {
+                        label: '孙子、孙女或外孙子、外孙女',
+                        value: '4'
+                      },
+                      {
+                        label: '父母',
+                        value: '5'
+                      },
+                      {
+                        label: '祖父母或外祖父母',
+                        value: '6'
+                      },
+                      {
+                        label: '兄、弟、姐、妹',
+                        value: '7'
+                      },
+                      {
+                        label: '其他',
+                        value: '9'
+                      }
+                    ]
+                }
             }
         },
         methods: {
-            selectItem(item){
-                debugger
-                console.log(item);
-                this.relation = item;
-                this.relationSelect = false;
-
-            },
-            closeWin(){
-                this.relationSelect = false;
-            },
-            selectRelation(){
-                this.relationSelect = true;
-            },
             bind(){
                 let params = {
                     xm:this.card.name,
                     sfzh:this.card.idCard
                 };
                 this.api.checkBind(params).then(res => {
-                    // this.$toast('登录成功！');
-                    console.log('');
-                    // let loginObj = {
-                    //     userId:res.data[0].id,
-                    //     userNum:this.number,
-                    //     password:password
-                    // }
-                    // this.$store.commit('login',loginObj);
-                    // this.$router.back();
+                    debugger
                     if(res.data[0]){
                         this.setBind(res.data[0].id)
                     }
@@ -146,38 +108,23 @@ export default {
                 this.api.treatmentCardBind(params).then(res=>{
                     if(res.code==1){
                         this.$store.commit('treatmentCardBind',hzid);
-                        // this.$router.back();
                         this.$toast('绑定成功！');
                     }
                 })
             }
         },
         components: {
-            // 
+            mbSelect
         },
         mounted() {
-            this.relation = this.options[0];
+            this.$set(this.$data,'relation',this.selectConfig.options[0])
         }
 }
 </script>
 <style scoped>
-.shortWord{
-    width:75px;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-.outTouch{
-    width:100%;
-    height:100%;
-    position: absolute;
-    z-index: -1;
-}
-.itemDownIcn{
-    margin-top: 10px;
-    margin-left:5px;
-    color:#B3B3B3;
-}
+
+
+
 .modeHead{
     height:25px;
     width:100%;

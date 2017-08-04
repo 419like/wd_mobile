@@ -19,6 +19,44 @@
         </div>
         <div>
             <div class="line1"></div>
+            <div class="flex font-green bottomLine height60 ">
+                <div class="flex1  border1" @click="goAppointment();">
+                    <div class=" marginL10 flex marginT5">
+                        <div class="iconbox2">
+                            <icon name="user-md" scale="3"></icon>
+                        </div>
+                        <span class="text2">预约挂号</span>
+                    </div>
+                </div>
+                <div class="flex1  border1">
+                    <div class=" marginL10 flex marginT5">
+                        <div class="iconbox2" style="color:#FFCC66">
+                            <icon name="mobile" scale="3"></icon>
+                        </div>
+                        <span class="text2">网络门诊</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="line1"></div>
+            <div class="title1 paddingL5">
+                <icon name="hospital-o" scale="0.8"></icon>
+                <span>医院简介</span>
+            </div>
+            <div class="flex marginT5 borderB" @click="goActicle()">
+                <div class="flex1 marginL20">
+                    <div class="infoTitle">查看详细信息</div>
+                    <div class="infoContent">医院信息</div>
+                </div>
+                <div class="infoImg">
+                    <img class="img" src="http://www.hangzhouzk.com/admin/image/2014/05/20140508165323421.jpg">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="line1"></div>
             <div class="title1 paddingL5">
                 <icon name="hospital-o" scale="0.8"></icon>
                 <span>机构列表</span>
@@ -29,7 +67,7 @@
             <div class="line1"></div>
             <div class="title1 paddingL5">
                 <icon name="hospital-o" scale="0.8"></icon>
-                <span>医院简介</span>
+                <span>专家介绍</span>
             </div>
             <div class="flex marginT5 borderB" @click="goActicle()">
                 <div class="flex1 marginL20">
@@ -56,6 +94,12 @@ export default {
             goActicle(){
                 this.$router.push({
                     path:'/acticle/'+JSON.stringify({xgid:this.info.id,lx:1})
+                })
+            },
+            goAppointment(){
+                this.$router.push({
+                    path:'/appointment',
+                    query:{jgid:this.info.id}
                 })
             }
         },
@@ -86,14 +130,25 @@ export default {
 }
 </script>
 <style scoped>
+.iconbox2{
+    width:40px;
+    text-align: center;
+}
+.text2{
+    height:50px;
+    line-height:50px;
+    font-size:14px;
+    color:#808080;
+    margin-left: 10px;
+}
 .borderB{
     border-bottom: 1px solid #CCCCCC
 }
 .marginT5{
     margin-top: 5px;
 }
-.marginL20{
-    margin-left: 20px;
+.marginL10{
+    margin-left: 10px;
 }
 .infoContent{
     color:#999999;

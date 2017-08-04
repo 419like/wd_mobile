@@ -70,9 +70,8 @@ export default {
                         //         this.$store.commit('treatmentCardBind',res.user[0].hzid);
                         //         console.log('用户已绑定。');
                         //     }
-
                         // })
-                        // this.$router.back();
+                        this.$router.back();
                     })
             }
         },

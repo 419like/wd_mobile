@@ -185,16 +185,6 @@ export default {
     height: 60px;
 }
 
-.iconbox1 {
-    height: 30px;
-}
-
-.text1 {
-    font-size: 12px;
-    color: #7F7F7F;
-}
-
-
 
 .topBar {
     height: 40px;

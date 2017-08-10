@@ -5,8 +5,8 @@ Vue.use(Router)
 const index = resolve => {
     require(['../components/index.vue'], resolve)
 };
-const consult = resolve => {
-    require(['../components/consult.vue'], resolve)
+const medicalRecord = resolve => {
+    require(['../components/medicalRecord/medicalRecord.vue'], resolve)
 };
 const healthRecord = resolve => {
     require(['../components/healthRecord.vue'], resolve)
@@ -45,8 +45,8 @@ const routes = [
             path: '/index/home',
             component: home
         }, {
-            path: '/index/consult',
-            component: consult
+            path: '/index/medicalRecord',
+            component: medicalRecord
         }, {
             path: '/index/healthRecord',
             component: healthRecord

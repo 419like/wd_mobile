@@ -6,9 +6,9 @@
                 <icon name="home" scale="1.3"></icon>
                 <div class="menuBtn">主页</div>
             </mt-tab-item>
-            <mt-tab-item id="consult">
+            <mt-tab-item id="medicalRecord">
                 <icon name="user-md" scale="1.3"></icon>
-                <div class="menuBtn">我的咨询</div>
+                <div class="menuBtn">就诊记录</div>
             </mt-tab-item>
             <mt-tab-item id="healthRecord">
                 <icon name="file-text-o" scale="1.3"></icon>

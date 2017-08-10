@@ -4,21 +4,23 @@
             <mt-button icon="back" slot="left" @click="goback()"></mt-button>
         </mt-header>
         <div class="topBar"></div>
-        <div class="modeHead">
-            <span class="headTitle">就诊卡信息</span>
-        </div>
-        <div>
-            <mt-field label="就诊卡卡号" placeholder="请输入就诊卡卡号" v-model="card.num"></mt-field>
-            <mt-field label="姓名" placeholder="请输入姓名" v-model="card.name"></mt-field>
-            <mt-field label="身份证号" placeholder="请输入手机号" v-model="card.idCard"></mt-field>
-            <mb-select :config="selectConfig" v-model="relation">
-            </mb-select>
-        </div>
-        <div class="centerBtn">
-            <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">
-                <!---->
-                <label class="mint-button-text font18">绑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</label>
-            </button>
+        <div class="inPageBody">
+            <div class="modeHead">
+                <span class="headTitle">就诊卡信息</span>
+            </div>
+            <div>
+                <mt-field label="就诊卡卡号" placeholder="请输入就诊卡卡号" v-model="card.num"></mt-field>
+                <mt-field label="姓名" placeholder="请输入姓名" v-model="card.name"></mt-field>
+                <mt-field label="身份证号" placeholder="请输入手机号" v-model="card.idCard"></mt-field>
+                <mb-select :config="selectConfig" v-model="relation">
+                </mb-select>
+            </div>
+            <div class="centerBtn">
+                <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">
+                    <!---->
+                    <label class="mint-button-text font18">绑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</label>
+                </button>
+            </div>
         </div>
     </div>
 </template>

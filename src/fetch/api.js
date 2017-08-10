@@ -59,6 +59,9 @@ export function fetch(url, params, config) {
         resolve(response.data);
       }).catch(function(error) {
         store.commit('maskShow', false)
+        if (error.message.indexOf('timeout')>=0) {
+          store.commit('systemMessage', '连接超时，请检查网络。');
+        }
         reject(error);
       });
   })
@@ -120,7 +123,7 @@ export default {
    * 获取排班列表
    */
   getWorkList(params, config) {
-    return fetch('rest/queryDataBySql/010301/1', params)
+    return fetch('rest/queryDataBySql/010301/8', params)
   },
   /**
    * 获取挂号收费信息
@@ -139,6 +142,12 @@ export default {
    */
   register(params, config) {
     return fetch('rest/commitData/080201/2', params)
+  },
+  /**
+   * 获取挂号信息
+   */
+  getRegisterList(params, config) {
+    return fetch('rest/queryDataBySql/080401/1', params)
   },
 
 

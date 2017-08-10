@@ -10,11 +10,6 @@
                 <div class="dateText2">{{item.day}}</div>
             </div>
         </div>
-        <!-- <mb-select :config="selectConfig" v-model="department" ref="departmentSeletor" @select="departmentSelected()">
-        </mb-select> -->
-        <!-- <mb-select :config="doctorListConfig" v-model="doctor" ref="doctorSeletor" @select="doctorSelected()">
-        </mb-select> -->
-        <!-- 医生列表 -->
         <div class="topLine1">
             <div v-for="item in scheduleList" class="flex doctorItem" @click="register(item)">
                 <div class="flex1 infoBox">
@@ -44,43 +39,56 @@
                     </div>
                 </div>
                 <div class="btnArea">
-                    <div class="costText">¥&nbsp;100.00</div>
+                    <div class="costText">¥&nbsp;{{item.ghfy}}</div>
                     <div class="registerBtn">挂号</div>
                 </div>
             </div>
         </div>
         <div class="mask pCenter" v-if="chargeVisible">
             <div class="chargeBox">
-                <div>
-                    <span class="title">挂号确认单</span>
-                </div>
-                <div>
-                    <span>科室：</span>
-                    <span>{{chargeChoose.ksmc}}</span>
-                </div>
-                <div>
-                    <span>地点：</span>
-                    <span></span>
-                </div>
-                <div>
-                    <span>医生：</span>
-                    <span></span>
-                </div>
-                <div>
-                    <span>类型：</span>
-                    <span>{{chargeChoose.xmmc}}</span>
-                </div>
-                <div>
-                    <span>就诊日期：</span>
-                    <span>{{dateChoose.shortDay}}</span>
-                </div>
-                <div>
-                    <span>支付费用：</span>
-                    <span>{{dateChoose.shortDay}}</span>
+                <div class="title">挂号确认单</div>
+                <div class="contentBox">
+<!--                     <div>
+                        <span>姓名：</span>
+                        <span>{{chargeChoose.ksmc}}</span>
+                    </div> -->
+                    <div>
+                        <span>科室：</span>
+                        <span>{{chargeChoose.ksmc}}</span>
+                    </div>
+<!--                     <div>
+                        <span>地点：</span>
+                        <span></span>
+                    </div> -->
+                    <div>
+                        <span>医生：</span>
+                        <span>{{chargeChoose.ysxm}}</span>
+                    </div>
+                    <div>
+                        <span>类型：</span>
+                        <span>{{chargeChoose.xmmc}}</span>
+                    </div>
+                    <div>
+                        <span>就诊日期：</span>
+                        <span>{{dateChoose.shortDay}}</span>
+                    </div>
+                    <div class="flex">
+                        <div>上下午：</div>
+                        <div class="box1"><mt-switch class="scaleY" v-model="timeValue" @change="timeChange()"></mt-switch></div>
+                        <div>{{timeValue?'上午':'下午'}}</div>
+                    </div>
+                    <div>
+                        <span>支付费用：</span>
+                        <span>¥&nbsp;{{chargeChoose.ghfy}}</span>
+                    </div>
+                    <div>
+                        <span>单号：</span>
+                        <span>{{chargeChoose.number}}</span>
+                    </div>
                 </div>
                 <div class="rightBottom">
-                    <mt-button type="primary" size="small" @click="sureCharge()">确定</mt-button>
-                    <mt-button size="small" @click="cancelCharge();">取消</mt-button>
+                    <mt-button v-if="!chargeChoose.number" type="primary" size="small" @click="sureCharge()">提交</mt-button>
+                    <mt-button size="small" @click="cancelCharge();">退出</mt-button>
                 </div>
             </div>
         </div>
@@ -121,9 +129,13 @@ export default {
             dateChoose: {},
             scheduleList: [],
             chargeChoose: {},
+            timeValue:true,
         }
     },
     methods: {
+        timeChange(){
+            console.log(this.timeValue);
+        },
         cancelCharge() {
             this.chargeVisible = false;
         },
@@ -188,6 +200,7 @@ export default {
                     this.selectConfig.options = [];
                     for (var i = 0; i < res.data.length; i++) {
                         let item = res.data[i];
+                        item.ghfy = Number(item.ghfy).toFixed(2);
                         this.selectConfig.options.push({
                             value: item.ksid,
                             label: item.ksmc
@@ -196,6 +209,13 @@ export default {
                 })
         },
         sureCharge(item) {
+            if(this.chargeChoose.ghfy!='0.00'){
+                this.$messagebox('收费项目尚未建设，请谅解。')
+                return;
+            }
+            if(!this.timeValue){
+                this.dateChoose.time = this.dateChoose.shortDay+' 15:00:00'
+            }
             let params = {
                 brxx: {
                     brid: this.$store.getters.getHzid
@@ -203,14 +223,20 @@ export default {
                 ghxx: {
                     ghapid: this.chargeChoose.id,
                     jsfs: '现金',
-                    ysje: '4.00'
+                    ysje: this.chargeChoose.ghfy,
+                    yysj:this.dateChoose.time
                 }
             }
-            debugger
             console.log(params);
             this.api.register(params)
                 .then(res => {
                     debugger
+                    if (res.code=='1') {
+                        this.$toast('挂号成功！');
+                    }else{
+                        this.$toast('挂号失败,'+res.msg);
+                    }
+                    this.$set(this.$data.chargeChoose, 'number',res.no);
                     console.log(res);
                 })
         },
@@ -258,106 +284,6 @@ export default {
 
 </script>
 <style scoped>
-.title{
-    text-align: center;
-    font-size: 14px;
-    width:100%;
-}
-.chargeTitle {
-    height: 40px;
-    background: #E6E6E6;
-    line-height: 40px;
-    border-right: 1px solid #CCCCCC;
-    border-left: 1px solid #CCCCCC;
-    border-top: 3px double #666666;
-    width: 100%;
-}
 
-.sureBtn {
-    width: 80px;
-    height: 100%;
-    color: #fff;
-    background: #ff4d4d;
-    line-height: 43px;
-    text-align: center;
-}
-
-.countText1 {
-    width: 100px;
-    text-align: right;
-}
-
-.countText2 {
-    flex: 1;
-    text-align: left;
-}
-
-.topLine1 {
-    border-top: 2px solid #CCCCCC;
-}
-
-
-
-.infoText2 {
-    color: #CCCCCC;
-    font-size: 12px;
-}
-
-.infoBox {
-    margin-left: 10px;
-}
-
-.doctorItem {
-    height: 60px;
-    padding-top: 10px;
-    border-bottom: 1px solid #CCCCCC;
-}
-
-.listImg {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-
-.imgBox {
-    margin-left: 10px;
-}
-
-.leftInfo {
-    width: 60px;
-}
-
-.itemBox {
-    background: #fff;
-    height: 60px;
-    border: 1px solid #B3B3B3;
-    width: 100%;
-}
-
-.itemBox2 {
-    background: #fff;
-    height: 45px;
-    border: 1px solid #B3B3B3;
-    width: 100%;
-    font-size: 20px;
-    line-height: 45px;
-}
-
-.itemText1 {
-    height: 35px;
-    line-height: 35px;
-    font-size: 18px;
-
-    margin-left: 15px;
-}
-
-.itemText2 {
-    height: 20px;
-    line-height: 20px;
-    font-size: 14px;
-    color: #FF6666;
-
-    margin-left: 15px;
-}
 
 </style>

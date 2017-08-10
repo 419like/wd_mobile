@@ -7,7 +7,7 @@
                 <icon name="angle-down" scale="1.8" class="itemDownIcn"></icon>
             </div>
         </div>
-        <div class="mask pCenter" v-if="relationSelect" >
+        <div class="mask pCenter" v-if="relationSelect">
             <div class="outTouch" @click="closeWin()">
             </div>
             <div class="selectBox">

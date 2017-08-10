@@ -1,3 +1,111 @@
+.box1{
+	height: 20px;
+    margin-top: -4px;
+}
+.scaleY{
+	transform: scale(0.7);
+}
+.contentBox{
+	margin:10px;
+}
+.title{
+    text-align: center;
+    font-size: 18px;
+    width:100%;
+    color:#666666;
+}
+.chargeTitle {
+    height: 40px;
+    background: #E6E6E6;
+    line-height: 40px;
+    border-right: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-top: 3px double #666666;
+    width: 100%;
+}
+
+.sureBtn {
+    width: 80px;
+    height: 100%;
+    color: #fff;
+    background: #ff4d4d;
+    line-height: 43px;
+    text-align: center;
+}
+
+.countText1 {
+    width: 100px;
+    text-align: right;
+}
+
+.countText2 {
+    flex: 1;
+    text-align: left;
+}
+
+.topLine1 {
+    border-top: 2px solid #CCCCCC;
+}
+.infoText2 {
+    color: #CCCCCC;
+    font-size: 12px;
+}
+
+.infoBox {
+    margin-left: 10px;
+}
+
+.doctorItem {
+    height: 60px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.listImg {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.imgBox {
+    margin-left: 10px;
+}
+
+.leftInfo {
+    width: 60px;
+}
+
+.itemBox {
+    background: #fff;
+    height: 60px;
+    border: 1px solid #B3B3B3;
+    width: 100%;
+}
+
+.itemBox2 {
+    background: #fff;
+    height: 45px;
+    border: 1px solid #B3B3B3;
+    width: 100%;
+    font-size: 20px;
+    line-height: 45px;
+}
+
+.itemText1 {
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+
+    margin-left: 15px;
+}
+
+.itemText2 {
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #FF6666;
+
+    margin-left: 15px;
+}
 .dateBox{
 	/*background: #FF6666;*/
 	width:50px;
@@ -6,10 +114,11 @@
 	display: inline-block;
 }
 .choose{
-	background: #FF6666;
+	background: #55c3b5;
 	color:#fff;
 }
 .dateContainer{
+	margin-top:1px;
 	display: inline-block;
 	width:100%;
 	overflow-x: auto;
@@ -28,8 +137,8 @@
 .costText{
 	display: inline-block;
 	width:60px;
-	color:#FF6666;
-	font-size: 15px;
+	color:#666666;
+	font-size: 19px;
 	margin-top:10px;
 	text-align: center;
 }
@@ -83,13 +192,13 @@
 	text-align: center;
 }
 .weekText span.current{
-	background: #FF6666;
+	background: #55c3b5;
 	color:#FFFFFF;
 }
 .registerBtn{
 	width:60px;
 	height:20px;
-	background: #3dbbaa;
+	background: #55c3b5;
 	color:#fff;
 	font-size: 14px;
 	margin-left:10px;

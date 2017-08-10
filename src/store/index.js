@@ -23,6 +23,9 @@ const store = new Vuex.Store({
         },
         treatmentCardBind(state,value){
             state.hzid = value;
+        },
+        systemMessage(state,value){
+            Vue.$toast(value);
         }
     },
     getters:{

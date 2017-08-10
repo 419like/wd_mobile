@@ -1,153 +1,206 @@
+.pageBody{
+  width:100%;
+  height:100%;
+  overflow-y: auto;
+}
+.inPageBody{
+  height: calc(100% - 40px);
+  overflow: auto;
+}
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .green {
-    background: #3dbbaa;
+  background: #3dbbaa;
 }
 
 .font18 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .font12 {
-    font-size: 12px;
+  font-size: 12px;
 }
+
 .font14 {
-    font-size: 12px;
+  font-size: 12px;
 }
 
-.margin20{
-	margin-top: 20px;
+.margin20 {
+  margin-top: 20px;
 }
 
-.margin10{
-    margin-top: 10px;
+.margin10 {
+  margin-top: 10px;
 }
+
 .center {
-    text-align: center;
+  text-align: center;
 }
-.flex{
-	display: flex;
+
+.flex {
+  display: flex;
 }
-.flex1{
-	flex:1;
+
+.flex1 {
+  flex: 1;
 }
+
 .topBar {
-    height: 40px;
+  height: 40px;
 }
 
 .footBar {
-    height: 44px;
+  height: 44px;
 }
-.font-green{
-    color: #3dbbaa;
+
+.font-green {
+  color: #3dbbaa;
 }
-.holePage{
-    width:100%;
-    height:100%;
+
+.holePage {
+  width: 100%;
+  height: 100%;
 }
-.holeHeight{
-    height: 100%;
-    overflow: auto;
+
+.holeW {
+  width: 100%;
 }
+
+.holeHeight {
+  height: 100%;
+  overflow: auto;
+}
+
 .centerBtn {
-    margin: 10px;
+  margin: 10px;
 }
 
 .line1 {
-    height: 3px;
-    background: #CCCCCC;
+  height: 3px;
+  background: #CCCCCC;
 }
+
 .title1 {
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-    color: #3dbbaa;
-    border-bottom: 1px solid #CCCCCC;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #3dbbaa;
+  border-bottom: 1px solid #CCCCCC;
 }
 
 .paddingL5 {
-    padding-left: 10px;
+  padding-left: 10px;
 }
-.listItem{
-    height:48px;
-    line-height:48px;
-}
-.itemTitle{
-    width:105px;
-}
-.selectBox{
-    border-radius: 5px;
-    width:220px;
-    height:400px;
-    background: #fff;
-}
-.selectList{
-    height:350px;
-    overflow-y:scroll;
-}
-.selectHead{
-    height:40px;
-    text-align: center;
-    line-height: 40px;
-    font-size:20px;
-    color:#666666;
-    border-bottom: 1px solid #666666;
-}
-.pCenter{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.selectItem{
-    height:40px;
-    border-bottom: 1px solid #B3B3B3;
-    line-height: 40px;
-    width:100%;
-    overflow-x: auto;
 
+.listItem {
+  height: 48px;
+  line-height: 48px;
 }
-.itemText{
-    margin-left:10px;
-    white-space:nowrap;
+
+.itemTitle {
+  width: 105px;
 }
+
+.selectBox {
+  border-radius: 5px;
+  width: 220px;
+  height: 400px;
+  background: #fff;
+}
+
+.selectList {
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.selectHead {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  color: #666666;
+  border-bottom: 1px solid #666666;
+}
+
+.pCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectItem {
+  height: 40px;
+  border-bottom: 1px solid #B3B3B3;
+  line-height: 40px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.itemText {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
 .iconbox1 {
-    height: 30px;
+  height: 30px;
 }
 
 .text1 {
-    font-size: 12px;
-    color: #7F7F7F;
+  font-size: 12px;
+  color: #7F7F7F;
 }
-.height60{
-    height:60px;
+
+.height60 {
+  height: 60px;
 }
-.border1{
-    border:1px solid #B3B3B3;
+
+.border1 {
+  border: 1px solid #B3B3B3;
 }
-.itemDownIcn{
-    margin-top: 10px;
-    margin-left:5px;
-    color:#B3B3B3;
+
+.itemDownIcn {
+  margin-top: 10px;
+  margin-left: 5px;
+  color: #B3B3B3;
 }
-.shortWord{
-    width:75px;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+
+.shortWord {
+  width: 75px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.outTouch{
-    width:100%;
-    height:100%;
-    position: absolute;
-    z-index: -1;
+
+.outTouch {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
 }
-.topLine{
-    padding:0 10px;
-    background-image: linear-gradient(180deg, #d9d9d9, #d9d9d9 50%, transparent 50%);
-    background-size: 120% 1px;
-    background-repeat: no-repeat;
-    background-origin: content-box;
+
+.topLine {
+  padding: 0 10px;
+  background-image: linear-gradient(180deg, #d9d9d9, #d9d9d9 50%, transparent 50%);
+  background-size: 120% 1px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.tabTitle {
+  text-align: center;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  border-right:1px solid #E6E6E6;
+}
+
+.choose {
+  border-bottom:1px solid #3dbbaa
+}
+
+.downShadow {
+  box-shadow: 0px 1px 1px 0px #919191;
 }

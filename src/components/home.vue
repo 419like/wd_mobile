@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="holeHeight">
         <mt-header fixed title="" class="head">
             <mt-button slot="left">成都市</mt-button>
             <mt-button icon="more" slot="right"></mt-button>

@@ -6,7 +6,10 @@ const store = new Vuex.Store({
     state:{
         maskShow:false,
         userInfo:{},
-        hzid:''
+        hzid:'',
+        hzInfo:{},
+        boundList:[],
+        handleUser:'',
     },
     mutations:{
         maskShow(state,value){
@@ -19,14 +22,33 @@ const store = new Vuex.Store({
         loginOut(state){
         	window.localStorage.setItem("userInfo",JSON.stringify({}));
         	state.userInfo = {};
-            state.hzid = '';
-        },
-        treatmentCardBind(state,value){
-            state.hzid = value;
+            state.boundList = [];
         },
         systemMessage(state,value){
             Vue.$toast(value);
-        }
+        },
+        setBoundList(state,value){
+            state.boundList = value;
+        },
+        pushBoundItem(state,value){
+            state.boundList.push(value);
+        },
+        removeBoundItem(state,value){
+            for (var i =0; i<state.boundList.length; i++) {
+                if(state.boundList[i].hzid == value){
+                    if(state.boundList[i]==state.handleUser){
+                        state.boundList.splice(i,1);
+                        if(state.boundList.length){
+                            state.handleUser = state.boundList[0];
+                        }
+                        return;
+                    }
+                }
+            }
+        },
+        setHandleUser(state,value){
+            state.handleUser = value;
+        },
     },
     getters:{
     	loginState(state, getters){
@@ -47,10 +69,12 @@ const store = new Vuex.Store({
             let bindState = !!(state.hzid)
             return bindState;
         },
-        getHzid(state,getters){
-            let hzid = state.hzid;
-            return hzid;
-        }
+        getBoundList(state,getters){
+            return state.boundList;
+        },
+        getHandleUser(state,getters){
+            return state.handleUser;
+        },
     }
 })
 export default store;

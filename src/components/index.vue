@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view keep-alive transition transition-mode="out-in"></router-view>
+        <router-view keep-alive transition transition-mode="out-in" style="height:100%;"></router-view>
         <mt-tabbar fixed v-model="selected" class="foot">
             <mt-tab-item id="home">
                 <icon name="home" scale="1.3"></icon>

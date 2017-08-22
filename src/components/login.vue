@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <mt-header fixed :title=msg class="green">
-            <mt-button icon="back" slot="left" @click="goback()"></mt-button>
+            <mt-button icon="back" slot="left" @click="goIndex()"></mt-button>
         </mt-header>
         <div class="center">
             <img class="logoImg" src="http://www.wondersgroup.com/wp-content/themes/wonders2016/images/logo.png">
@@ -41,6 +41,11 @@ export default {
             }
         },
         methods: {
+            goIndex(){
+                this.$router.push({
+                    path:'index'
+                })
+            },
             register() {
                 this.$router.push({
                     path: 'register'
@@ -54,24 +59,23 @@ export default {
                 }
                 this.api.Login(params)
                     .then(res => {
-                        this.$toast('登录成功！');
-                        console.log(res);
                         let loginObj = {
-                            userId:res.user[0].id,
+                            userId:res.appid,
                             userNum:params.sjh,
                             password:password
                         }
-                        if(res.user[0].hzid){
-                            this.$store.commit('treatmentCardBind',res.user[0].hzid);
+                        if(res.user&&res.user.length){
+                            this.$store.commit('setBoundList',res.user);
+                            for (var i = res.user.length - 1; i >= 0; i--) {
+                                if(res.user[i].gxmc == '本人'){
+                                    this.$store.commit('setHandleUser',res.user[i]);
+                                    break;
+                                }
+                            }
                         }
+                        this.$toast('登录成功！');
                         this.$store.commit('login',loginObj);
-                        // this.api.getTreatmentCardInfo({userid:loginObj.userId}).then(res=>{
-                        //     if(res.user[0]){
-                        //         this.$store.commit('treatmentCardBind',res.user[0].hzid);
-                        //         console.log('用户已绑定。');
-                        //     }
-                        // })
-                        this.$router.back();
+                        this.goback();
                     })
             }
         },

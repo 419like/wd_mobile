@@ -5,6 +5,7 @@ import store from '@/store'
 // axios.defaults.timeout = 5000;
 axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
 axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
+axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
 // axios.defaults.baseURL = 'http://192.168.1.84:8080/wdphis/';
 // 
 
@@ -120,6 +121,12 @@ export default {
     return fetch('rest/commitData/080201/1', params)
   },
   /**
+   * 解绑用户
+   */
+  treatmentCardunBind(params, config) {
+    return fetch('rest/commitData/080201/1', params)
+  },
+  /**
    * 获取排班列表
    */
   getWorkList(params, config) {
@@ -147,8 +154,37 @@ export default {
    * 获取挂号信息
    */
   getRegisterList(params, config) {
-    return fetch('rest/queryDataBySql/080401/1', params)
+    return fetch('rest/queryDataBySql/080401/2', params)
   },
-
+  /**
+   * 获取门诊和住院信息
+   */
+  getVisitingList(params, config) {
+    return fetch('rest/queryDataBySql/080401/3', params)
+  },
+  /**
+   * 获取门诊和住院信息
+   */
+  searchUserList(params, config) {
+    return fetch('rest/queryDataBySql/080201/3', params)
+  },
+  /**
+   *  注册his用户
+   */
+  registHisUser(params, config) {
+    return fetch('rest/commitData/080201/3', params)
+  },
+  /**
+   *  更新his用户
+   */
+  updateHisUser(params, config) {
+    return fetch('rest/commitData/080201/4', params)
+  },
+  /**
+   *  获取患者信息
+   */
+  getPatientInfo(params, config) {
+    return fetch('rest/queryDataBySql/080201/4', params)
+  },
 
 }

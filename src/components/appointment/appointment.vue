@@ -218,7 +218,7 @@ export default {
             }
             let params = {
                 brxx: {
-                    brid: this.$store.getters.getHzid
+                    brid: this.$store.getters.getHandleUser.hzid
                 },
                 ghxx: {
                     ghapid: this.chargeChoose.id,

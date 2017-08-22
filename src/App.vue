@@ -24,20 +24,22 @@ export default {
             this.api.Login(params)
                 .then(res => {
                     let loginObj = {
-                        userId: res.user[0].id,
+                        userId: res.appid,
                         userNum: userInfo.userNum,
                         password: userInfo.password
                     }
-                    this.$store.commit('login', loginObj);
-                    if(res.user[0].hzid){
-                        this.$store.commit('treatmentCardBind',res.user[0].hzid);
+                    if(res.user&&res.user.length){
+                        this.$store.commit('setBoundList',res.user);
+                        for (var i = res.user.length - 1; i >= 0; i--) {
+                            if(res.user[i].gxmc == '本人'){
+                                this.$store.commit('setHandleUser',res.user[i]);
+                                break;
+                            }
+                        }
                     }
                     this.$toast('登录成功！');
-                    // this.api.getTreatmentCardInfo({userid:loginObj.userId}).then(res=>{
-                    //         if(res.data[0]){
-                    //             console.log('用户已绑定。');
-                    //         }
-                    //     });
+                    this.$store.commit('login',loginObj);
+                    this.goback();
                 })
         }
     }, computed: {

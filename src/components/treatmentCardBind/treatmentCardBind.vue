@@ -5,21 +5,27 @@
         </mt-header>
         <div class="topBar"></div>
         <div class="inPageBody">
-            <div class="modeHead">
-                <span class="headTitle">就诊卡信息</span>
-            </div>
             <div>
-                <mt-field label="就诊卡卡号" placeholder="请输入就诊卡卡号" v-model="card.num"></mt-field>
                 <mt-field label="姓名" placeholder="请输入姓名" v-model="card.name"></mt-field>
                 <mt-field label="身份证号" placeholder="请输入手机号" v-model="card.idCard"></mt-field>
-                <mb-select :config="selectConfig" v-model="relation">
-                </mb-select>
             </div>
             <div class="centerBtn">
-                <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">
-                    <!---->
+                <!-- <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">
                     <label class="mint-button-text font18">绑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</label>
+                </button> -->
+                <button class="mint-button mint-button--primary mint-button--large green" @click="search()">
+                    <label class="mint-button-text font18">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询</label>
                 </button>
+            </div>
+            <div>
+                <div v-for="item in userList" class="item" @click="editBoundInfo(item)">
+                    <div>
+                        {{item.lxdh?item.lxdh:'暂无电话号码'}}
+                    </div>
+                    <div class="t2">
+                        {{item.jtdz?item.jtdz:'暂无家庭地址'}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -29,14 +35,15 @@ import mbSelect from '@/components/common/mbSelect/mbSelect.vue';
 export default {
     data() {
             return {
+                userList:[],
                 info: {
                     text:'就诊卡绑定'
                 },
                 items: [],
                 card:{
                     num:'123',
-                    name:'易开隆',
-                    idCard:'510103193102100036',
+                    name:'李小玲',
+                    idCard:'510103196909272844',
                     tel:''
                 },
                 relationSelect:false,
@@ -88,13 +95,37 @@ export default {
             }
         },
         methods: {
+            editBoundInfo(item){
+                this.$router.push({
+                    path:'/editBoundInfo',
+                    query:{
+                        id:item.id,
+                        lxdh:item.lxdh?item.lxdh:'',
+                        jtdz:item.jtdz?item.jtdz:'',
+                        xb:item.xb?item.xb:'',
+                        jtqhdm:item.jtqhdm?item.jtqhdm:'',
+                        xm:this.card.name,
+                        sfzh:this.card.idCard
+                    }
+                })
+            },
+            search(){
+                let params = {
+                    xm:this.card.name,
+                    sfzh:this.card.idCard
+                }
+                this.api.searchUserList(params).then(res => {
+                    if(res.code==1){
+                        this.userList = res.data;
+                    }
+                })
+            },
             bind(){
                 let params = {
                     xm:this.card.name,
                     sfzh:this.card.idCard
                 };
                 this.api.checkBind(params).then(res => {
-                    debugger
                     if(res.data[0]){
                         this.setBind(res.data[0].id)
                     }
@@ -110,7 +141,11 @@ export default {
                 this.api.treatmentCardBind(params).then(res=>{
                     if(res.code==1){
                         this.$store.commit('treatmentCardBind',hzid);
+                        this.$store.commit('setPatientInfo',res);
                         this.$toast('绑定成功！');
+                        this.$router.push({
+                            path:'/index/personalCenter'
+                        })
                     }
                 })
             }
@@ -119,12 +154,26 @@ export default {
             mbSelect
         },
         mounted() {
+            if(!this.$store.getters.userId){
+                this.$router.push({
+                    path:'/login'
+                })
+                return;
+            }
             this.$set(this.$data,'relation',this.selectConfig.options[0])
         }
 }
 </script>
 <style scoped>
-
+.t2{
+    width:100%;
+    font-size: 12px;
+    color:#999999;
+}
+.item{
+    padding:5px;
+    border:1px solid #E6E6E6;
+}
 
 
 .modeHead{

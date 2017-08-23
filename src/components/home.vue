@@ -1,11 +1,26 @@
 <template>
-    <div class="holeHeight">
-        <!-- <mt-header fixed title="" class="head">
-            <mt-button slot="left">成都市</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
-        </mt-header>
-        <div class="topBar"></div> -->
+    <div>
         <div>
+            <!-- 轮播图部分 -->
+            <mt-swipe :auto="8000">
+                <mt-swipe-item>
+                    <div>
+                        <img class="img" src="http://www.hangzhouzk.com/admin/image/2014/05/20140508165323421.jpg">
+                    </div>
+                </mt-swipe-item>
+                <mt-swipe-item>
+                    <img class="img" src="http://n1.itc.cn/img8/wb/recom/2016/06/08/146535464543258587.JPEG">
+                </mt-swipe-item>
+            </mt-swipe>
+        </div>
+        <div>
+            <div class="line1"></div>
+            <div style="border-bottom:1px solid #E6E6E6;padding-left:20px;font-size:14px;height:25px;line-height: 25px;color:#3dbbaa;">咨询信息</div>
+            <div class="infoItem" v-for="item in 3">
+                &nbsp;金牛区开展医疗机构环境督察工作金牛区开展医疗机构环境督察工作金牛区开展医疗机构环境督察工作
+            </div>
+        </div>
+        <!-- <div>
             <div class="flex font-green margin10 bottomLine">
                 <div class="flex1 center">
                     <div class="iconbox1">
@@ -40,15 +55,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div>
             <div class="line1"></div>
-            <div class="title1 paddingL5">
-                <span class="more">全部医院&nbsp;>></span>
+            <div style="border-bottom:1px solid #E6E6E6;padding-left:20px;font-size:14px;height:25px;line-height: 25px;color:#3dbbaa;">医疗服务资源</div>
+            <div>
+                <mt-cell v-for="item in items" :title="item.text" label="描述信息" is-link="" @click.native="goHis(item)"></mt-cell>
             </div>
-            <mt-cell v-for="item in items" :title="item.text" label="描述信息" is-link="" @click.native="goHis(item)"></mt-cell>
         </div>
-        <div class="footBar"></div>
     </div>
 </template>
 <script type="text/javascript">
@@ -91,6 +105,19 @@ export default {
 }
 </script>
 <style scoped>
+.hisList{
+}
+.infoItem{
+    height:30px;
+    border-bottom:1px solid #E6E6E6;
+    line-height: 30px;
+    color:#808080;
+    font-size:14px;
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
 .more {
     float: right;
     font-size: 12px;

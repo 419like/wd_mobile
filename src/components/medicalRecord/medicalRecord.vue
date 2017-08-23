@@ -78,7 +78,6 @@ export default {
             let params = {
                 brid:this.$store.getters.getHandleUser.hzid
             }
-            debugger
             this.api.getVisitingList(params).then(
                 res=>{
                     console.log(res);

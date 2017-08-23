@@ -1,9 +1,9 @@
 <template>
-    <div style="height:100%;" id="app">
+    <div class="window" id="app">
         <div v-if="maskShow" class="mask flex center">
             <icon scale="3" class="fa-pulse icon" name="spinner"></icon>
         </div>
-        <router-view style="height:100%;" keep-alive transition transition-mode="out-in"></router-view>
+        <router-view class="window" keep-alive transition transition-mode="out-in"></router-view>
     </div>
 </template>
 <script type="text/javascript">

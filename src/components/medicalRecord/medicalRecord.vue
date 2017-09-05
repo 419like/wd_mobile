@@ -6,7 +6,8 @@
         </mt-header>
         <div class="topBar"></div> -->
         <div class="flex holeW downShadow">
-            <div class="flex1 tabTitle" :class="{'choose':(tabState=='abstract')}">就诊摘要</div>
+            <div class="flex1 tabTitle" :class="{'choose':(tabState=='outRecord')}">门诊记录</div>
+            <div class="flex1 tabTitle" :class="{'choose':(tabState=='hosRecord')}">住院记录</div>
             <div class="flex1 tabTitle" :class="{'choose':(tabState=='checkReport')}">检查报告</div>
             <div class="flex1 tabTitle" :class="{'choose':(tabState=='inspectionReport')}">检验报告</div>
         </div>
@@ -54,15 +55,15 @@ export default {
             return {
                 msg: '个人中心',
                 outpatientList:[],
-                tabState:'abstract',
+                tabState:'outRecord',
             }
         },
         methods: {
-            goDetail(){
-                // this.$route.push({
-                //     path:'/visitDetai',
-                //     query:
-                // })
+            goDetail(item){
+                this.$router.push({
+                    path:'/index/visitDetai',
+                    query:item
+                })
             }
         },
         components:{

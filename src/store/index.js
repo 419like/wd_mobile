@@ -10,6 +10,7 @@ const store = new Vuex.Store({
         hzInfo:{},
         boundList:[],
         handleUser:'',
+        pageTitle:'',
     },
     mutations:{
         maskShow(state,value){
@@ -49,12 +50,18 @@ const store = new Vuex.Store({
         setHandleUser(state,value){
             state.handleUser = value;
         },
+        setPageTitle(state,value){
+            state.pageTitle = value;
+        },
     },
     getters:{
-    	loginState(state, getters){
-    		let loginState = !!(state.userInfo.userId)
-    		return loginState;
-    	},
+        pageTitle(state, getters){
+            return state.pageTitle;
+        },
+        loginState(state, getters){
+            let loginState = !!(state.userInfo.userId)
+            return loginState;
+        },
     	userNum(state,getters){
     		return state.userInfo.userNum;
     	},

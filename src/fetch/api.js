@@ -4,7 +4,7 @@ import store from '@/store'
 // axios 配置
 // axios.defaults.timeout = 5000;
 axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
-axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
+// axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
 axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
 // axios.defaults.baseURL = 'http://192.168.1.84:8080/wdphis/';
 // 
@@ -186,5 +186,36 @@ export default {
   getPatientInfo(params, config) {
     return fetch('rest/queryDataBySql/080201/4', params)
   },
+  /**
+   *  获取机构文章列表
+   */
+  getArticleList(params, config) {
+    return fetch('rest/queryDataBySql/080104/3', params)
+  },
+  /**
+   * 获取文章详情
+   */
+  getActicleDetail(params, config) {
+    return fetch('/rest/queryDataBySql/080104/4', params)
+  },
+  /**
+   * 获取部门列表
+   */
+  getDepartmentList(params, config) {
+    return fetch('/rest/queryDataBySql/080102/1', params)
+  },
+  /**
+   * 获取人员列表
+   */
+  getPersonList(params, config) {
+    return fetch('/rest/queryDataBySql/080103/1', params)
+  },
+  /**
+   * 根据对象id和类型查询其介绍文章信息
+   */
+  getIntro(params, config) {
+    return fetch('/rest/queryDataBySql/080104/5', params)
+  },
+
 
 }

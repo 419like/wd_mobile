@@ -35,6 +35,20 @@ const app = new Vue({
 Vue.prototype.goback = function() {
     router.back();
 }
+
+Vue.prototype.goUrl = function(url){
+    this.$router.push({
+        path:'/index/'+url
+    })
+}
+Vue.prototype.goArticle = function(id){
+    this.$router.push({
+        path:'/index/articlePage',
+        query:{
+            id:id
+        }
+    })
+}
 Vue.prototype.passwordFix = function(word) {
     var len = 64 - word.length;
     for (var i = 0; i < len; i++) {

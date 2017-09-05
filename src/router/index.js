@@ -41,6 +41,18 @@ const boundEdit = resolve => {
 const editBoundInfo = resolve => {
     require(['../components/editBoundInfo/editBoundInfo.vue'], resolve);
 }
+const registerConfirm = resolve => {
+    require(['../components/registerConfirm/registerConfirm.vue'], resolve);
+}
+const visitDetai  = resolve => {
+    require(['../components/visitDetai/visitDetai.vue'], resolve);
+}
+const articlePage  = resolve => {
+    require(['../components/articlePage/articlePage.vue'], resolve);
+}
+const newsList  = resolve => {
+    require(['../components/newsList/newsList.vue'], resolve);
+}
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -59,19 +71,31 @@ const routes = [
         }, {
             path: '/index/personalCenter',
             component: personalCenter
-        }, ]
-    }, {
-        path: '/hospitalPage/:info',
-        component: hospitalPage
+        }, {
+            path: '/index/hospitalPage',
+            component: hospitalPage
+        }, {
+            path: '/index/registerConfirm',
+            component: registerConfirm
+        }, {
+            path:'/index/appointment',
+            component:appointment
+        }, {
+            path:'/index/visitDetai',
+            component:visitDetai
+        }, {
+            path:'/index/articlePage',
+            component:articlePage
+        }, {
+            path:'/index/newsList',
+            component:newsList
+        }]
     },{
         path: '/acticle/:info',
         component: acticle
     },{
         path:'/treatmentCardBind',
         component:treatmentCardBind
-    },{
-        path:'/appointment',
-        component:appointment
     },{
         path:'/boundEdit',
         component:boundEdit

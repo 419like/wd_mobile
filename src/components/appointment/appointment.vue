@@ -1,9 +1,31 @@
 <template>
     <div>
-        <mt-header fixed title="挂号" class="green">
-            <mt-button icon="back" slot="left" @click="goback()"></mt-button>
-        </mt-header>
-        <div class="topBar"></div>
+        <div class="flex" style="height:40px;z-index: 1;position: relative;">
+            <div class="flex1 center">
+                <div class="selected" @click="doctorSelect();">
+                    <div>科室(所有)</div>
+                </div>
+                <div class="" v-if="doctorSelectAble" v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3">
+                    <div>全科1</div>
+                </div>
+            </div>
+            <div class="flex1 center">
+                <div class="selected">
+                    <div>医生(所有)</div>
+                </div>
+                <div class="" v-if="doctorSelectAble" v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3">
+                    <div>全科1</div>
+                </div>
+            </div>
+            <div class="flex1 center">
+                <div class="selected">
+                    <div>号类(所有)</div>
+                </div>
+                <div class="" v-if="doctorSelectAble" v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3">
+                    <div>全科1</div>
+                </div>
+            </div>
+        </div>
         <div class="dateContainer">
             <div class="dateBox" :class="{'choose':(item==dateChoose)}" v-for="item in dateArray" @click="chooseDate(item);">
                 <div class="dateText1">{{item.date}}</div>
@@ -12,11 +34,14 @@
         </div>
         <div class="topLine1">
             <div v-for="item in scheduleList" class="flex doctorItem" @click="register(item)">
+                <div style="width:50px;">
+                </div>
                 <div class="flex1 infoBox">
-                    <div>
+                    <div class="flex">
                         <span class="t0">{{item.ksmc}}</span>
                         <span class="t2">{{item.ysxm}}</span>
                         <span class="t1">{{item.xmmc}}</span>
+                        <div class="t2">¥{{item.ghfy}}</div>
                         <span v-if="item.xhs!=0" class="leftIcon">&nbsp;余{{item.xhs-item.ygs}}&nbsp;</span>
                     </div>
                     <div class="weekText borderB">
@@ -38,28 +63,20 @@
                         <span :class="{current:(dateChoose.day=='周日')}">{{item.ze?item.ze:'暂无'}}</span>
                     </div>
                 </div>
-                <div class="btnArea">
+                <!-- <div class="btnArea">
                     <div class="costText">¥&nbsp;{{item.ghfy}}</div>
                     <div class="registerBtn">挂号</div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="mask pCenter" v-if="chargeVisible">
             <div class="chargeBox">
                 <div class="title">挂号确认单</div>
                 <div class="contentBox">
-<!--                     <div>
-                        <span>姓名：</span>
-                        <span>{{chargeChoose.ksmc}}</span>
-                    </div> -->
                     <div>
                         <span>科室：</span>
                         <span>{{chargeChoose.ksmc}}</span>
                     </div>
-<!--                     <div>
-                        <span>地点：</span>
-                        <span></span>
-                    </div> -->
                     <div>
                         <span>医生：</span>
                         <span>{{chargeChoose.ysxm}}</span>
@@ -103,6 +120,8 @@ let doctorList = [];
 export default {
     data() {
         return {
+            doctorSelectList:[{text:'张医生'},{text:'张医生'}],
+            doctorSelectAble:false,
             dateValue: '',
             pickerValue: '',
             doctor: '',
@@ -133,6 +152,9 @@ export default {
         }
     },
     methods: {
+        doctorSelect(){
+            this.doctorSelectAble = !this.doctorSelectAble;
+        },
         timeChange(){
             console.log(this.timeValue);
         },
@@ -140,8 +162,18 @@ export default {
             this.chargeVisible = false;
         },
         register(item) {
-            this.chargeVisible = true;
-            this.chargeChoose = item;
+            // this.chargeVisible = true;
+            // this.chargeChoose = item;
+            debugger
+            console.log(item);
+
+            this.$router.push({
+                path:'/index/registerConfirm',
+                query:{
+                    ksmc:item.ksmc
+                }
+            });
+
         },
         openPicker() {
             this.$refs.picker.open();
@@ -179,7 +211,6 @@ export default {
             }
         },
         upDataDoctorConfig() {
-            debugger
             this.$refs.doctorSeletor.reConfig();
             this.doctor = doctorList[0];
         },
@@ -284,6 +315,5 @@ export default {
 
 </script>
 <style scoped>
-
 
 </style>

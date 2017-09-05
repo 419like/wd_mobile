@@ -3,8 +3,18 @@
         <div class="bigWindow" :class="{menuOut:menuAble}">
             <div class="smallindow">
                 <div class="head green">
+                    <div style="position:absolute;left:0px;top:0px;" @click="goback()">
+                        <svg viewBox="0 0 1024 1024" class="svgIcon" style="margin-top:10px;margin-left:5px;height:20px;fill:#FFFFFF;">
+                                <path d="M693.3504 918.903467a34.030933 34.030933 0 0 1-24.132267-10.001067L279.4496 519.0656a34.0992 34.0992 0 0 1 0-48.264533l389.802667-389.802667a34.0992 34.0992 0 1 1 48.264533 48.264533L351.8464 494.933333l365.6704 365.704534a34.0992 34.0992 0 0 1-24.1664 58.2656z"></path>
+                        </svg>
+                    </div>
+                    <div style="width:100%;text-align:center;margin-top:8px;color:#fff;">
+                        {{pageTitle}}
+                    </div>
                     <div class="enterMenuBtn" @click="enterMenu">
-                        三
+                        <svg viewBox="0 0 1024 1024" class="svgIcon" style="height:30px;margin-top:5px;">
+                                <path d="M241.676 282.156h-38.288c-10.581 0-19.137 8.579-19.137 19.137s8.562 19.138 19.137 19.138h38.288c10.581 0 19.137-8.579 19.137-19.138s-8.562-19.137-19.137-19.137zM394.821 320.441h459.418c10.583 0 19.138-8.579 19.138-19.138s-8.562-19.137-19.138-19.137h-459.418c-10.583 0-19.137 8.579-19.137 19.137 0 10.561 8.557 19.138 19.137 19.138zM241.676 511.867h-38.288c-10.581 0-19.137 8.578-19.137 19.137 0 10.581 8.562 19.137 19.137 19.137h38.288c10.581 0 19.137-8.562 19.137-19.137 0-10.561-8.562-19.137-19.137-19.137zM854.234 511.867h-459.418c-10.583 0-19.137 8.578-19.137 19.137 0 10.581 8.557 19.137 19.137 19.137h459.418c10.583 0 19.138-8.562 19.138-19.137 0-10.561-8.562-19.137-19.138-19.137zM241.676 741.581h-38.288c-10.581 0-19.137 8.562-19.137 19.137 0 10.583 8.562 19.138 19.137 19.138h38.288c10.581 0 19.137-8.562 19.137-19.138s-8.562-19.137-19.137-19.137zM854.234 741.581h-459.418c-10.583 0-19.137 8.562-19.137 19.137 0 10.583 8.557 19.138 19.137 19.138h459.418c10.583 0 19.138-8.562 19.138-19.138s-8.562-19.137-19.138-19.137z" p-id="2406"></path>
+                            </svg>
                     </div>
                 </div>
                 <div class="topBar"></div>
@@ -50,28 +60,9 @@
                 </div>
             </div>
         </div>
-        <!-- <mt-tabbar fixed v-model="selected" class="foot">
-            <mt-tab-item id="home">
-                <icon name="home" scale="1.3"></icon>
-                <div class="menuBtn">主页</div>
-            </mt-tab-item>
-            <mt-tab-item id="medicalRecord">
-                <icon name="user-md" scale="1.3"></icon>
-                <div class="menuBtn">就诊记录</div>
-            </mt-tab-item>
-            <mt-tab-item id="healthRecord">
-                <icon name="file-text-o" scale="1.3"></icon>
-                <div class="menuBtn">健康档案</div>
-            </mt-tab-item>
-            <mt-tab-item id="personalCenter">
-                <icon name="user" scale="1.3"></icon>
-                <div class="menuBtn">个人中心</div>
-            </mt-tab-item>
-        </mt-tabbar> -->
     </div>
-</template>````
+</template>
 <script type="text/javascript">
-import axios from 'axios';
 export default {
     data() {
             return {
@@ -102,6 +93,7 @@ export default {
             }
         },
         mounted() {
+            this.$store.commit('setPageTitle','健康金牛');
             let url = this.$router.currentRoute.path.split('/')[2];
             if(url){
                 this.selected = url;
@@ -113,8 +105,12 @@ export default {
         },
         created(){
 
+        },
+        computed:{
+            pageTitle() {
+                return this.$store.getters.pageTitle;
+            },
         }
-
 }
 </script>
 <style type="text/css">
@@ -145,7 +141,7 @@ export default {
     right:0px;
     top:0px;
     height:100%;
-    width:50px;
+    width:35px;
 }
 .body{
     height:calc(100% - 40px);

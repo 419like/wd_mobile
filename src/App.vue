@@ -13,7 +13,7 @@ export default {
     }, mounted() {
         let _this = this;
         setTimeout(() => {
-            document.getElementById('mask').style.display = 'none'
+            document.getElementById('mask').style.display = 'none';
         });
         let userInfo = this.$store.getters.localUserInfo;
         if (userInfo && userInfo.userId) {
@@ -39,7 +39,6 @@ export default {
                     }
                     this.$toast('登录成功！');
                     this.$store.commit('login',loginObj);
-                    this.goback();
                 })
         }
     }, computed: {

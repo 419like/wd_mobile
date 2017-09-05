@@ -43,7 +43,7 @@ module.exports = {
                 loader: 'babel-loader',
                 include: [resolve('src'), resolve('test')]
             }, {
-                test: /\.(png|jpe?g|gif)(\?.*)?$/,
+                test: /\.(svg|png|jpe?g|gif)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 1,

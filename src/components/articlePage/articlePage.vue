@@ -1,0 +1,89 @@
+<template>
+    <div>
+        <div class="html ql-editor acticleBox" v-html="article.nr"></div>
+    </div>
+</template>
+<script type="text/javascript">
+import '@/assets/css/quill.core.css';
+export default {
+    data() {
+            return {
+                article: {
+                    text: '文章'
+                },
+                items: [],
+                info:{}
+            }
+        },
+        methods: {
+            loadArticle(){
+                var params = {
+                    id:this.$route.query.id
+                }
+                debugger
+                this.api.getActicleDetail(params).then(
+                    res => {
+                        debugger
+                        console.log(res);
+                        let data = res.data;
+                        if (data.length) {
+                            data = data[0];
+                            data.nr = decodeURIComponent(decodeURIComponent(data.nr))
+                        } else {
+                            data = {
+                                nr: '',
+                                id: '',
+                                startTime: ''
+                            }
+                        }
+                        debugger
+                        this.article = data;
+                        this.$store.commit('setPageTitle',this.article.wzbt);
+
+                    }
+                );
+            }
+        },
+        components: {
+
+        },
+        mounted() {
+            this.loadArticle();
+        }
+}
+</script>
+<style scoped>
+.acticleBox{
+    width:100%;
+}
+.borderB {
+    border-bottom: 1px solid #CCCCCC
+}
+
+.marginT5 {
+    margin-top: 5px;
+}
+
+.marginL20 {
+    margin-left: 20px;
+}
+
+.infoContent {
+    color: #999999;
+    font-size: 12px;
+}
+
+.infoImg {
+    width: 60px;
+    padding: 5px;
+}
+
+.img {
+    width: 100%;
+}
+
+.mint-swipe {
+    width: 100%;
+    height: 150px;
+}
+</style>

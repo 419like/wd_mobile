@@ -1,8 +1,5 @@
 <template>
     <div class="login">
-        <mt-header fixed :title=msg class="green">
-            <mt-button icon="back" slot="left" @click="goIndex()"></mt-button>
-        </mt-header>
         <div class="center">
             <img class="logoImg" src="http://www.wondersgroup.com/wp-content/themes/wonders2016/images/logo.png">
         </div>
@@ -43,12 +40,12 @@ export default {
         methods: {
             goIndex(){
                 this.$router.push({
-                    path:'index'
+                    path:'/index'
                 })
             },
             register() {
                 this.$router.push({
-                    path: 'register'
+                    path: '/index/register'
                 })
             },
             login() {
@@ -118,7 +115,7 @@ export default {
 }
 
 .login {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 20px;
     margin-right: 20px;
 }

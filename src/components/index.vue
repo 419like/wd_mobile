@@ -3,7 +3,7 @@
         <div class="bigWindow" :class="{menuOut:menuAble}">
             <div class="smallindow">
                 <div class="head green">
-                    <div style="position:absolute;left:0px;top:0px;" @click="goback()">
+                    <div v-if="backBtnHide" style="position:absolute;left:0px;top:0px;" @click="goback()">
                         <svg viewBox="0 0 1024 1024" class="svgIcon" style="margin-top:10px;margin-left:5px;height:20px;fill:#FFFFFF;">
                                 <path d="M693.3504 918.903467a34.030933 34.030933 0 0 1-24.132267-10.001067L279.4496 519.0656a34.0992 34.0992 0 0 1 0-48.264533l389.802667-389.802667a34.0992 34.0992 0 1 1 48.264533 48.264533L351.8464 494.933333l365.6704 365.704534a34.0992 34.0992 0 0 1-24.1664 58.2656z"></path>
                         </svg>
@@ -31,7 +31,8 @@
                             </svg>
                         </div>
                         <div style="text-align:center;">
-                            <mt-button type="primary" style="height:25px;width:80px;font-size:15px;">登&nbsp;&nbsp;录</mt-button>
+                            <mt-button v-if="!userInfo.userNum" type="primary" style="height:25px;width:80px;font-size:15px;">登&nbsp;&nbsp;录</mt-button>
+                            <span v-if="userInfo.userNum" style="color:#fff;">{{userInfo.userNum}}</span>
                         </div>
                     </div>
                     <div class="list">
@@ -93,7 +94,6 @@ export default {
             }
         },
         mounted() {
-            this.$store.commit('setPageTitle','健康金牛');
             let url = this.$router.currentRoute.path.split('/')[2];
             if(url){
                 this.selected = url;
@@ -110,6 +110,12 @@ export default {
             pageTitle() {
                 return this.$store.getters.pageTitle;
             },
+            userInfo() {
+                return this.$store.getters.userInfo;
+            },
+            backBtnHide(){
+                return this.$store.getters.backBtnHide;
+            }
         }
 }
 </script>

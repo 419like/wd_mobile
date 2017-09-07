@@ -4,7 +4,7 @@
         <div class="topBar"></div> -->
         <div class="personInfo">
             <img class="imgBox" :src=headImg @click="editInfo()">
-            <span v-show="!loginState" class="unLogin" @click="goUrl('/login')">点击登录</span>
+            <span v-show="!loginState" class="unLogin" @click="goUrl('/index/login')">点击登录</span>
             <span v-show="loginState" class="Login" @click="showInfo()" v-text="userNum"></span>
         </div>
         <div>
@@ -40,15 +40,15 @@
             </div>
         </div>
         <div v-show="loginState" class="bottomBtn">
-                <button class="mint-button mint-button--primary mint-button--large green" @click="loginOut()">
-                    <!---->
-                    <label class="mint-button-text font18">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</label>
-                </button>
+            <button class="mint-button mint-button--primary mint-button--large green" @click="loginOut()">
+                <!---->
+                <label class="mint-button-text font18">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</label>
+            </button>
         </div>
         <!-- <mt-cell title="设置" label="描述信息" is-link @click.native="showConfig()"></mt-cell> -->
         <div class="footBar"></div>
         <mt-popup class="holePage" v-model="personinfoVisible" position="right">
-            <personinfo @close="closeInfo" />
+            <personinfo @close="closeInfo" v-model="userInfo"/>
         </mt-popup>
         <mt-popup class="holePage" v-model="personConfigVisible" position="right">
             <person-config @close="closeConfig" />
@@ -67,6 +67,7 @@ export default {
                 personinfoVisible: false,
                 personConfigVisible:false,
                 boundPage:false,
+                userInfo:{},
             }
         },
         methods: {
@@ -97,7 +98,6 @@ export default {
                             this.$store.commit('patientInfoLogoff');
                             this.closeBoundPage();
                             this.$toast('解绑成功！');
-
                         }
                     );
             },
@@ -119,7 +119,18 @@ export default {
                 })
             },
             showInfo() {
-                this.personinfoVisible = true;
+                let params = {
+                    id:this.localUserInfo.userId,
+                }
+                debugger
+                this.api.getUserInfo(params)
+                .then(
+                        res=>{
+                            res.data[0].id = params.id;
+                            this.userInfo = res.data[0];
+                            this.personinfoVisible = true;
+                        }
+                    )
             },
             closeInfo() {
                 this.personinfoVisible = false;
@@ -139,6 +150,8 @@ export default {
         created() {
         },
         mounted() {
+            this.$store.commit('setPageTitle',"个人信息");
+
             if(!this.handleUser){
                 this.$store.commit('setHandleUser',this.boundlist[0]);
             }
@@ -152,6 +165,9 @@ export default {
             },
             userNum(){
                 return this.$store.getters.userNum;
+            },
+            localUserInfo(){
+                return this.$store.getters.localUserInfo;
             },
             bindState(){
                 return this.$store.getters.bindState;

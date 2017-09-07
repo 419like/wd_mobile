@@ -16,7 +16,7 @@
                 <div style="flex:1">咨询信息</div>
                 <div style="width:60px;" @click="goMoreNews">更多···</div>
             </div>
-            <div class="infoItem" v-for="item in newsList" @click="goArticle(item)">
+            <div class="infoItem" v-for="item in newsList" @click="goArticle(item.id)">
                 &nbsp;{{item.wzjj}}
             </div>
         </div>
@@ -43,11 +43,10 @@
                                 {{item.szddz?item.szddz:'暂无地址'}}
                             </div>
                             <div  style="width:80px;">
-                                距离390m
+                                
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -133,7 +132,8 @@ export default {
             }
         },
         mounted() {
-            this.$store.commit('setPageTitle','健康金牛');
+            this.$store.commit('setPageTitle',window.config.indexTitle);
+            this.$store.commit('setBackBtn',false);
             this.loadHisList();
             this.loadNewsList();
             this.loadAdList();

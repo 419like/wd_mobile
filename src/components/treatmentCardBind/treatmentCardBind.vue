@@ -41,9 +41,9 @@ export default {
                 },
                 items: [],
                 card:{
-                    num:'123',
-                    name:'李小玲',
-                    idCard:'510103196909272844',
+                    num:'',
+                    name:'',
+                    idCard:'',
                     tel:''
                 },
                 relationSelect:false,
@@ -140,7 +140,6 @@ export default {
                 }
                 this.api.treatmentCardBind(params).then(res=>{
                     if(res.code==1){
-                        this.$store.commit('treatmentCardBind',hzid);
                         this.$store.commit('setPatientInfo',res);
                         this.$toast('绑定成功！');
                         this.$router.push({
@@ -161,7 +160,8 @@ export default {
                 return;
             }
             this.$set(this.$data,'relation',this.selectConfig.options[0])
-        }
+
+        },
 }
 </script>
 <style scoped>

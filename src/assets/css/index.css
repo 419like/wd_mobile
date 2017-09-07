@@ -225,3 +225,11 @@
     text-overflow:ellipsis;
     white-space:nowrap;
 }
+.scaleY{
+  transform: scale(0.7);
+}
+
+.box1{
+  height: 20px;
+    margin-top: -4px;
+}

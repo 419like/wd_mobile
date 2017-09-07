@@ -6,8 +6,14 @@ import store from '@/store'
 axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
 // axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
 axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
+// axios.defaults.baseURL = 'http://tfxq.jw028.cn:7080/hisapi';
 // axios.defaults.baseURL = 'http://192.168.1.84:8080/wdphis/';
-// 
+
+console.log(window.config.rootUrl);
+if(window.config&&window.config.rootUrl){
+  axios.defaults.baseURL = window.config.rootUrl;
+}
+
 
 
 
@@ -205,6 +211,18 @@ export default {
     return fetch('/rest/queryDataBySql/080102/1', params)
   },
   /**
+   * 获取可选部门列表
+   */
+  getDepartmentSelectList(params, config) {
+    return fetch('/rest/queryDataBySql/080102/2', params)
+  },
+  /**
+   * 获取可选部门列表
+   */
+  getDoctorSelectList(params, config) {
+    return fetch('/rest/queryDataBySql/080103/2', params)
+  },
+  /**
    * 获取人员列表
    */
   getPersonList(params, config) {
@@ -215,6 +233,12 @@ export default {
    */
   getIntro(params, config) {
     return fetch('/rest/queryDataBySql/080104/5', params)
+  },
+  /**
+   * 根据用户id查询部分用户信息
+   */
+  getUserInfo(params, config) {
+    return fetch('/rest/queryDataBySql/080201/5', params)
   },
 
 

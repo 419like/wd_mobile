@@ -1,7 +1,17 @@
 <template>
     <div>
-        <div class="infoItem" v-for="item in newsList" @click="goArticle(item)">
-            &nbsp;{{item.wzjj}}
+        <div v-for="item in newsList" @click="goArticle(item)">
+            <div class="flex">
+                <div class="flex1" style="font-size: 16px;font-weight: bold;">
+                    &nbsp;{{item.wzbt}}
+                </div>
+                <div style="color:#B3B3B3;font-size: 14px;line-height: 22px;">
+                    {{item.qyrq.split(' ')[0]}}&nbsp;
+                </div>
+            </div>
+            <div class="infoItem" style="height:20px;line-height: 20px;">
+                &nbsp;{{item.wzjj}}
+            </div>
         </div>
     </div>
 </template>
@@ -42,6 +52,7 @@ export default {
 
         },
         mounted() {
+            this.$store.commit('setPageTitle','新闻列表');
             this.loadNewsList();
         }
 }

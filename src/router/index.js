@@ -89,6 +89,12 @@ const routes = [
         }, {
             path:'/index/newsList',
             component:newsList
+        }, {
+            path:'/index/login',
+            component:login
+        }, {
+            path:'/index/register',
+            component:register
         }]
     },{
         path: '/acticle/:info',
@@ -108,6 +114,7 @@ const router = new Router({
     routes
 })
 router.beforeEach((to, from, next) => {
+    router.app.$store.commit('setBackBtn',true)
     document.body.scrollTop = 0;
     next()
 });

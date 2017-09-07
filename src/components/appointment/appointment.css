@@ -4,13 +4,6 @@
 .selected{
     background: #d7d7d7;
 }
-.box1{
-	height: 20px;
-    margin-top: -4px;
-}
-.scaleY{
-	transform: scale(0.7);
-}
 .contentBox{
 	margin:10px;
 }

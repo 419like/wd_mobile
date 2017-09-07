@@ -11,12 +11,14 @@ const store = new Vuex.Store({
         boundList:[],
         handleUser:'',
         pageTitle:'',
+        backBtnHide:false,
     },
     mutations:{
         maskShow(state,value){
             state.maskShow = value;
         },
         login(state,value){
+            debugger
         	window.localStorage.setItem("userInfo",JSON.stringify(value));
             state.userInfo = value;
         },
@@ -53,6 +55,9 @@ const store = new Vuex.Store({
         setPageTitle(state,value){
             state.pageTitle = value;
         },
+        setBackBtn(state,value){
+            state.backBtnHide = value;
+        },
     },
     getters:{
         pageTitle(state, getters){
@@ -66,11 +71,16 @@ const store = new Vuex.Store({
     		return state.userInfo.userNum;
     	},
     	localUserInfo(state,getters){
+            debugger
     		return JSON.parse(window.localStorage.getItem("userInfo"));
     	},
         userId(state, getters){
             let userId = state.userInfo.userId;
             return userId;
+        },
+        userInfo(state, getters){
+            let userInfo = state.userInfo;
+            return userInfo;
         },
         bindState(state, getters){
             let bindState = !!(state.hzid)
@@ -81,6 +91,9 @@ const store = new Vuex.Store({
         },
         getHandleUser(state,getters){
             return state.handleUser;
+        },
+        backBtnHide(state,getters){
+            return state.backBtnHide;
         },
     }
 })

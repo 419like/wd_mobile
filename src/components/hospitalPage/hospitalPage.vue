@@ -271,7 +271,7 @@ export default {
     margin-left: 10px;
 }
 .borderB{
-    border-bottom: 1px solid #CCCCCC
+    /*border-bottom: 1px solid #CCCCCC*/
 }
 .marginT5{
     margin-top: 5px;

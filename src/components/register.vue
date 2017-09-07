@@ -1,9 +1,5 @@
 <template>
     <div>
-        <mt-header fixed :title=msg class="green">
-            <mt-button icon="back" slot="left" @click="goback()"></mt-button>
-        </mt-header>
-        <div class="topBar"></div>
         <div class="margin20 flex center font14">
             <div class="flex1">
                 1输入手机号
@@ -71,11 +67,11 @@ export default {
                     lx: "1",
                     mm: password
                 }
+                debugger
                 this.api.Regist(params)
                     .then(res => {
                         this.$toast('注册成功！')
-                        window.config.userId = res.id;
-                        window.config.userNum = this.number;
+                        debugger
                         let loginObj = {
                             userId:res.id,
                             userNum:this.number,

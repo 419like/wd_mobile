@@ -1,28 +1,31 @@
 <template>
     <div>
-        <div class="flex" style="height:40px;z-index: 1;position: relative;">
-            <div class="flex1 center">
-                <div class="selected" @click="doctorSelect();">
-                    <div>科室(所有)</div>
-                </div>
-                <div class="" v-if="doctorSelectAble" v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3">
-                    <div>全科1</div>
+        <div class="conditionSelect">
+            <div v-if="departmentSelectAble" class="selectBlock">
+                <div class="selected selectItem"  v-for="item in departmentSelectList">
+                    <div>{{item.mc}}</div>
                 </div>
             </div>
-            <div class="flex1 center">
-                <div class="selected">
-                    <div>医生(所有)</div>
+            <div v-if="doctorSelectAble" class="selectBlock">
+                <div class="selected"  v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3;border-bottom: 1px solid #E6E6E6;width:100px;text-align: center;">
+                    <div>{{item.xm}}</div>
                 </div>
-                <div class="" v-if="doctorSelectAble" v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3">
-                    <div>全科1</div>
+            </div>
+        </div>
+        <div class="flex" style="height:40px;z-index: 1;position: relative;">
+            <div class="flex1 center" style="position:relative;">
+                <div class="selected" @click="departmentSelect();">
+                    <div>科室(所有)</div>
+                </div>
+            </div>
+            <div class="flex1 center" style="position:relative;">
+                <div class="selected" @click="doctorSelect();">
+                    <div>医生(所有)</div>
                 </div>
             </div>
             <div class="flex1 center">
                 <div class="selected">
                     <div>号类(所有)</div>
-                </div>
-                <div class="" v-if="doctorSelectAble" v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3">
-                    <div>全科1</div>
                 </div>
             </div>
         </div>
@@ -34,8 +37,8 @@
         </div>
         <div class="topLine1">
             <div v-for="item in scheduleList" class="flex doctorItem" @click="register(item)">
-                <div style="width:50px;">
-                </div>
+                <!-- <div style="width:50px;">
+                </div> -->
                 <div class="flex1 infoBox">
                     <div class="flex">
                         <span class="t0">{{item.ksmc}}</span>
@@ -120,6 +123,7 @@ let doctorList = [];
 export default {
     data() {
         return {
+            departmentSelectAble:false,
             doctorSelectList:[{text:'张医生'},{text:'张医生'}],
             doctorSelectAble:false,
             dateValue: '',
@@ -152,6 +156,9 @@ export default {
         }
     },
     methods: {
+        departmentSelect(){
+            this.departmentSelectAble = !this.departmentSelectAble;
+        },
         doctorSelect(){
             this.doctorSelectAble = !this.doctorSelectAble;
         },
@@ -166,12 +173,18 @@ export default {
             // this.chargeChoose = item;
             debugger
             console.log(item);
-
+            let obj = {
+                    id:item.id,
+                    ksmc:item.ksmc,
+                    ysxm:item.ysxm?item.ysxm:'所有',
+                    xmmc:item.xmmc,
+                    shortDay:this.dateChoose.shortDay,
+                    day:this.dateChoose.day,
+                    ghfy:item.ghfy,
+                }
             this.$router.push({
                 path:'/index/registerConfirm',
-                query:{
-                    ksmc:item.ksmc
-                }
+                query:obj
             });
 
         },
@@ -302,6 +315,34 @@ export default {
         chooseDate(item) {
             this.dateChoose = item;
             this.loadDepartmentList(item.time)
+        },
+        loadDepartmentSelectList(){
+            debugger
+            let params = {
+                jgid:this.$route.query.jgid
+            }
+            debugger
+            this.api.getDepartmentSelectList(params)
+            .then(
+                    res=>{
+                        debugger
+                        this.departmentSelectList = res.data;
+                    }
+                )
+        },
+        loadDoctorSelectList(){
+            debugger
+            let params = {
+                jgid:this.$route.query.jgid
+            }
+            debugger
+            this.api.getDoctorSelectList(params)
+            .then(
+                    res=>{
+                        debugger
+                        this.doctorSelectList = res.data;
+                    }
+                )
         }
     },
     components: {
@@ -310,10 +351,33 @@ export default {
     mounted() {
         this.$set(this.$data, 'dateArray', this.initDate());
         this.chooseDate(this.dateArray[0]);
+        this.loadDepartmentSelectList();
+        this.loadDoctorSelectList();
     }
 }
 
 </script>
 <style scoped>
-
+.selectBlock{
+    width:100%;
+}
+.selectItem{
+    color:#000000;
+    background: #B3B3B3;
+    border-bottom: 1px solid #E6E6E6;
+    width:80px;
+    text-align: center;
+}
+.conditionSelect{
+    position: absolute;
+    top:80px;
+    left:0px;
+    display: flex;
+    width:100%;
+    background: #B3B3B3;
+}
+.selected{
+    height:40px;
+    line-height: 40px;
+}
 </style>

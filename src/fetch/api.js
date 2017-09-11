@@ -100,7 +100,7 @@ export default {
    * 获取机构列表
    */
   GetHisList(params, config) {
-    return fetch('/rest/queryDataBySql/080101/1', params)
+    return fetch('/rest/queryDataBySql/080101/2', params)
   },
   /**
    * 获取部门列表

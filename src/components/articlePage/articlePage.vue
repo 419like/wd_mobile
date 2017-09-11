@@ -1,6 +1,13 @@
 <template>
     <div>
-        <div class="html ql-editor acticleBox" v-html="article.nr"></div>
+        
+        <div class="html ql-editor acticleBox" >
+            <span v-if="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;">{{article.wzbt}}</span><br>
+            <span v-if="article.wzbt" style="font-size: 12px;color:#B3B3B3;">{{article.qyrq.split(' ')[0]}}</span>
+            <div v-html="article.nr">
+            </div>
+            <div style="width:100%;height:40px;line-height: 40px;text-align: center;color:#999999;">万达信息股份有限公司 版权所有</div>
+        </div>
     </div>
 </template>
 <script type="text/javascript">
@@ -28,7 +35,11 @@ export default {
                         let data = res.data;
                         if (data.length) {
                             data = data[0];
-                            data.nr = decodeURIComponent(decodeURIComponent(data.nr))
+                            debugger
+                            data.nr = decodeURIComponent(data.nr)
+                            if(data.nr.indexOf('<')<0){
+                                data.nr = decodeURIComponent(data.nr)
+                            }
                         } else {
                             data = {
                                 nr: '',
@@ -39,7 +50,6 @@ export default {
                         debugger
                         this.article = data;
                         this.$store.commit('setPageTitle',this.article.wzbt);
-
                     }
                 );
             }

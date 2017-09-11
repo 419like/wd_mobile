@@ -1,17 +1,23 @@
 <template>
     <div>
-        <div v-for="item in newsList" @click="goArticle(item)">
-            <div class="flex">
-                <div class="flex1" style="font-size: 16px;font-weight: bold;">
-                    &nbsp;{{item.wzbt}}
+        <div v-for="item in newsList" @click="goArticle(item)" class="flex">
+            <div style="width:50px;">
+                <img :src="item.zst" style="margin:5px;width:40px;height:40px;">
+            </div>
+            <div class="flex1">
+                <div class="flex ">
+                    <div class="flex1" style="font-size: 16px;font-weight: bold;">
+                        &nbsp;{{item.wzbt}}
+                    </div>
+                    <div style="color:#B3B3B3;font-size: 14px;line-height: 22px;">
+                        {{item.qyrq.split(' ')[0]}}&nbsp;
+                    </div>
                 </div>
-                <div style="color:#B3B3B3;font-size: 14px;line-height: 22px;">
-                    {{item.qyrq.split(' ')[0]}}&nbsp;
+                <div class="infoItem" style="height:20px;line-height: 20px;">
+                    &nbsp;{{item.wzjj}}
                 </div>
             </div>
-            <div class="infoItem" style="height:20px;line-height: 20px;">
-                &nbsp;{{item.wzjj}}
-            </div>
+            
         </div>
     </div>
 </template>

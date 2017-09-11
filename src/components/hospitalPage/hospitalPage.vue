@@ -145,6 +145,7 @@ export default {
                 }
                 this.api.getIntro(params).then(
                     res=>{
+                        debugger
                         console.log(res);
                         this.goArticle(res.data[0].id);
                     }, err=>{

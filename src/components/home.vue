@@ -32,7 +32,7 @@
                     <div style="flex:1;">
                         <div style="display: flex;">
                             <div style="flex:1;color:#333333;font-size:14px;">
-                                {{item.text}}
+                                {{item.mc}}
                             </div>
                             <div style="width:80px;">
                                 {{item.lxdh?item.lxdh:'暂无电话'}}
@@ -120,10 +120,10 @@ export default {
             },
             loadHisList(){
                 let params = {
-                    length:'999',
                 }
                 this.api.GetHisList(params).then(
                     res=>{
+                        debugger
                         console.log(res);
                         this.items = res.data;
                     }, err=>{

@@ -47,6 +47,7 @@
         </div>
         <!-- <mt-cell title="设置" label="描述信息" is-link @click.native="showConfig()"></mt-cell> -->
         <div class="footBar"></div>
+        
         <mt-popup class="holePage" v-model="personinfoVisible" position="right">
             <personinfo @close="closeInfo" v-model="userInfo"/>
         </mt-popup>
@@ -119,8 +120,9 @@ export default {
                 })
             },
             showInfo() {
+                let obj = JSON.parse(window.localStorage.getItem("userInfo"));
                 let params = {
-                    id:this.localUserInfo.userId,
+                    id:obj.userId,
                 }
                 debugger
                 this.api.getUserInfo(params)
@@ -165,9 +167,6 @@ export default {
             },
             userNum(){
                 return this.$store.getters.userNum;
-            },
-            localUserInfo(){
-                return this.$store.getters.localUserInfo;
             },
             bindState(){
                 return this.$store.getters.bindState;
@@ -273,7 +272,7 @@ function takeFail(message) {
 .Login {
     position: absolute;
     color: #fff;
-    border: 1px solid #fff;
+    /*border: 1px solid #fff;*/
     border-radius: 4px;
     height: 30px;
     line-height: 30px;

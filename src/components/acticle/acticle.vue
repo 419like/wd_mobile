@@ -41,6 +41,9 @@ export default {
                     if (data.length) {
                         data = data[0];
                         data.nr = decodeURIComponent(data.nr)
+                        if(data.nr.indexOf('<')<0){
+                            data.nr = decodeURIComponent(data.nr)
+                        }
                     } else {
                         data = {
                             nr: '',

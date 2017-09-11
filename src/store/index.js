@@ -70,10 +70,10 @@ const store = new Vuex.Store({
     	userNum(state,getters){
     		return state.userInfo.userNum;
     	},
-    	localUserInfo(state,getters){
+        getUserInfo(state,getters){
             debugger
-    		return JSON.parse(window.localStorage.getItem("userInfo"));
-    	},
+            return JSON.parse(window.localStorage.getItem("userInfo"));
+        },
         userId(state, getters){
             let userId = state.userInfo.userId;
             return userId;

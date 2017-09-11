@@ -7,7 +7,7 @@
         <div class="inPageBody">
             <div>
                 <mt-field label="姓名" placeholder="请输入姓名" v-model="card.name"></mt-field>
-                <mt-field label="身份证号" placeholder="请输入手机号" v-model="card.idCard"></mt-field>
+                <mt-field label="身份证号" placeholder="请输入身份证号" v-model="card.idCard"></mt-field>
             </div>
             <div class="centerBtn">
                 <!-- <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">

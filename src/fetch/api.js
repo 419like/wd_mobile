@@ -3,7 +3,7 @@ import store from '@/store'
 
 // axios 配置
 // axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
+// axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
 // axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
 axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
 // axios.defaults.baseURL = 'http://tfxq.jw028.cn:7080/hisapi';
@@ -85,7 +85,7 @@ export default {
    * 用户登录
    */
   Login(params, config) {
-    // debugger
+    // 
     // return fetch('/rest/queryDataBySql/080301/1', params)
     params.lx = '1';
     return fetch('/rest/commitData/080301/2', params)
@@ -239,6 +239,12 @@ export default {
    */
   getUserInfo(params, config) {
     return fetch('/rest/queryDataBySql/080201/5', params)
+  },
+  /**
+   * 根据用户id查询部分用户信息
+   */
+  getAreaList(params, config) {
+    return fetch('/rest/queryDataBySql/080201/6', params)
   },
 
 

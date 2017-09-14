@@ -1,9 +1,8 @@
 <template>
     <div>
-        
+        <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;">{{article.wzbt}}</div>
+        <div v-show="article.wzbt" style="font-size: 12px;color:#B3B3B3;">{{article.qyrq.split(' ')[0]}}</div>
         <div class="html ql-editor acticleBox" >
-            <span v-if="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;">{{article.wzbt}}</span><br>
-            <span v-if="article.wzbt" style="font-size: 12px;color:#B3B3B3;">{{article.qyrq.split(' ')[0]}}</span>
             <div v-html="article.nr">
             </div>
             <div style="width:100%;height:40px;line-height: 40px;text-align: center;color:#999999;">万达信息股份有限公司 版权所有</div>
@@ -27,15 +26,15 @@ export default {
                 var params = {
                     id:this.$route.query.id
                 }
-                debugger
+                
                 this.api.getActicleDetail(params).then(
                     res => {
-                        debugger
+                        
                         console.log(res);
                         let data = res.data;
                         if (data.length) {
                             data = data[0];
-                            debugger
+                            
                             data.nr = decodeURIComponent(data.nr)
                             if(data.nr.indexOf('<')<0){
                                 data.nr = decodeURIComponent(data.nr)
@@ -47,7 +46,7 @@ export default {
                                 startTime: ''
                             }
                         }
-                        debugger
+                        
                         this.article = data;
                         this.$store.commit('setPageTitle',this.article.wzbt);
                     }

@@ -85,7 +85,7 @@ export default {
                 console.log(this.timeValue);
             },
             sureCharge(item) {
-                debugger
+                
                 if(this.registerInfo.ghfy!='0.00'){
                     this.$messagebox('收费项目尚未建设，请谅解。')
                     return;
@@ -107,7 +107,7 @@ export default {
                 console.log(params);
                 this.api.register(params)
                     .then(res => {
-                        debugger
+                        
                         if (res.code=='1') {
                             this.$toast('挂号成功！');
                         }else{
@@ -125,7 +125,7 @@ export default {
 
             this.registerInfo = this.$route.query;
             console.log(this.handleUser);
-            debugger
+            
         },
         computed:{
 

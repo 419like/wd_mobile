@@ -33,8 +33,8 @@ export default {
             return {
                 msg: '登录',
                 list: [],
-                number: '',
-                password: ''
+                number: '1002',
+                password: '1002'
             }
         },
         methods: {
@@ -56,7 +56,7 @@ export default {
                 }
                 this.api.Login(params)
                     .then(res => {
-                        debugger
+                        
                         let loginObj = {
                             userId:res.appid,
                             userNum:params.sjh,
@@ -72,6 +72,7 @@ export default {
                             }
                         }
                         this.$toast('登录成功！');
+                        this.$store.commit('setAppUserInfo',res.appuser[0]);
                         this.$store.commit('login',loginObj);
                         this.goback();
                     })

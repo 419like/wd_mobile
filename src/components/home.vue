@@ -34,7 +34,7 @@
                             <div style="flex:1;color:#333333;font-size:14px;">
                                 {{item.mc}}
                             </div>
-                            <div style="width:80px;">
+                            <div style="width:100px;">
                                 {{item.lxdh?item.lxdh:'暂无电话'}}
                             </div>
                         </div>
@@ -81,7 +81,6 @@ export default {
                 })
             },
             goHis(item){
-                console.log(item);
                 this.$router.push({
                     path: '/index/hospitalPage',
                     query:{
@@ -123,7 +122,7 @@ export default {
                 }
                 this.api.GetHisList(params).then(
                     res=>{
-                        debugger
+                        
                         console.log(res);
                         this.items = res.data;
                     }, err=>{

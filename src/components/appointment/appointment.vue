@@ -171,7 +171,7 @@ export default {
         register(item) {
             // this.chargeVisible = true;
             // this.chargeChoose = item;
-            debugger
+            
             console.log(item);
             let obj = {
                     id:item.id,
@@ -274,7 +274,7 @@ export default {
             console.log(params);
             this.api.register(params)
                 .then(res => {
-                    debugger
+                    
                     if (res.code=='1') {
                         this.$toast('挂号成功！');
                     }else{
@@ -317,29 +317,29 @@ export default {
             this.loadDepartmentList(item.time)
         },
         loadDepartmentSelectList(){
-            debugger
+            
             let params = {
                 jgid:this.$route.query.jgid
             }
-            debugger
+            
             this.api.getDepartmentSelectList(params)
             .then(
                     res=>{
-                        debugger
+                        
                         this.departmentSelectList = res.data;
                     }
                 )
         },
         loadDoctorSelectList(){
-            debugger
+            
             let params = {
                 jgid:this.$route.query.jgid
             }
-            debugger
+            
             this.api.getDoctorSelectList(params)
             .then(
                     res=>{
-                        debugger
+                        
                         this.doctorSelectList = res.data;
                     }
                 )

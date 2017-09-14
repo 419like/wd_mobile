@@ -37,7 +37,7 @@ export default {
                 }
                 this.api.getArticleList(params).then(
                     res=>{
-                        debugger
+                        
                         console.log(res);
                         this.newsList = res.data;
                     }, err=>{
@@ -45,7 +45,7 @@ export default {
                     })
             },
             goArticle(item){
-                debugger
+                
                 this.$router.push({
                     path:'/index/articlePage',
                     query:{

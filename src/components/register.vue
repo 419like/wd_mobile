@@ -67,11 +67,11 @@ export default {
                     lx: "1",
                     mm: password
                 }
-                debugger
+                
                 this.api.Regist(params)
                     .then(res => {
                         this.$toast('注册成功！')
-                        debugger
+                        
                         let loginObj = {
                             userId:res.id,
                             userNum:this.number,

@@ -1,11 +1,23 @@
 <template>
     <div>
-        <!-- <mt-header fixed :title=msg class="green"></mt-header>
-        <div class="topBar"></div> -->
-        <div class="personInfo">
-            <img class="imgBox" :src=headImg @click="editInfo()">
-            <span v-show="!loginState" class="unLogin" @click="goUrl('/index/login')">点击登录</span>
-            <span v-show="loginState" class="Login" @click="showInfo()" v-text="userNum"></span>
+        <div class="personInfo" style="display: flex;">
+            <div style="width:120px;">
+                <img class="imgBox" :src=headImg @click="editInfo()">
+            </div>
+            <div style="flex:1">
+                <div v-show="!loginState">
+                    <span class="unLogin" @click="goUrl('/index/login')">点击登录</span>
+                </div>
+                <div v-show="loginState" @click="showInfo()">
+                    <div class="row" style="margin-top:25px;">
+                        <div style="flex:1">{{appUserInfo.xm}}</div>
+                        <div style="flex:1">{{userNum}}</div>
+                    </div>
+                    <div class="row">
+                        <div style="font-size: 12px;">{{appUserInfo.sfzh.replace(appUserInfo.sfzh.slice(appUserInfo.sfzh.length-7,appUserInfo.sfzh.length-1),'******')}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <div class="flex">
@@ -124,10 +136,11 @@ export default {
                 let params = {
                     id:obj.userId,
                 }
-                debugger
+                
                 this.api.getUserInfo(params)
                 .then(
                         res=>{
+                            debugger
                             res.data[0].id = params.id;
                             this.userInfo = res.data[0];
                             this.personinfoVisible = true;
@@ -177,6 +190,9 @@ export default {
             handleUser() {
                 return this.$store.getters.getHandleUser;
             },
+            appUserInfo() {
+                return this.$store.getters.getAppUserInfo;
+            },
         }
 }
 
@@ -191,6 +207,12 @@ function takeFail(message) {
 }
 </script>
 <style scoped>
+.row{
+    display: flex;
+    height:40px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
 .userTitle.itemChoosed{
     color:#3dbbaa;
 }
@@ -310,9 +332,8 @@ function takeFail(message) {
 }
 
 .imgBox {
-    position: absolute;
-    left: 10px;
-    top: 10px;
+    margin-left:10px;
+    margin-top: 20px;
     width: 80px;
     height: 80px;
     background: #fff;

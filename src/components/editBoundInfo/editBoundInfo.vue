@@ -1,5 +1,5 @@
 <template>
-    <div id="personinfo" class="holePage">
+    <div class="holePage">
         <mt-header fixed :title=msg class="green">
             <mt-button icon="back" slot="left" @click="goback()"></mt-button>
         </mt-header>
@@ -10,8 +10,10 @@
             <mt-field label="姓名" v-model="info.xm" :state="info.xm?'':'warning'"></mt-field>
             <mt-field label="身份证号" v-model="info.sfzh" :state="info.sfzh?'':'warning'"></mt-field>
             <mt-field label="性别" v-model="info.xb" :state="info.xb?'':'warning'"></mt-field>
-            <mt-field label="家庭地址" v-model="info.jtqhdm" disabled :state="info.jtqhdm?'':'warning'"></mt-field>
+            <mt-field label="家庭地址" v-model="info.jtqhdm" disabled :state="info.jtqhdm?'':'warning'" ></mt-field>
             <mt-field label="门牌号" v-model="info.jtdz"  @click="" :state="info.jtdz?'':'warning'"></mt-field>
+            <mt-field label="家庭地址" v-model="info.jtqhdm" disabled :state="info.jtqhdm?'':'warning'"></mt-field>
+
             <mb-select :value="relation" :config="selectConfig" @input="relationSelect" ></mb-select>
             <div style="padding-left:20px;padding-top:10px;margin-top:20px;border-top:1px solid #B3B3B3;"><i class="mintui mintui-field-warning" style="color:#ffc107;"></i>&nbsp;为必填项</div>
         </div>
@@ -88,22 +90,26 @@ export default {
                 this.relation = item;
             },
             confireUser(){
+                debugger
                 let params = {
                     brxx:{
-                        brid:this.info.id,
-                        lxdh:this.info.lxdh,
-                        xm:this.info.xm,
-                        sfzh:this.info.sfzh,
-                        xb:this.info.xb,
-                        jtqhdm:this.info.jtqhdm,
-                        jtdz:this.info.jtdz
+                        lxdh:this.info.lxdh?this.info.lxdh:'',
+                        xm:this.info.xm?this.info.xm:'',
+                        sfzh:this.info.sfzh?this.info.id:'',
+                        xb:this.info.xb?this.info.xb:'',
+                        jtqhdm:this.info.jtqhdm?this.info.jtqhdm:'',
+                        jtdz:this.info.jtdz?this.info.jtdz:'',
                     }
+                }
+                if(this.info.id){
+                    params.brxx.id = this.info.id;
                 }
                 this.api.updateHisUser(params)
                  .then(
                     res=>{
                         if(res.code==1){
-                            this.$toast('病人信息更新成功！');
+                            debugger
+                            this.$toast('保存成功！');
                             this.boundUser(res.brid);
                         }
                     }

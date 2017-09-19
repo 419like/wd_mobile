@@ -10,9 +10,6 @@
                 <mt-field label="身份证号" placeholder="请输入身份证号" v-model="card.idCard"></mt-field>
             </div>
             <div class="centerBtn">
-                <!-- <button class="mint-button mint-button--primary mint-button--large green" @click="bind()">
-                    <label class="mint-button-text font18">绑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</label>
-                </button> -->
                 <button class="mint-button mint-button--primary mint-button--large green" @click="search()">
                     <label class="mint-button-text font18">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询</label>
                 </button>
@@ -23,9 +20,12 @@
                         {{item.lxdh?item.lxdh:'暂无电话号码'}}
                     </div>
                     <div class="t2">
-                        {{item.jtdz?item.jtdz:'暂无家庭地址'}}
+                        {{item.mc}}{{item.jtdz}}
                     </div>
                 </div>
+            </div>
+            <div v-if="promptVisible&&userList.length<=0" style="position: absolute;bottom: 10px;text-align: center;font-size: 20px;color: #B3B3B3;width:100%;" @click="addBoundInfo">
+                暂无记录，<a href="" style="text-decoration:none;color:rgb(61,187,170);">点击</a>添加
             </div>
         </div>
     </div>
@@ -35,6 +35,7 @@ import mbSelect from '@/components/common/mbSelect/mbSelect.vue';
 export default {
     data() {
             return {
+                promptVisible:false,
                 userList:[],
                 info: {
                     text:'就诊卡绑定'
@@ -95,6 +96,16 @@ export default {
             }
         },
         methods: {
+            addPatient(){editBoundInfo},
+            addBoundInfo(){
+                this.$router.push({
+                    path:'/editBoundInfo',
+                    query:{
+                        xm:this.card.name,
+                        sfzh:this.card.idCard
+                    }
+                })
+            },
             editBoundInfo(item){
                 this.$router.push({
                     path:'/editBoundInfo',
@@ -116,6 +127,8 @@ export default {
                 }
                 this.api.searchUserList(params).then(res => {
                     if(res.code==1){
+                        debugger
+                        this.promptVisible = true;
                         this.userList = res.data;
                     }
                 })
@@ -153,9 +166,11 @@ export default {
             mbSelect
         },
         mounted() {
+            debugger
+            this.card = this.$route.query;
             if(!this.$store.getters.userId){
                 this.$router.push({
-                    path:'/login'
+                    path:'/index/login'
                 })
                 return;
             }

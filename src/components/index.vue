@@ -86,12 +86,6 @@ export default {
             }
         },
         watch: {
-            selected: function(val, oldVal) {
-                // 这里就可以通过 val 的值变更来确定
-                this.$router.push({
-                    path: '/index/' + val
-                })
-            }
         },
         mounted() {
             let url = this.$router.currentRoute.path.split('/')[2];

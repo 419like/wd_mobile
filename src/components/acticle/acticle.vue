@@ -16,8 +16,9 @@ export default {
                     text: '文章'
                 },
                 items: [],
-                info:{}
-
+                info:{
+                    text:'标题'
+                }
             }
         },
         methods: {
@@ -29,31 +30,33 @@ export default {
 
         },
         mounted() {
-            this.info = JSON.parse(this.$route.params.info);
-            var params = {
-                xgid: this.info.xgid,
-                lx: this.info.lx + '',
-            }
-            this.api.getActicle(params).then(
-                res => {
-                    console.log(res);
-                    let data = res.data;
-                    if (data.length) {
-                        data = data[0];
-                        data.nr = decodeURIComponent(data.nr)
-                        if(data.nr.indexOf('<')<0){
-                            data.nr = decodeURIComponent(data.nr)
-                        }
-                    } else {
-                        data = {
-                            nr: '',
-                            id: '',
-                            startTime: ''
-                        }
-                    }
-                    this.acticle = data;
-                }
-            );
+            debugger
+            console.log(this.$route.params.id);
+            // this.info = this.$route.params;
+            // var params = {
+            //     xgid: this.info.xgid,
+            //     lx: this.info.lx + '',
+            // }
+            // this.api.getActicle(params).then(
+            //     res => {
+            //         console.log(res);
+            //         let data = res.data;
+            //         if (data.length) {
+            //             data = data[0];
+            //             data.nr = decodeURIComponent(data.nr)
+            //             if(data.nr.indexOf('<')<0){
+            //                 data.nr = decodeURIComponent(data.nr)
+            //             }
+            //         } else {
+            //             data = {
+            //                 nr: '',
+            //                 id: '',
+            //                 startTime: ''
+            //             }
+            //         }
+            //         this.acticle = data;
+            //     }
+            // );
         }
 }
 </script>

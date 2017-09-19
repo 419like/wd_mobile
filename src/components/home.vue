@@ -13,7 +13,7 @@
         <div>
             <div class="line1"></div>
             <div style="border-bottom:1px solid #E6E6E6;padding-left:20px;font-size:14px;height:25px;line-height: 25px;color:#3dbbaa;display: flex;">
-                <div style="flex:1">咨询信息</div>
+                <div style="flex:1">资讯信息</div>
                 <div style="width:60px;" @click="goMoreNews">更多···</div>
             </div>
             <div class="infoItem" v-for="item in newsList" @click="goArticle(item.id)">
@@ -81,11 +81,11 @@ export default {
                 })
             },
             goHis(item){
+                debugger
                 this.$router.push({
-                    path: '/index/hospitalPage',
-                    query:{
+                    name: 'hospitalPage',
+                    params:{
                         id:item.id,
-                        text:item.text
                     },
                 })
             },

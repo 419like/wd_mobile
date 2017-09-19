@@ -85,7 +85,6 @@ export default {
                 console.log(this.timeValue);
             },
             sureCharge(item) {
-                
                 if(this.registerInfo.ghfy!='0.00'){
                     this.$messagebox('收费项目尚未建设，请谅解。')
                     return;

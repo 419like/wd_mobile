@@ -246,6 +246,12 @@ export default {
   getAreaList(params, config) {
     return fetch('/rest/queryDataBySql/080201/6', params)
   },
+  /**
+   * 根据用户id查询部分用户信息
+   */
+  getParentsArea(params, config) {
+    return fetch('/rest/queryDataBySql/080201/7', params)
+  },
 
 
 }

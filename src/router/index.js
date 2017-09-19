@@ -72,7 +72,8 @@ const routes = [
             path: '/index/personalCenter',
             component: personalCenter
         }, {
-            path: '/index/hospitalPage',
+            name:'hospitalPage',
+            path: '/index/hospitalPage/:id',
             component: hospitalPage
         }, {
             path: '/index/registerConfirm',

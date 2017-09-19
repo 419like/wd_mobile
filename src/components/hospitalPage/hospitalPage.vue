@@ -230,7 +230,8 @@ export default {
         components: {
         },
         mounted() {
-            this.info = this.$route.query;
+            debugger
+            this.info = this.$route.params;
             this.$store.commit('setPageTitle',this.info.text);
             this.loadAdList();
             this.loadNewsList();

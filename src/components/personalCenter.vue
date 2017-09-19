@@ -53,13 +53,10 @@
         </div>
         <div v-show="loginState" class="bottomBtn">
             <button class="mint-button mint-button--primary mint-button--large green" @click="loginOut()">
-                <!---->
                 <label class="mint-button-text font18">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</label>
             </button>
         </div>
-        <!-- <mt-cell title="设置" label="描述信息" is-link @click.native="showConfig()"></mt-cell> -->
         <div class="footBar"></div>
-        
         <mt-popup class="holePage" v-model="personinfoVisible" position="right">
             <personinfo @close="closeInfo" v-model="userInfo"/>
         </mt-popup>
@@ -136,16 +133,48 @@ export default {
                 let params = {
                     id:obj.userId,
                 }
-                
                 this.api.getUserInfo(params)
                 .then(
                         res=>{
                             debugger
                             res.data[0].id = params.id;
-                            this.userInfo = res.data[0];
-                            this.personinfoVisible = true;
+                            if(res.data[0].csrq){
+                                res.data[0].birthday = res.data[0].csrq.split(' ')[0];
+                            }
+                            if(res.data[0].dzqh){
+                                this.loadAreaHoleInfo(res.data[0]);
+                            }else{
+                                this.userInfo = res.data[0];
+                                this.personinfoVisible = true;
+                            }
+
                         }
                     )
+            },
+            loadAreaHoleInfo(userInfo){
+                let params = {
+                        dqxzqh:userInfo.dzqh
+                    }
+                    this.api.getParentsArea(params)
+                    .then(
+                            res=>{
+                                let areaStr = '';
+                                let holeAreaArray = [];
+                                for (var i = 0; i < res.data.length; i++) {
+                                    holeAreaArray.push({
+                                        id:res.data[i].dm,
+                                        mc:res.data[i].mc
+                                    });
+                                    areaStr += res.data[i].mc;
+                                }
+                                userInfo.areaStr = areaStr;
+                                userInfo.holeAreaArray = holeAreaArray;
+                                userInfo.currentLevel = res.data.length;
+                                this.userInfo = userInfo;
+                                debugger
+                                this.personinfoVisible = true;
+                            }
+                        )
             },
             closeInfo() {
                 this.personinfoVisible = false;
@@ -157,8 +186,10 @@ export default {
                 this.personConfigVisible = false;
             },
             showTreatmentCard(){
+                debugger
                 this.$router.push({
                     path:'/treatmentCardBind',
+                    query:{name:this.appUserInfo.xm,idCard:this.appUserInfo.sfzh}
                 })
             }
         },

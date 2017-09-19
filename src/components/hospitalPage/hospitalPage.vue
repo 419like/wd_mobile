@@ -230,7 +230,7 @@ export default {
         components: {
         },
         mounted() {
-            debugger
+            
             this.info = this.$route.params;
             this.$store.commit('setPageTitle',this.info.text);
             this.loadAdList();

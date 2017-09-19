@@ -81,7 +81,7 @@ export default {
                 })
             },
             goHis(item){
-                debugger
+                
                 this.$router.push({
                     name: 'hospitalPage',
                     params:{

@@ -48,7 +48,7 @@ export default {
         },
         methods: {
             getInfoFromId(){
-                debugger
+                
                 if(this.value.sfzh.length==18){
                     let tempday = this.value.sfzh.substring(6,14)
                     let year = tempday.substring(0,4)
@@ -87,13 +87,13 @@ export default {
                     tempStr += this.holeAreaArray[i].mc
                 }
                 this.value.areaStr = tempStr;
-                debugger
+                
                 this.areaObj = this.holeAreaArray[this.currentLevel-1];
                 this.area = false;
                 this.value.dzqh = this.areaObj.id;
             },
             backLevel(){
-                debugger
+                
                 if(this.currentLevel<2){
                     this.initAreaData();
                 }else{
@@ -105,11 +105,11 @@ export default {
                     this.holeAreaArray[i] = '';
                 }
                 this.currentLevel = index;
-                debugger
+                
                 this.loadAreaList(this.holeAreaArray[index-1].id);
             },
             loadAreaList(id){
-                debugger
+                
                 let params = {
                     sjid:id
                 }
@@ -117,7 +117,7 @@ export default {
                 .then(
                         res=>{
                             this.areaList = res.data;
-                            debugger
+                            
                             // this.top = 0;
                             var _this = this;
                             let content = this.$refs.areaContent;
@@ -126,7 +126,7 @@ export default {
                     )
             },
             listItemClick(item){
-                debugger
+                
                 this.holeAreaArray[this.currentLevel] = item;
                 this.currentLevel++;
                 this.loadAreaList(item.id);

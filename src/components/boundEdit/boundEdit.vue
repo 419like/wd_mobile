@@ -8,8 +8,28 @@
             <mt-field v-if="patient.kh" label="卡号" v-model="patient.kh" disabled></mt-field>
             <mt-field label="手机号" v-model="patient.lxdh" :state="patient.lxdh?'':'warning'"></mt-field>
             <mt-field label="姓名" v-model="patient.xm" :state="patient.xm?'':'warning'"></mt-field>
-            <mt-field label="身份证号" v-model="patient.sfzh" :state="patient.sfzh?'':'warning'"></mt-field>
-            <mt-field label="性别" v-model="patient.xb" :state="patient.xb?'':'warning'"></mt-field>
+              <a class="mint-cell mint-field">
+                <div class="mint-cell-left"></div>
+                <div class="mint-cell-wrapper">
+                  <div class="mint-cell-title">
+                    <span class="mint-cell-text">身份证号</span>
+                  </div>
+                  <div class="mint-cell-value">
+                    <input v-model="patient.sfzh" @blur="getInfoFromId" class="mint-field-core" >
+                  </div>
+                </div>
+              </a>
+              <a class="mint-cell mint-field">
+                <div class="mint-cell-left"></div>
+                <div class="mint-cell-wrapper">
+                  <div class="mint-cell-title">
+                    <span class="mint-cell-text">性别</span>
+                  </div>
+                  <div class="mint-cell-value">
+                    <span style="color:rgb(84, 84, 84);">{{patient.xb?patient.xb.split('-')[1]:''}}</span>
+                  </div>
+                </div>
+              </a>
             <mt-field label="家庭地址" v-model="areaText" disabled :state="patient.jtqhdm?'':'warning'" @click.native="editArea"></mt-field>
             <mt-field label="门牌号" v-model="patient.jtdz"  @click="" :state="patient.jtdz?'':'warning'"></mt-field>
             <div class="center">
@@ -24,7 +44,7 @@
                 <label class="mint-button-text font18">解除绑定</label>
             </button>
         </div>
-        <area-select :visible="areaEditVisible" :value="patient.jtqhdm" @closeWin="closeAreaWin" @getAreaText="setAreaText" @sureValue="setAreaValue"></area-select>
+        <area-select ref="areaSelect" :visible="areaEditVisible" :value="patient.jtqhdm" @closeWin="closeAreaWin" @getAreaText="setAreaText" @sureValue="setAreaValue"></area-select>
     </div>
 </template>
 <script type="text/javascript">
@@ -36,9 +56,45 @@ export default {
                 patient:{},
                 areaEditVisible:false,
                 areaText:'请选择',
+
             }
         },
         methods: {
+            getInfoFromId(){
+                if(this.patient.sfzh.length==18){
+                    let tempday = this.patient.sfzh.substring(6,14)
+                    let year = tempday.substring(0,4)
+                    let month = tempday.substring(4,6)
+                    let day = tempday.substring(6,8)
+                    tempday = year+'-'+month+'-'+day;
+                    this.patient.birthday=tempday;
+
+                    if((this.patient.sfzh.charAt(16)%2)==1){
+                        this.patient.xb = '1-男';
+                    }else{
+                        this.patient.xb = '2-女';
+                    }
+                }else if(this.patient.sfzh.length==15){
+                    let tempday=this.patient.sfzh.substring(6,12)
+                    tempday = '19'+tempday;
+                    let year = tempday.substring(0,4)
+                    let month = tempday.substring(4,6)
+                    let day = tempday.substring(6,8)
+                    tempday = year+'-'+month+'-'+day;
+                    this.patient.birthday = tempday;
+
+                    if((this.patient.sfzh.charAt(14)%2)==1){
+                        this.patient.xb = '1-男';
+                    }else{
+                        this.patient.xb = '2-女';
+                    }
+                }else{
+                    this.$toast('身份证号格式错误');
+                }
+                let obj = JSON.parse(JSON.stringify(this.patient))
+                this.$set(this.$data,'patient',obj);
+
+            },
             setAreaValue(obj){
                 this.patient.jtqhdm = obj.value;
                 this.areaText = obj.text;
@@ -89,21 +145,29 @@ export default {
                         }
                     );
             },
+            loadPatientInfo(){
+                let params = {
+                    brid:this.patient.hzid
+                }
+                this.api.getPatientInfo(params)
+                    .then(
+                            res=>{
+                                debugger
+                                // this.patient = res.data[0];
+                                this.$set(this.$data,'patient',res.data[0]);
+                                this.$set(this.$data.patient,'jtqhdm',res.data[0].jtqhdm);
+
+                                this.$refs.areaSelect.init(res.data[0].jtqhdm);
+                            }
+                        )
+            },
         },
         components:{
             areaSelect,
         },
         mounted(){
             this.patient = this.$route.query;
-            let params = {
-                brid:this.patient.hzid
-            }
-            this.api.getPatientInfo(params)
-                .then(
-                        res=>{
-                            this.patient = res.data[0];
-                        }
-                    )
+            this.loadPatientInfo();
         },
         computed:{
             handleUser() {

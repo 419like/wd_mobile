@@ -18,7 +18,17 @@
                   </div>
                 </div>
               </a>
-            <mt-field label="性别" v-model="value.xb" disabled></mt-field>
+              <a class="mint-cell mint-field">
+                <div class="mint-cell-left"></div>
+                <div class="mint-cell-wrapper">
+                  <div class="mint-cell-title">
+                    <span class="mint-cell-text">性别</span>
+                  </div>
+                  <div class="mint-cell-value">
+                    <span style="color:rgb(84, 84, 84);">{{value.xb?value.xb.split('-')[1]:''}}</span>
+                  </div>
+                </div>
+              </a>
             <mt-field label="出生日期" v-model="value.birthday" disabled></mt-field>
             <mt-field label="家庭地址" v-model="areaText" disabled @click.native="editArea()" :state="value.dzqh?'':'warning'" ></mt-field>
             <mt-field label="门牌号地址" v-model="value.dz"></mt-field>
@@ -53,7 +63,6 @@ export default {
         },
         methods: {
             getInfoFromId(){
-                debugger
                 if(this.value.sfzh.length==18){
                     let tempday = this.value.sfzh.substring(6,14)
                     let year = tempday.substring(0,4)
@@ -84,7 +93,6 @@ export default {
                 }else{
                     this.$toast('身份证号格式错误');
                 }
-
             },
             setAreaValue(obj){
                 this.value.dzqh = obj.value;
@@ -98,7 +106,7 @@ export default {
                 this.areaEditVisible = false;
             },
             editArea(){
-                debugger
+                
                 this.areaEditVisible = true;
             },
             quit(){

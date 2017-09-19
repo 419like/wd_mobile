@@ -15,12 +15,15 @@
                 </button>
             </div>
             <div>
-                <div v-for="item in userList" class="item" @click="editBoundInfo(item)">
+                <div v-for="item in userList" class="item" @click="editBoundInfo(item)" style="position:relative;">
                     <div>
                         {{item.lxdh?item.lxdh:'暂无电话号码'}}
                     </div>
                     <div class="t2">
                         {{item.mc}}{{item.jtdz}}
+                    </div>
+                    <div style="position:absolute;right:5px;top:5px;color:#FF6666;">
+                        此人已绑定
                     </div>
                 </div>
             </div>
@@ -96,7 +99,6 @@ export default {
             }
         },
         methods: {
-            addPatient(){editBoundInfo},
             addBoundInfo(){
                 this.$router.push({
                     path:'/editBoundInfo',
@@ -107,6 +109,9 @@ export default {
                 })
             },
             editBoundInfo(item){
+                if(item.has){
+                    return;
+                }
                 this.$router.push({
                     path:'/editBoundInfo',
                     query:{
@@ -127,11 +132,22 @@ export default {
                 }
                 this.api.searchUserList(params).then(res => {
                     if(res.code==1){
-                        debugger
                         this.promptVisible = true;
+                        this.checkList(res.data);
                         this.userList = res.data;
+
                     }
                 })
+            },
+            checkList(list){
+                let boundList = this.$store.getters.getBoundList;
+                for (var i = 0; i < boundList.length; i++) {
+                    for (var j = 0; j < list.length; j++) {
+                        if(boundList[i].hzid==list[j].id){
+                            list[j].has = true;
+                        }
+                    }
+                }
             },
             bind(){
                 let params = {
@@ -166,7 +182,6 @@ export default {
             mbSelect
         },
         mounted() {
-            debugger
             this.card = this.$route.query;
             if(!this.$store.getters.userId){
                 this.$router.push({

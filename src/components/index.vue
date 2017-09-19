@@ -32,7 +32,7 @@
                         </div>
                         <div style="text-align:center;">
                             <mt-button v-if="!userInfo.userNum" type="primary" style="height:25px;width:80px;font-size:15px;">登&nbsp;&nbsp;录</mt-button>
-                            <span v-if="userInfo.userNum" style="color:#fff;">{{userInfo.userNum}}</span>
+                            <span v-if="appUserInfo.xm" style="color:#fff;">{{appUserInfo.xm}}</span>
                         </div>
                     </div>
                     <div class="list">
@@ -106,6 +106,9 @@ export default {
             },
             userInfo() {
                 return this.$store.getters.userInfo;
+            },
+            appUserInfo(){
+                return this.$store.getters.getAppUserInfo;
             },
             backBtnHide(){
                 return this.$store.getters.backBtnHide;

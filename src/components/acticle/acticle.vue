@@ -30,7 +30,7 @@ export default {
 
         },
         mounted() {
-            debugger
+            
             console.log(this.$route.params.id);
             // this.info = this.$route.params;
             // var params = {

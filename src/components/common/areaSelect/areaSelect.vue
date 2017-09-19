@@ -49,7 +49,6 @@ export default {
                 this.api.getAreaList(params)
                 .then(
                         res=>{
-                            debugger
                             this.areaList = res.data;
                             // this.content = this.$refs.areaContent;
                             // this.content.scrollTop = 0;
@@ -63,7 +62,10 @@ export default {
                     this.api.getParentsArea(params)
                     .then(
                             res=>{
-                                debugger
+                                if(res.data.length<=0){
+                                    this.initAreaData();
+                                    return;
+                                }
                                 let areaStr = '';
                                 let holeAreaArray = [];
                                 for (var i = 0; i < res.data.length; i++) {
@@ -73,7 +75,6 @@ export default {
                                     });
                                     areaStr += res.data[i].mc;
                                 }
-                                debugger
                                 this.areaStr = areaStr;
                                 this.holeAreaArray = holeAreaArray;
                                 this.currentLevel = res.data.length;
@@ -82,10 +83,9 @@ export default {
                             }
                         )
             },
-            init(){
-                debugger
-                if(this.value){
-                    this.loadAreaHoleInfo(this.value);
+            init(value){
+                if(value){
+                    this.loadAreaHoleInfo(value);
                 }else{
                     this.initAreaData();
                 }
@@ -110,7 +110,6 @@ export default {
                 this.$emit('closeWin');
             },
             backLevel(){
-                debugger
                 if(this.currentLevel<2){
                     this.initAreaData();
                 }else{
@@ -126,7 +125,7 @@ export default {
             },
         },
         mounted() {
-            this.init();
+            this.init(this.value);
         },
         components: {
 
@@ -134,7 +133,7 @@ export default {
         computed: {
 
         },
-        props:['value','visible']
+        props:['value','visible','initData']
 }
 </script>
 <style scoped>

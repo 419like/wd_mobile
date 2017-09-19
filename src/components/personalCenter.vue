@@ -171,7 +171,7 @@ export default {
                                 userInfo.holeAreaArray = holeAreaArray;
                                 userInfo.currentLevel = res.data.length;
                                 this.userInfo = userInfo;
-                                debugger
+                                
                                 this.personinfoVisible = true;
                             }
                         )
@@ -186,7 +186,7 @@ export default {
                 this.personConfigVisible = false;
             },
             showTreatmentCard(){
-                debugger
+                
                 this.$router.push({
                     path:'/treatmentCardBind',
                     query:{name:this.appUserInfo.xm,idCard:this.appUserInfo.sfzh}
@@ -216,6 +216,7 @@ export default {
                 return this.$store.getters.bindState;
             },
             boundlist(){
+                debugger
                 return this.$store.getters.getBoundList;
             },
             handleUser() {

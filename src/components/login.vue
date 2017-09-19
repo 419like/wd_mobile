@@ -33,8 +33,8 @@ export default {
             return {
                 msg: '登录',
                 list: [],
-                number: '1002',
-                password: '1002'
+                number: '',
+                password: ''
             }
         },
         methods: {

@@ -25,7 +25,6 @@ const store = new Vuex.Store({
             state.maskShow = value;
         },
         login(state,value){
-            
         	window.localStorage.setItem("userInfo",JSON.stringify(value));
             state.userInfo = value;
         },
@@ -42,17 +41,19 @@ const store = new Vuex.Store({
         },
         pushBoundItem(state,value){
             state.boundList.push(value);
+            if(state.boundList.length==1){
+                 state.handleUser = state.boundList[0];
+            }
         },
         removeBoundItem(state,value){
+            debugger
             for (var i =0; i<state.boundList.length; i++) {
                 if(state.boundList[i].hzid == value){
-                    if(state.boundList[i]==state.handleUser){
                         state.boundList.splice(i,1);
                         if(state.boundList.length){
                             state.handleUser = state.boundList[0];
                         }
                         return;
-                    }
                 }
             }
         },
@@ -67,7 +68,6 @@ const store = new Vuex.Store({
         },
     },
     getters:{
-
         pageTitle(state, getters){
             return state.pageTitle;
         },
@@ -79,7 +79,7 @@ const store = new Vuex.Store({
     		return state.userInfo.userNum;
     	},
         getUserInfo(state,getters){
-            
+            debugger
             return JSON.parse(window.localStorage.getItem("userInfo"));
         },
         userId(state, getters){

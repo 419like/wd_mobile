@@ -19,7 +19,7 @@ var config = {
 function upFile(){
   ftpDeploy.deploy(config, function(err) {
     if (err) console.log(err)
-    else console.log('finished');
+    else console.log('finished\npress "Ctrl+c" quit');
   });
 }
 
@@ -33,7 +33,6 @@ c.on('ready', function() {
 });
 function mkdir(){
   c.mkdir(dir,true,function(err){
-  console.log(err);
   upFile();
  })
 }

@@ -15,7 +15,8 @@ export default {
         setTimeout(() => {
             document.getElementById('mask').style.display = 'none';
         });
-        let userInfo = this.$store.getters.localUserInfo;
+        debugger
+        let userInfo = this.$store.getters.getUserInfo;
         if (userInfo && userInfo.userId) {
             let params = {
                 sjh: userInfo.userNum + '',
@@ -39,6 +40,7 @@ export default {
                     }
                     this.$toast('登录成功！');
                     this.$store.commit('login',loginObj);
+                    this.$store.commit('setAppUserInfo',res.appuser[0]);
                 })
         }
     }, computed: {

@@ -136,7 +136,7 @@ export default {
                 this.api.getUserInfo(params)
                 .then(
                         res=>{
-                            debugger
+                            
                             res.data[0].id = params.id;
                             if(res.data[0].csrq){
                                 res.data[0].birthday = res.data[0].csrq.split(' ')[0];
@@ -216,7 +216,7 @@ export default {
                 return this.$store.getters.bindState;
             },
             boundlist(){
-                debugger
+                
                 return this.$store.getters.getBoundList;
             },
             handleUser() {

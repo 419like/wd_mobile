@@ -91,26 +91,26 @@ export default {
             },
             loadNewsList(){
                 let params = {
-                    xgid:'1',
-                    wzlx:'1',
-                    length:'3',
+                    wzlx:"01",
+                    length:"5",
                 }
                 this.api.getArticleList(params).then(
                     res=>{
+                        
                         console.log(res);
-                        this.newsList = res.data;
+                        this.newsList = res.data; 
                     }, err=>{
                         console.log(err);
                     })
             },
             loadAdList(){
                 let params = {
-                    xgid:'1',
-                    wzlx:'2',
-                    length:'2',
+                    wzlx:'03',
+                    length:'5',
                 }
                 this.api.getArticleList(params).then(
                     res=>{
+                        
                         console.log(res);
                         this.adList = res.data;
                     }, err=>{

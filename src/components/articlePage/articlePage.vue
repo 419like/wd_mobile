@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;">{{article.wzbt}}</div>
-        <div v-show="article.wzbt" style="font-size: 12px;color:#B3B3B3;">{{article.qyrq.split(' ')[0]}}</div>
+        <div v-show="article.qyrq" style="font-size: 12px;color:#B3B3B3;">{{article.qyrq?article.qyrq.split(' ')[0]:''}}</div>
         <div class="html ql-editor acticleBox" >
             <div v-html="article.nr">
             </div>
@@ -22,19 +22,17 @@ export default {
             }
         },
         methods: {
-            loadArticle(){
+            loadArticle(id){
                 var params = {
-                    id:this.$route.query.id
+                    id:id
                 }
-                
                 this.api.getActicleDetail(params).then(
                     res => {
-                        
+                        debugger
                         console.log(res);
                         let data = res.data;
                         if (data.length) {
                             data = data[0];
-                            
                             data.nr = decodeURIComponent(data.nr)
                             if(data.nr.indexOf('<')<0){
                                 data.nr = decodeURIComponent(data.nr)
@@ -57,7 +55,8 @@ export default {
 
         },
         mounted() {
-            this.loadArticle();
+            debugger
+            this.loadArticle(this.$route.query.id);
         }
 }
 </script>

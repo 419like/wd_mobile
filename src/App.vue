@@ -15,7 +15,6 @@ export default {
         setTimeout(() => {
             document.getElementById('mask').style.display = 'none';
         });
-        debugger
         let userInfo = this.$store.getters.getUserInfo;
         if (userInfo && userInfo.userId) {
             let params = {
@@ -38,7 +37,7 @@ export default {
                             }
                         }
                     }
-                    this.$toast('登录成功！');
+                    // this.$toast('登录成功！');
                     this.$store.commit('login',loginObj);
                     this.$store.commit('setAppUserInfo',res.appuser[0]);
                 })

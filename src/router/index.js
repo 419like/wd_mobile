@@ -53,6 +53,10 @@ const articlePage  = resolve => {
 const newsList  = resolve => {
     require(['../components/newsList/newsList.vue'], resolve);
 }
+const treatmentNoticeList  = resolve => {
+    require(['../components/treatmentNoticeList/treatmentNoticeList.vue'], resolve);
+}
+
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -96,6 +100,9 @@ const routes = [
         }, {
             path:'/index/register',
             component:register
+        }, {
+            path:'/index/treatmentNoticeList',
+            component:treatmentNoticeList
         }]
     },{
         path: '/acticle/:info',

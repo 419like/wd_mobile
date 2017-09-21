@@ -56,7 +56,7 @@ export default {
                 }
                 this.api.Login(params)
                     .then(res => {
-                        debugger
+                        
                         let loginObj = {
                             userId:res.appid,
                             userNum:params.sjh,

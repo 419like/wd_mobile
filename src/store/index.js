@@ -46,7 +46,7 @@ const store = new Vuex.Store({
             }
         },
         removeBoundItem(state,value){
-            debugger
+            
             for (var i =0; i<state.boundList.length; i++) {
                 if(state.boundList[i].hzid == value){
                         state.boundList.splice(i,1);
@@ -79,7 +79,6 @@ const store = new Vuex.Store({
     		return state.userInfo.userNum;
     	},
         getUserInfo(state,getters){
-            debugger
             return JSON.parse(window.localStorage.getItem("userInfo"));
         },
         userId(state, getters){

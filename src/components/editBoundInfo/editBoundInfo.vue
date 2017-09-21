@@ -109,7 +109,7 @@ export default {
                 this.relation = item;
             },
             confireUser(){
-                debugger
+                
                 let params = {
                     brxx:{
                         lxdh:this.info.lxdh?this.info.lxdh:'',
@@ -123,7 +123,7 @@ export default {
                 this.api.registHisUser(params)
                  .then(
                     res=>{
-                        debugger
+                        
                         if(res.code==1){
                             this.$toast('保存成功！');
                             this.boundUser(res.brid);
@@ -140,7 +140,7 @@ export default {
                 }
                 this.api.treatmentCardBind(params).then(res=>{
                     if(res.code==1){
-                        debugger
+                        
                         this.$store.commit('pushBoundItem',res);
                         this.$toast('绑定成功！');
                         this.$router.push({

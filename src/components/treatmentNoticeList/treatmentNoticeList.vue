@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="item in newsList" @click="goArticle(item)" class="flex" style="border:1px solid #CCCCCC;">
+        <div v-for="item in noticeList" @click="goArticle(item)" class="flex" style="border:1px solid #CCCCCC;">
             <div style="width:50px;">
                 <img :src="item.zst" style="margin:5px;width:30px;height:30px;">
             </div>
@@ -25,20 +25,20 @@
 export default {
     data() {
             return {
-                newsList:[],
+                noticeList:[],
             }
         },
         methods: {
-            loadNewsList(){
+            loadNoticeList(id){
                 let params = {
-                    wzlx:"01",
+                    wzlx:"02",
                     length:"999",
+                    xgjgid:id
                 }
                 this.api.getArticleList(params).then(
                     res=>{
-                        
                         console.log(res);
-                        this.newsList = res.data;
+                        this.noticeList = res.data;
                     }, err=>{
                         console.log(err);
                     })
@@ -56,8 +56,8 @@ export default {
 
         },
         mounted() {
-            this.$store.commit('setPageTitle','新闻列表');
-            this.loadNewsList();
+            this.$store.commit('setPageTitle','就诊须知列表');
+            this.loadNoticeList(this.$route.query.jgid);
         }
 }
 </script>

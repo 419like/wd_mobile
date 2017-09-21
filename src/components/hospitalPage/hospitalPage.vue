@@ -154,14 +154,20 @@ export default {
             },
             loadNotice(){
                 let params = {
-                    xgid:this.info.id,
-                    wzlx:'3'
+                    xgjgid:this.info.id,
+                    wzlx:'02'
                 }
                 this.api.getArticleList(params).then(
                     res=>{
                         console.log(res);
                         if(res.data.length){
-                            this.goArticle(res.data[0].id);
+                            this.$router.push({
+                                path:'/index/treatmentNoticeList',
+                                query:{
+                                    jgid:this.info.id
+                                }
+                            })
+                            // this.goArticle(res.data[0].id);
                         }else{
                             this.$messagebox('暂无。')
                         }

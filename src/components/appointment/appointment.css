@@ -143,33 +143,26 @@
 }
 .t1{
 	display: inline-block;
-	flex:1;
 	font-size: 14px;
 	color:#7F7F7F;
 	text-align: right;
-	overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap
+    margin-right:5px;
 }
 .t2{
 	display: inline-block;
-	flex:1;
 	font-size: 16px;
 	color:#333333;
 	text-align: center;
-	overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap
+    margin-right:5px;
+
 }
 .t0{
 	display: inline-block;
-	flex:1;
 	font-size: 18px;
 	font-weight: bold;
 	color:#4C4C4C;
-	overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap
+    margin-right:5px;
+    
 }
 .leftIcon {
     background: #B3B3B3;

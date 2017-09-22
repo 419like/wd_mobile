@@ -22,11 +22,12 @@ export default {
             }
         },
         methods: {
-            loadArticle(id){
+            loadArticle(item){
                 var params = {
-                    id:id
+                    xgid:item.xgjgid,
+                    lx:item.lx
                 }
-                this.api.getActicleDetail(params).then(
+                this.api.getIntro(params).then(
                     res => {
                         debugger
                         console.log(res);
@@ -44,7 +45,6 @@ export default {
                                 startTime: ''
                             }
                         }
-                        
                         this.article = data;
                         this.$store.commit('setPageTitle',this.article.wzbt);
                     }
@@ -56,7 +56,7 @@ export default {
         },
         mounted() {
             debugger
-            this.loadArticle(this.$route.query.id);
+            this.loadArticle(this.$route.query);
         }
 }
 </script>

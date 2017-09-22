@@ -83,8 +83,8 @@
                 <div class="title1 paddingL5">
                     <span>特色科室</span>
                 </div>
-                <div class="marginT5 borderB">
-                    <div class="dpTitle" v-for="item in departmentList" @click="loadDepartment(item.id)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.mc}}</div>
+                <div class="marginT5 borderB" >
+                    <div class="dpTitle" style="display:inline-block;" v-for="item in departmentList" @click="loadDepartment(item.id)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.mc}}</div>
                 </div>
             </div>
             <div class="flex1">
@@ -92,7 +92,7 @@
                     <span>医务人员</span>
                 </div>
                 <div class="marginT5 borderB">
-                    <div class="dpTitle" v-for="item in personList" @click="loadPerson(item.id)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.xm}}</div>
+                    <div class="dpTitle" style="display:inline-block;" v-for="item in personList" @click="loadPerson(item.id)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.xm}}</div>
                 </div>
             </div>
         </div>
@@ -113,44 +113,31 @@ export default {
         },
         methods: {
             loadPerson(id){
-                let params = {
-                    xgid:id,
-                    lx:'3'
-                }
-                this.api.getIntro(params).then(
-                    res=>{
-                        console.log(res);
-                        this.goArticle(res.data[0].id);
-                    }, err=>{
-                        console.log(err);
-                    })
+                this.$router.push({
+                    path:'/index/introArticle',
+                    query:{
+                        xgjgid:id,
+                        lx:'3',
+                    }
+                })
             },
             loadDepartment(id){
-                let params = {
-                    xgid:id,
-                    lx:'2'
-                }
-                this.api.getIntro(params).then(
-                    res=>{
-                        console.log(res);
-                        this.goArticle(res.data[0].id);
-                    }, err=>{
-                        console.log(err);
-                    })
+                this.$router.push({
+                    path:'/index/introArticle',
+                    query:{
+                        xgjgid:id,
+                        lx:'2',
+                    }
+                })
             },
             loadIntro(){
-                let params = {
-                    xgid:this.info.id,
-                    lx:'1'
-                }
-                this.api.getIntro(params).then(
-                    res=>{
-                        
-                        console.log(res);
-                        this.goArticle(res.data[0].id);
-                    }, err=>{
-                        console.log(err);
-                    })
+                this.$router.push({
+                    path:'/index/introArticle',
+                    query:{
+                        xgjgid:this.info.id,
+                        lx:'1',
+                    }
+                })
             },
             loadNotice(){
                 let params = {
@@ -160,18 +147,12 @@ export default {
                 this.api.getArticleList(params).then(
                     res=>{
                         console.log(res);
-                        if(res.data.length){
-                            this.$router.push({
-                                path:'/index/treatmentNoticeList',
-                                query:{
-                                    jgid:this.info.id
-                                }
-                            })
-                            // this.goArticle(res.data[0].id);
-                        }else{
-                            this.$messagebox('暂无。')
-                        }
-
+                        this.$router.push({
+                            path:'/index/treatmentNoticeList',
+                            query:{
+                                jgid:this.info.id
+                            }
+                        })
                     }, err=>{
                         console.log(err);
                     })
@@ -184,12 +165,13 @@ export default {
             },
             loadAdList(){
                 let params = {
-                    xgid:this.info.id,
-                    wzlx:'2',
+                    xgjgid:this.info.id,
+                    wzlx:'03',
                     length:'5',
                 }
                 this.api.getArticleList(params).then(
                     res=>{
+                        
                         console.log(res);
                         this.adList = res.data;
                     }, err=>{
@@ -198,14 +180,15 @@ export default {
             },
             loadNewsList(){
                 let params = {
-                    xgid:this.info.id,
-                    wzlx:'1',
-                    length:'3',
+                    xgjgid:this.info.id,
+                    wzlx:"01",
+                    length:"5",
                 }
                 this.api.getArticleList(params).then(
                     res=>{
+                        
                         console.log(res);
-                        this.newsList = res.data;
+                        this.newsList = res.data; 
                     }, err=>{
                         console.log(err);
                     })

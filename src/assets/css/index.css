@@ -1,19 +1,21 @@
-.window{
-    height:100%;
-    width:100%;
-    position: absolute;
-    overflow: hidden;
+.window {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
 }
 
-.pageBody{
-  width:100%;
-  height:100%;
+.pageBody {
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
 }
-.inPageBody{
+
+.inPageBody {
   height: calc(100% - 40px);
   overflow: auto;
 }
+
 * {
   margin: 0px;
   padding: 0px;
@@ -54,6 +56,7 @@
 .flex1 {
   flex: 1;
 }
+
 .flex2 {
   flex: 2;
 }
@@ -204,32 +207,41 @@
   font-size: 16px;
   height: 40px;
   line-height: 40px;
-  border-right:1px solid #E6E6E6;
+  border-right: 1px solid #E6E6E6;
 }
 
 .choose {
-  border-bottom:1px solid #3dbbaa
+  border-bottom: 1px solid #3dbbaa
 }
 
 .downShadow {
   box-shadow: 0px 1px 1px 0px #919191;
 }
-.infoItem{
-    height:30px;
-    border-bottom:1px solid #E6E6E6;
-    line-height: 30px;
-    color:#808080;
-    font-size:14px;
-    width:100%;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+
+.infoItem {
+  height: 30px;
+  border-bottom: 1px solid #E6E6E6;
+  line-height: 30px;
+  color: #808080;
+  font-size: 14px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.scaleY{
+
+.scaleY {
   transform: scale(0.7);
 }
 
-.box1{
+.box1 {
   height: 20px;
-    margin-top: -4px;
+  margin-top: -4px;
+}
+
+.singleRow {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }

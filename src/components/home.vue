@@ -24,7 +24,6 @@
             <div class="line1"></div>
             <div style="border-bottom:1px solid #E6E6E6;padding-left:20px;font-size:14px;height:25px;line-height: 25px;color:#3dbbaa;">医疗服务资源</div>
             <div>
-                <!-- <mt-cell v-for="item in items" :title="item.text" label="描述信息" is-link="" @click.native="goHis(item)"></mt-cell> -->
                 <div v-for="item in items"  @click="goHis(item)" style="font-size:12px;color: #808080;border-bottom:1px solid #E6E6E6;display:flex;">
                     <div style="width:50px;">
                         <img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=46e2e1b4372ac65c73086e219a9bd974/b8389b504fc2d562f950ed39e51190ef77c66c8d.jpg" style="width:40px;height:40px;margin-left:5px;">
@@ -81,7 +80,6 @@ export default {
                 })
             },
             goHis(item){
-                
                 this.$router.push({
                     name: 'hospitalPage',
                     params:{
@@ -96,7 +94,6 @@ export default {
                 }
                 this.api.getArticleList(params).then(
                     res=>{
-                        
                         console.log(res);
                         this.newsList = res.data; 
                     }, err=>{

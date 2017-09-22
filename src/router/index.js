@@ -26,8 +26,8 @@ const home = resolve => {
 const hospitalPage = resolve => {
     require(['../components/hospitalPage/hospitalPage.vue'], resolve);
 }
-const acticle = resolve => {
-    require(['../components/acticle/acticle.vue'], resolve);
+const introArticle = resolve => {
+    require(['../components/introArticle/introArticle.vue'], resolve);
 }
 const treatmentCardBind = resolve => {
     require(['../components/treatmentCardBind/treatmentCardBind.vue'], resolve);
@@ -103,10 +103,10 @@ const routes = [
         }, {
             path:'/index/treatmentNoticeList',
             component:treatmentNoticeList
+        }, {
+            path:'/index/introArticle',
+            component:introArticle
         }]
-    },{
-        path: '/acticle/:info',
-        component: acticle
     },{
         path:'/treatmentCardBind',
         component:treatmentCardBind

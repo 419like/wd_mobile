@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div v-for="item in newsList" @click="goArticle(item)" class="flex" style="border:1px solid #CCCCCC;">
+    <div style="width:100%;">
+        <div v-for="item in newsList" @click="goArticle(item)" class="flex" style="border-bottom:1px solid #CCCCCC;width:100%;">
             <div style="width:50px;">
                 <img :src="item.zst" style="margin:5px;width:30px;height:30px;">
             </div>
@@ -13,8 +13,13 @@
                         {{item.qyrq.split(' ')[0]}}&nbsp;
                     </div>
                 </div>
-                <div class="" style="height:20px;line-height: 20px;border:0px;border:0px;color:#999999;font-size: 13px;">
-                    &nbsp;{{item.wzjj}}
+                <div  style="height:20px;line-height: 20px;border:0px;border:0px;color:#999999;font-size: 13px;">
+                    <div class="singleRow" style="width:100%;">
+                        &nbsp;{{item.wzjj}}
+                    </div>
+                </div>
+                <div style="width:10px;">
+                    
                 </div>
             </div>
             

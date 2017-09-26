@@ -8,7 +8,7 @@
                                 <path d="M693.3504 918.903467a34.030933 34.030933 0 0 1-24.132267-10.001067L279.4496 519.0656a34.0992 34.0992 0 0 1 0-48.264533l389.802667-389.802667a34.0992 34.0992 0 1 1 48.264533 48.264533L351.8464 494.933333l365.6704 365.704534a34.0992 34.0992 0 0 1-24.1664 58.2656z"></path>
                         </svg>
                     </div>
-                    <div style="width:100%;text-align:center;margin-top:8px;color:#fff;">
+                    <div style="width:50%;text-align:center;margin-top:8px;color:#fff;margin-left:25%;" class="singleRow">
                         {{pageTitle}}
                     </div>
                     <div class="enterMenuBtn" @click="enterMenu">

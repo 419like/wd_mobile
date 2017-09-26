@@ -1,36 +1,52 @@
 <template>
     <div>
-        <div class="conditionSelect">
-            <div v-if="departmentSelectAble" class="selectBlock">
-                <div class="selected selectItem"  v-for="item in departmentSelectList">
+        <div v-if="ableState" style="position:absolute;top:0px;left:0px;width:100%;height:100%;" @click="outSelectCondition()">
+        </div>
+        <div v-if="ableState" class="conditionSelect">
+            <div v-if="ableState=='departmentSelect'" class="selectBlock">
+                <div class="selectItem" @click="departmentCondition('');">
+                    <div>所有</div>
+                </div>
+                <div class="selectItem"  v-for="item in departmentSelectList" @click="departmentCondition(item.mc);">
                     <div>{{item.mc}}</div>
                 </div>
             </div>
-            <div v-if="doctorSelectAble" class="selectBlock">
-                <div class="selected"  v-for="item in doctorSelectList" style="color:#000000;background: #B3B3B3;border-bottom: 1px solid #E6E6E6;width:100px;text-align: center;">
-                    <div>{{item.xm}}</div>
+            <div v-if="ableState=='doctorSelect'" class="selectBlock">
+                <div class="selectItem" @click="doctorCondition('');">
+                    <div>所有</div>
+                </div>
+                <div class="selectItem"  v-for="item in doctorSelectList" @click="doctorCondition(item.mc);">
+                    <div>{{item.mc}}</div>
+                </div>
+            </div>
+            <div v-if="ableState=='appointmentSelect'">
+                <div class="selectItem" @click="appointmentCondition('');">
+                    <div>所有</div>
+                </div>
+                <div class="selectItem" v-for="item in appointmentSelectList" @click="appointmentCondition(item.mc);">
+                    <div>{{item.mc}}</div>
                 </div>
             </div>
         </div>
         <div class="flex" style="height:40px;z-index: 1;position: relative;">
             <div class="flex1 center" style="position:relative;">
                 <div class="selected" @click="departmentSelect();">
-                    <div>科室(所有)</div>
+                    <div class="singleRow">科室({{departmentConditionCrt?departmentConditionCrt:'所有'}})</div>
                 </div>
             </div>
             <div class="flex1 center" style="position:relative;">
                 <div class="selected" @click="doctorSelect();">
-                    <div>医生(所有)</div>
+                    <div class="singleRow">医生({{doctorConditionCrt?doctorConditionCrt:'所有'}})</div>
                 </div>
             </div>
             <div class="flex1 center">
-                <div class="selected">
-                    <div>号类(所有)</div>
+                <div class="selected" @click="appointmentListSelect();">
+                    <div class="singleRow">号类({{appointmentConditionCrt?appointmentConditionCrt:'所有'}})</div>
                 </div>
             </div>
         </div>
         <div style="display:flex;width:100%;">
-            <div style="width:50px;" class="dateBox" :class="{'choose':(!dateChoose.time)}" @click="clearDate();">
+            <div style="width:50px;margin-top:1px;" class="dateBox" :class="{'choose':(!dateChoose.time)}" @click="clearDate();">
                 <div class="dateText1">查看</div>
                 <div class="dateText2">排班</div>
             </div>
@@ -42,7 +58,7 @@
             </div>
         </div>
         <div class="topLine1">
-            <div v-for="item in scheduleList" class="flex doctorItem" @click="register(item)">
+            <div v-for="item in evenScheduleList" class="flex doctorItem" @click="register(item)">
                 <div style="height:50px;width:50px;">
                     <svg v-if="!item.ystx" viewBox="0 0 1024 1024" class="svgIcon" style="margin:5px;height:40px;fill:#999999;">
                         <path d="M502.848 146.688c85.184-0.768 129.088 52.544 152.704 113.856l11.904 47.744c0.256 5.184 0.512 10.368 0.896 15.616l6.4 5.504c6.656 15.104 5.888 52.224 0.896 68.8-3.008 9.984-11.648 7.36-17.28 13.76-6.144 6.912-10.24 30.464-15.488 39.488-14.144 24.448-32.64 47.488-56.256 62.4 0.512 10.048 0.64 39.104 7.104 44.032 5.888 2.112 11.648 4.352 17.344 6.464 3.968 15.616-6.912 39.808-11.008 53.184-5.504 17.856-10.368 52.864-24.512 62.4-16.512 10.88-98.688 9.856-117.248 0.896-14.528-6.976-45.696-91.264-46.4-116.48l19.968-6.464L437.376 512c-26.88-14.848-47.488-45.952-60.928-74.368l-8.128-23.808c-4.8-7.104-16-4.544-19.072-14.656-5.12-16.576-6.016-54.784 0.896-69.76l8.192-8.256 4.544-34.88c7.04-28.16 18.88-54.336 33.6-75.264 16.576-23.488 41.664-44.8 70.08-56.064l36.288-8.256z m5.44 557.12c-0.512 28.608 3.712 100.992 18.24 112 12.736 9.6 49.92 10.752 70.912 7.232 13.376-2.24 27.392-0.768 36.352-7.232 19.392-14.4 11.392-77.632 19.008-106.624 32-5.632 22.144-47.488-3.648-55.872-35.648-11.776-46.528 49.728-14.528 55.872 0.512 20.992-2.88 85.248-12.736 92.864-19.52 11.392-65.152 5.376-85.504 0-7.744-28.224-9.344-63.872-11.776-98.24 20.352 0 48-1.152 60.928-10.112 20.224-14.144 38.4-89.6 42.752-122.112 51.52 19.008 102.976 38.016 154.496 56.896 21.12 7.872 53.376 13.632 64.512 31.232 8.64 13.504 7.488 36.224 11.008 54.144 7.616 40.512 20.096 119.872 8.128 162.496l-1.856 1.024-705.28-1.024c-1.728-1.28-0.576-0.128-1.856-1.856-10.368-16-1.472-88.64 1.856-108.224 5.248-31.36 3.072-84.224 17.28-106.496 11.2-17.6 43.392-23.488 64.512-31.232 51.456-18.88 103.04-37.888 154.496-56.896v1.856c29.504 65.792 13.184 131.328 112.704 130.304z m-190.848-20.224v50.496h-50.88v22.016h50.88v50.496h22.656v-50.496h50.944v-22.016h-50.944v-50.496H317.44z" p-id="2354"></path>
@@ -54,7 +70,7 @@
                         <span class="t0" style="display:inline-block;">{{item.ksmc}}</span>
                         <span class="t2" style="display:inline-block;">{{item.ysxm}}</span>
                         <span class="t1" style="display:inline-block;">{{item.xmmc}}</span>
-                        <div class="t2" style="display:inline-block;">¥{{item.ghfy}}</div>
+                        <span class="t2" style="display:inline-block;">¥{{item.ghfy}}</span>
                         <span v-if="item.xhs!=0" class="leftIcon">&nbsp;余{{item.xhs-item.ygs}}&nbsp;</span>
                     </div>
                     <div class="weekText borderB">
@@ -76,10 +92,6 @@
                         <span :class="{current:(dateChoose.day=='周日')}">{{item.ze?item.ze:'暂无'}}</span>
                     </div>
                 </div>
-                <!-- <div class="btnArea">
-                    <div class="costText">¥&nbsp;{{item.ghfy}}</div>
-                    <div class="registerBtn">挂号</div>
-                </div> -->
             </div>
         </div>
         <div class="mask pCenter" v-if="chargeVisible">
@@ -133,9 +145,8 @@ let doctorList = [];
 export default {
     data() {
         return {
-            departmentSelectAble:false,
+            ableState:'',
             doctorSelectList:[{text:'张医生'},{text:'张医生'}],
-            doctorSelectAble:false,
             dateValue: '',
             pickerValue: '',
             doctor: '',
@@ -163,17 +174,61 @@ export default {
             scheduleList: [],
             chargeChoose: {},
             timeValue:true,
+            doctorConditionCrt:'',
+            appointmentConditionCrt:'',
+            departmentConditionCrt:'',
         }
     },
     methods: {
+        clearCondition(){
+            let mc = '';
+            this.departmentConditionCrt = mc;
+            this.appointmentConditionCrt = mc;
+            this.doctorConditionCrt = mc;
+        },
+        departmentCondition(mc){
+            this.clearCondition();
+            this.departmentConditionCrt = mc;
+            this.outSelectCondition();
+        },
+        appointmentCondition(mc){
+            this.clearCondition();
+            this.appointmentConditionCrt = mc;
+            this.outSelectCondition();
+        },
+        doctorCondition(mc){
+            this.clearCondition();
+            this.doctorConditionCrt = mc;
+            this.outSelectCondition();
+        },
+        outSelectCondition(){
+            this.ableState = '';
+        },
         clearDate(){
+            this.clearCondition();
+            this.loadDepartmentList(this.dateArray[0].time);
             this.dateChoose = '';
         },
+        appointmentListSelect(){
+            if(this.ableState == 'appointmentSelect'){
+                this.ableState = '';
+            }else{
+                this.ableState = 'appointmentSelect'
+            }
+        },
         departmentSelect(){
-            this.departmentSelectAble = !this.departmentSelectAble;
+            if(this.ableState == 'departmentSelect'){
+                this.ableState = '';
+            }else{
+                this.ableState = 'departmentSelect'
+            }
         },
         doctorSelect(){
-            this.doctorSelectAble = !this.doctorSelectAble;
+            if(this.ableState == 'doctorSelect'){
+                this.ableState = '';
+            }else{
+                this.ableState = 'doctorSelect'
+            }
         },
         timeChange(){
             console.log(this.timeValue);
@@ -184,7 +239,6 @@ export default {
         register(item) {
             // this.chargeVisible = true;
             // this.chargeChoose = item;
-            
             console.log(item);
             let obj = {
                     id:item.id,
@@ -254,18 +308,42 @@ export default {
             }
             this.api.getWorkList(params).then(
                 res => {
-                    debugger
                     console.log(res);
                     this.scheduleList = res.data;
                     this.selectConfig.options = [];
+                    let departmentSelectList = [];
+                    let appointmentSelectList = [];
+                    let doctorSelectList = [];
                     for (var i = 0; i < res.data.length; i++) {
                         let item = res.data[i];
+                        if(res.data[i].ksmc){
+                            departmentSelectList = addToList(departmentSelectList,{
+                                mc:res.data[i].ksmc,
+                                id:res.data[i].ksid
+                            })
+                        }
+                        if(res.data[i].ysxm){
+                            debugger
+                            console.log(doctorSelectList);
+                            doctorSelectList = addToList(doctorSelectList,{
+                                mc:res.data[i].ysxm,
+                                id:res.data[i].ysid
+                            })
+                        }
+                        if(res.data[i].xmmc){
+                            appointmentSelectList = addToList(appointmentSelectList,{
+                                mc:res.data[i].xmmc
+                            })
+                        }
                         item.ghfy = Number(item.ghfy).toFixed(2);
                         this.selectConfig.options.push({
                             value: item.ksid,
                             label: item.ksmc
                         })
                     }
+                    this.departmentSelectList = departmentSelectList;
+                    this.appointmentSelectList = appointmentSelectList;
+                    this.doctorSelectList = doctorSelectList;
                 })
         },
         sureCharge(item) {
@@ -361,11 +439,37 @@ export default {
         this.$set(this.$data, 'dateArray', this.initDate());
         // this.chooseDate(this.dateArray[0]);
         this.loadDepartmentList(this.dateArray[0].time);
-        this.loadDepartmentSelectList();
-        this.loadDoctorSelectList();
+        // this.loadDepartmentSelectList();
+        // this.loadDoctorSelectList();
+    },
+    computed:{
+        evenScheduleList(){
+            return this.scheduleList.filter((schedule)=>{
+                if(this.doctorConditionCrt){
+                    if(schedule.ysxm==this.doctorConditionCrt)
+                    return schedule;
+                }else if(this.departmentConditionCrt){
+                    if(schedule.ksmc==this.departmentConditionCrt)
+                    return schedule;
+                }else if(this.appointmentConditionCrt){
+                    if(schedule.xmmc==this.appointmentConditionCrt)
+                    return schedule;
+                }else{
+                    return schedule;
+                }
+            })
+        }
     }
 }
-
+function addToList(list,item){
+    for (var i = 0; i < list.length; i++) {
+        if(list[i].mc == item.mc){
+            return list;
+        }
+    }
+    list.push(item);
+    return list;
+}
 </script>
 <style scoped>
 .selectBlock{
@@ -374,9 +478,9 @@ export default {
 .selectItem{
     color:#000000;
     background: #B3B3B3;
-    border-bottom: 1px solid #E6E6E6;
-    width:80px;
+    width:70px;
     text-align: center;
+    display: inline-block;
 }
 .conditionSelect{
     position: absolute;

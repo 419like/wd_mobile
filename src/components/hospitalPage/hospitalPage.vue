@@ -286,10 +286,11 @@ export default {
 }
 .img{
     width:100%;
+    height:100%;
 }
 .simg {
-    width: 50px;
-    height:30px;
+    width: 40px;
+    height:40px;
 }
 
 .mint-swipe {

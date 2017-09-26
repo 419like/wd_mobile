@@ -107,7 +107,7 @@ export default {
                 }
                 this.api.getArticleList(params).then(
                     res=>{
-                        
+                        debugger
                         console.log(res);
                         this.adList = res.data;
                     }, err=>{
@@ -165,6 +165,7 @@ export default {
 
 .img {
     width: 100%;
+    height:100%;
 }
 
 .head {

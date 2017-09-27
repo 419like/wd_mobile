@@ -55,40 +55,85 @@
                 </div>
                 <div class="partContent">
                     <div>
-                        <span>单号：</span><span>{{registerInfo.number}}</span>
+                        <span>订单号：</span><span>{{registerInfo.NO}}</span>
                     </div>
                     <div>
-                        <span>结果：</span><span>成功</span>
+                        <span>挂号单号：</span><span>{{registerInfo.number}}</span>
+                    </div>
+                    <div>
+                        <span>结果：</span><span>{{registerInfo.type?'成功':'失败，请到在线缴费中退费'}}</span>
                     </div>
                 </div>
             </div>
-            <div style="margin-left:10%;width:80%;position: absolute;bottom: 10px;">
+            <div v-if="!registerInfo.number" style="margin-left:10%;width:80%;position: absolute;bottom: 10px;">
                 <button class="mint-button mint-button--primary mint-button--large green" @click="sureCharge()">
                     <!---->
                     <label class="mint-button-text font18">挂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</label>
                 </button>
             </div>
+            <div v-if="registerInfo.number" style="margin-left:10%;width:80%;position: absolute;bottom: 10px;">
+                <button class="mint-button mint-button--primary mint-button--large green" @click="sureCharge()">
+                    <!---->
+                    <label class="mint-button-text font18">查看记录</label>
+                </button>
+            </div>  
         </div>
+        <zffs @confirmZffs="selectZffs" v-if="ChooseZffsShow"></zffs>
     </div>
 </template>
 <script type="text/javascript">
 import mbSelect from '@/components/common/mbSelect/mbSelect.vue';
+import zffs from '@/components/onlinePay/zffs.vue'
 export default {
     data() {
             return {
                 registerInfo:{},
                 timeValue:true,
+                ChooseZffsShow: false,
+                param: {},
             }
         },
         methods: {
+            selectZffs(a) {
+                if (a == '1') {
+                    this.param.lx = a;
+                    // this.payForWx();
+                } else if (a == '2') {
+                    this.param.lx = a;
+                    this.payForAlipay();
+                } else if (!a) {
+
+                }
+                this.ChooseZffsShow = false;
+            },
+            payForAlipay() {
+                var o = {"mc":"hadf","dm":"2131","xm":"张三"};
+                let data  = encodeURI(JSON.stringify(o))
+                this.$router.push({name:'alipay', params: {"data":data}})
+            },
+            payForWx() {
+                this.api.getWxpay(this.param)
+                .then(res => {
+                    if (!res) {
+                        this.$toast('服务器繁忙');
+                        if (res.data.respCode == 'fail') {
+                            this.$toast(res.data.respMsg);
+                        } else {
+                            let param = res.data;
+                            this.onBridgeReady(param);
+                        }
+                    }
+                });
+            },
             timeChange(){
                 console.log(this.timeValue);
             },
             sureCharge(item) {
-                if(this.registerInfo.ghfy!='0.00'){
-                    this.$messagebox('收费项目尚未建设，请谅解。')
-                    return;
-                }
+                
+                // if(this.registerInfo.ghfy!='0.00'){
+                //     this.$messagebox('收费项目尚未建设，请谅解。')
+                //     return;
+                // }
                 if(!this.timeValue){
                     this.registerInfo.time = this.registerInfo.shortDay+' 15:00:00'
                 }
@@ -103,10 +148,10 @@ export default {
                         yysj:this.registerInfo.time
                     }
                 }
-                console.log(params);
-                this.api.register(params)
-                    .then(res => {
-                        
+                if (params.ghxx.ysje == '0') {  // 金额为0，直接调用his
+                    console.log(params)
+                    this.api.register(params)
+                    .then(res => {                       
                         if (res.code=='1') {
                             this.$toast('挂号成功！');
                         }else{
@@ -115,9 +160,35 @@ export default {
                         this.$set(this.$data.registerInfo, 'number',res.no);
                         console.log(res);
                     })
+                } else { // 金额不为0，调用支付
+                    this.ChooseZffsShow = true;
+                }
+            },
+            toPayUrl(mweb_url) {
+                 window.location.href = mweb_url;
+            },
+            onBridgeReady(param) {             
+                WeixinJSBridge.invoke(
+                   'getBrandWCPayRequest', {
+                       "appId" : param.appid,         
+                       "timeStamp":  param.timeStamp,         
+                       "nonceStr" :  param.nonceStr, 
+                       "package" :  param.prepay_id,    
+                       "signType" : "MD5",        
+                       "paySign" :  param.sign 
+                   },
+                   function(res){  
+                       if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                            this.$messagebox('支付成功');
+                       } else {
+
+                       }
+                   }
+                );
             },
         },
         components: {
+            zffs
         },
         mounted() {
             this.$store.commit('setPageTitle','预约挂号确认');

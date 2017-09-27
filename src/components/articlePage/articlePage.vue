@@ -46,7 +46,7 @@ export default {
                         }
                         
                         this.article = data;
-                        this.$store.commit('setPageTitle',this.article.wzbt);
+                        
                     }
                 );
             }
@@ -55,7 +55,7 @@ export default {
 
         },
         mounted() {
-            debugger
+            this.$store.commit('setPageTitle',this.$route.query.title);
             this.loadArticle(this.$route.query.id);
         }
 }

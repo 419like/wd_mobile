@@ -41,14 +41,14 @@
                     预约挂号
                 </div>
             </div>
-            <div class="flex1"  >
+            <div class="flex1" @click="toOnlinePay" >
                 <div style="text-align:center;">
                     <svg viewBox="0 0 1024 1024" class="svgIcon" style="margin-top:10px;height:30px;fill:#03A9F4;">
                         <path d="M675.521 306.64V144.934c0-1.067-0.23-2.079-0.289-3.15v-7.312h-0.578c-4.104-35.692-28.498-63.236-58.266-63.236H408.183c-29.769 0-54.162 27.544-58.266 63.236h-0.867v240.027h0.29v65.898c-0.059 1.211-0.29 2.309-0.29 3.466V899.12h0.867c4.104 35.724 28.497 63.237 58.266 63.237h208.206c29.768 0 54.162-27.514 58.266-63.237h0.578v-5.432h0.289V370.107h-0.289v-60.29c0.058-1.098 0.288-2.079 0.288-3.177zM431.42 179.355h161.732v411.096H431.42V179.355z m125.028 676.413c-27.282 15.723-60.981 15.723-88.324 0-27.397-15.837-44.22-44.97-44.22-76.586 0-31.563 16.823-60.753 44.22-76.534 27.343-15.778 61.042-15.778 88.324 0 27.399 15.781 44.22 44.972 44.22 76.534 0 31.616-16.82 60.749-44.22 76.586z" p-id="2923"></path><path d="M532.862 743.516c-12.717-7.399-28.438-7.399-41.212 0a41.17 41.17 0 0 0-20.578 35.666c0 22.773 18.438 41.211 41.214 41.211 22.771 0 41.215-18.438 41.215-41.211a41.096 41.096 0 0 0-20.639-35.666zM863.15 743.516a41.038 41.038 0 0 0-41.215 0c-12.772 7.34-20.577 20.924-20.577 35.666 0 14.737 7.805 28.322 20.577 35.662a41.038 41.038 0 0 0 41.215 0 41.102 41.102 0 0 0 20.637-35.662 41.098 41.098 0 0 0-20.637-35.666z" p-id="2924"></path><path d="M1005.751 306.64V144.934c0-1.067-0.231-2.079-0.231-3.15v-7.312h-0.577c-4.163-35.692-28.499-63.236-58.266-63.236H738.411c-29.769 0-54.102 27.544-58.208 63.236h-0.865v240.027h0.287v65.898c-0.057 1.211-0.287 2.309-0.287 3.466V899.12h0.865c4.106 35.724 28.439 63.237 58.208 63.237h208.266c29.767 0 54.103-27.514 58.266-63.237h0.577v-5.432h0.231V370.107h-0.231v-60.29c0-1.098 0.231-2.079 0.231-3.177zM761.705 179.355h161.734v411.096H761.705V179.355z m125.03 676.413c-27.343 15.723-61.041 15.723-88.382 0a88.447 88.447 0 0 1-44.161-76.586c0-31.563 16.82-60.753 44.161-76.534 27.341-15.778 61.039-15.778 88.382 0 27.341 15.781 44.22 44.972 44.22 76.534 0 31.616-16.879 60.749-44.22 76.586z" p-id="2925"></path><path d="M182.75 738.197c-22.659 0-40.982 18.382-40.982 40.984 0 22.599 18.324 40.98 40.982 40.98 22.602 0 40.925-18.382 40.925-40.98 0-22.602-18.323-40.984-40.925-40.984z" p-id="2926"></path><path d="M345.929 306.64V144.934c0-1.067-0.232-2.079-0.289-3.15v-7.312h-0.578c-4.104-35.692-28.439-63.236-58.208-63.236H78.59c-29.769 0-54.104 27.544-58.266 63.236h-0.809v240.027h0.23v65.898c0 1.211-0.23 2.309-0.23 3.466V899.12h0.809c4.163 35.724 28.498 63.237 58.266 63.237h208.264c29.769 0 54.104-27.514 58.208-63.237h0.578v-5.432h0.289V370.107h-0.289v-60.29c0.057-1.098 0.289-2.079 0.289-3.177zM101.826 179.355h161.733v411.096H101.826V179.355z m80.924 688.206c-48.843 0-88.381-39.537-88.381-88.379 0-48.787 39.538-88.383 88.381-88.383 48.786 0 88.323 39.596 88.323 88.383 0 48.841-39.536 88.379-88.323 88.379z" p-id="2927"></path>
                     </svg>
                 </div>
                 <div class="menuTitle">
-                    健康档案
+                    在线缴费
                 </div>
             </div>
             <div class="flex1" @click="goUrl('personalCenter')">
@@ -62,19 +62,24 @@
                 </div>
             </div>
         </div>
+        <div class="line1"></div>
+        <div style="width:100%;font-size: 12px;color:#808080;position: relative;">
+            <div style="display:inline-block;">地址：{{info.szdxzmc}}{{info.szddz}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div style="position: absolute;bottom: 0px;right:0px;">电话：{{info.lxdh}}</div>
+        </div>
         <div>
             <div class="line1"></div>
             <div class="title1 paddingL5">
                 <span>中心动态</span>
             </div>
-            <div class="flex marginT5 borderB" v-for="item in newsList" @click="goArticle(item.id)">
+            <div class="flex marginT5 borderB" v-for="item in newsList" @click="goArticle(item.id,'中心动态')">
                 <div class="infoImg">
                     <img class="simg" :src="item.zst">
                 </div>
                 <div class="flex1 marginL20">
                     <div class="infoTitle">{{item.wzbt}}</div>
                     <div class="infoContent">{{item.wzjj}}</div>
-                </div>
+            </div>
             </div>
         </div>
         <div class="line1"></div>
@@ -84,7 +89,7 @@
                     <span>特色科室</span>
                 </div>
                 <div class="marginT5 borderB" >
-                    <div class="dpTitle" style="display:inline-block;" v-for="item in departmentList" @click="loadDepartment(item.id)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.mc}}</div>
+                    <div class="dpTitle" style="display:inline-block;" v-for="item in departmentList" @click="loadDepartment(item.id,item.mc)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.mc}}</div>
                 </div>
             </div>
             <div class="flex1">
@@ -92,9 +97,12 @@
                     <span>医务人员</span>
                 </div>
                 <div class="marginT5 borderB">
-                    <div class="dpTitle" style="display:inline-block;" v-for="item in personList" @click="loadPerson(item.id)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.xm}}</div>
+                    <div class="dpTitle" style="display:inline-block;" v-for="item in personList" @click="loadPerson(item.id,item.xm)">&nbsp;&nbsp;&nbsp;&nbsp;{{item.xm}}</div>
                 </div>
             </div>
+        </div>
+        <div style="height:60px;width:100%;">
+            
         </div>
     </div>
 </template>
@@ -112,21 +120,31 @@ export default {
             }
         },
         methods: {
-            loadPerson(id){
+            toOnlinePay() {
+                let state = this.$store.getters.loginState;
+                if (state) {
+                    this.$router.push({path: '/index/onlinePay',query: {jgid:this.info.id}});
+                } else {
+                    this.$router.push({path: '/index/login'});
+                }
+            },
+            loadPerson(id,name){
                 this.$router.push({
                     path:'/index/introArticle',
                     query:{
                         xgjgid:id,
                         lx:'3',
+                        title:name+'简介',
                     }
                 })
             },
-            loadDepartment(id){
+            loadDepartment(id,name){
                 this.$router.push({
                     path:'/index/introArticle',
                     query:{
                         xgjgid:id,
                         lx:'2',
+                        title:name+'简介',
                     }
                 })
             },
@@ -136,6 +154,7 @@ export default {
                     query:{
                         xgjgid:this.info.id,
                         lx:'1',
+                        title:'机构介绍',
                     }
                 })
             },
@@ -214,18 +233,33 @@ export default {
                                 this.personList = res.data;
                             }
                         )
-            }
+            },
+            loadHisInfo(){
+                let params = {
+                    jgid:this.info.id,
+                }
+                let _this = this;
+                this.api.getHisInfo(params)
+                    .then(
+                            res=>{
+                                debugger
+                                res.data[0].id = _this.info.id;
+                                this.$set(this.$data,'info',res.data[0]);
+                                this.$store.commit('setPageTitle',this.info.jc);
+                            }
+                        )
+            },
         },
         components: {
         },
         mounted() {
-            
-            this.info = this.$route.params;
-            this.$store.commit('setPageTitle',this.info.text);
+            this.info = this.$route.query;
+            debugger
             this.loadAdList();
             this.loadNewsList();
             this.loadDepartmentList();
             this.loadPersonList();
+            this.loadHisInfo();
         },
         computed:{
             handleUser() {
@@ -289,8 +323,8 @@ export default {
     height:100%;
 }
 .simg {
-    width: 40px;
-    height:40px;
+    width: 50px;
+    height:30px;
 }
 
 .mint-swipe {

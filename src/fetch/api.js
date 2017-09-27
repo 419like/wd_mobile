@@ -76,6 +76,42 @@ export function fetch(url, params, config) {
 
 export default {
   /**
+    * 处方缴费订单生成
+    */
+  cfzfJf(params) {
+    return fetch('/rest/commitData/080401/2', params) 
+  },
+   /**
+   * 门诊费用明细
+   */
+  GetMzfymx(params) {
+    return fetch ('/rest/queryDataBySql/080401/5', params);
+  },
+  /**
+   * 待支付记录
+   */
+  GetDzfjl(params) {
+    return fetch('/rest/commitData/080401/3', params)   
+  },
+  /**
+   * 待缴费记录
+   */
+  GetCffy(params) {
+    return fetch ('/rest/queryDataBySql/080401/4', params);
+  },
+  /**
+    * 微信支付
+    */
+  getWxpay() {
+
+  },
+  /**
+    * 支付宝支付
+    */
+  getAlipay() {
+
+  },
+  /**
    * 用户注册
    */
   Regist(params, config) {
@@ -136,7 +172,7 @@ export default {
    * 获取排班列表
    */
   getWorkList(params, config) {
-    return fetch('rest/queryDataBySql/010301/8', params)
+    return fetch('rest/queryDataBySql/080304/1', params)
   },
   /**
    * 获取挂号收费信息
@@ -252,6 +288,10 @@ export default {
   getParentsArea(params, config) {
     return fetch('/rest/queryDataBySql/080201/7', params)
   },
-
-
+  /**
+   * 根据用户id查询部分用户信息
+   */
+  getHisInfo(params, config) {
+    return fetch('/rest/queryDataBySql/080101/3', params)
+  },
 }

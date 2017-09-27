@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;text-align: center;">{{article.wzbt}}</div>
-        <div v-show="article.qyrq" style="font-size: 12px;color:#B3B3B3;text-align: center;">{{article.qyrq?article.qyrq.split(' ')[0]:''}}</div>
+        <!-- <div v-show="article.qyrq" style="font-size: 12px;color:#B3B3B3;text-align: center;">{{article.qyrq?article.qyrq.split(' ')[0]:''}}</div> -->
         <div class="html ql-editor acticleBox" style="height: auto;">
             <div v-html="article.nr">
             </div>
@@ -46,7 +46,6 @@ export default {
                             }
                         }
                         this.article = data;
-                        this.$store.commit('setPageTitle',this.article.wzbt);
                     }
                 );
             }
@@ -55,8 +54,8 @@ export default {
 
         },
         mounted() {
-            debugger
             this.loadArticle(this.$route.query);
+            this.$store.commit('setPageTitle',this.$route.query.title);
         }
 }
 </script>

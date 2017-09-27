@@ -56,7 +56,15 @@ const newsList  = resolve => {
 const treatmentNoticeList  = resolve => {
     require(['../components/treatmentNoticeList/treatmentNoticeList.vue'], resolve);
 }
-
+const onlinePay  = resolve => {
+    require(['../components/onlinePay/onlinePay.vue'], resolve);
+}
+const mzfymx  = resolve => {
+    require(['../components/onlinePay/mzfymx.vue'], resolve);
+}
+const alipay  = resolve => {
+    require(['../components/onlinePay/alipay.vue'], resolve);
+}
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -77,7 +85,7 @@ const routes = [
             component: personalCenter
         }, {
             name:'hospitalPage',
-            path: '/index/hospitalPage/:id',
+            path: '/index/hospitalPage',
             component: hospitalPage
         }, {
             path: '/index/registerConfirm',
@@ -106,6 +114,17 @@ const routes = [
         }, {
             path:'/index/introArticle',
             component:introArticle
+        }, {
+            path:'/index/onlinePay',
+            component:onlinePay
+        }, {
+            name:'mzfymx',
+            path:'/index/mzfymx',
+            component:mzfymx
+        }, {
+            name:'alipay',
+            path:'/index/alipay',
+            component:alipay
         }]
     },{
         path:'/treatmentCardBind',

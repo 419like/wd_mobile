@@ -1,6 +1,6 @@
 <template>
     <div style="width:100%;">
-        <div v-for="item in newsList" @click="goArticle(item)" class="flex" style="border-bottom:1px solid #CCCCCC;width:100%;">
+        <div v-for="item in newsList" @click="goArticle(item.id,'资讯信息')" class="flex" style="border-bottom:1px solid #CCCCCC;width:100%;">
             <div style="width:50px;">
                 <img :src="item.zst" style="margin:5px;width:30px;height:30px;">
             </div>
@@ -41,21 +41,12 @@ export default {
                 }
                 this.api.getArticleList(params).then(
                     res=>{
-                        
                         console.log(res);
                         this.newsList = res.data;
                     }, err=>{
                         console.log(err);
                     })
-            },
-            goArticle(item){
-                this.$router.push({
-                    path:'/index/articlePage',
-                    query:{
-                        id:item.id
-                    }
-                })
-            },
+            }
         },
         components: {
 

@@ -5,7 +5,7 @@
             <mt-swipe :auto="8000">
                 <mt-swipe-item v-for="item in adList" >
                     <div>
-                        <img class="img" :src="item.zst" @click="goArticle(item.id)">
+                        <img class="img" :src="item.zst" @click="goArticle(item.id,'首页动态')">
                     </div>
                 </mt-swipe-item>
             </mt-swipe>
@@ -16,7 +16,7 @@
                 <div style="flex:1">资讯信息</div>
                 <div style="width:60px;" @click="goMoreNews">更多···</div>
             </div>
-            <div class="infoItem" v-for="item in newsList" @click="goArticle(item.id)">
+            <div class="infoItem" v-for="item in newsList" @click="goArticle(item.id,'咨讯信息')">
                 &nbsp;{{item.wzjj}}
             </div>
         </div>
@@ -66,11 +66,12 @@ export default {
                     path:'/index/newsList'
                 })
             },
-            goArticle(id){
+            goArticle(id,title){
                 this.$router.push({
                     path:'/index/articlePage',
                     query:{
-                        id:id
+                        id:id,
+                        title:title,
                     }
                 })
             },
@@ -82,7 +83,7 @@ export default {
             goHis(item){
                 this.$router.push({
                     name: 'hospitalPage',
-                    params:{
+                    query:{
                         id:item.id,
                     },
                 })

@@ -32,6 +32,12 @@ const app = new Vue({
     render: h => h(App)
 }).$mount('#app')
 
+Vue.filter('formatAmount', v => {
+    if (!v) return 0;
+    return (+v).toFixed(2);
+});
+
+
 Vue.prototype.goback = function() {
     router.back();
 }
@@ -41,11 +47,12 @@ Vue.prototype.goUrl = function(url){
         path:'/index/'+url
     })
 }
-Vue.prototype.goArticle = function(id){
+Vue.prototype.goArticle = function(id,title){
     this.$router.push({
         path:'/index/articlePage',
         query:{
-            id:id
+            id:id,
+            title:title
         }
     })
 }

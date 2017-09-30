@@ -55,6 +55,6 @@
 .title p{min-height: 24px; line-height: 24px; padding:2px 4px;font-size: 14px;font-weight: bold}
 .contain li{position: relative; padding: 2px 0 2px 2px; border-bottom: 1px solid #ccc;font-size: 14px}
 .contain li p{min-height: 20px; line-height: 20px; margin-left: 10px; padding:1px 10px 1px 2px}
-.footer{position: fixed; width: 100%; bottom: 0; height: 40px; background-color: #fff;text-align: center;}
+.footer{ width: 100%; margin-top: 35px;height: 40px; background-color: #fff;text-align: center;}
 .footer span{font-size: 18px;color: #0271bc;padding: 10px}
 </style>

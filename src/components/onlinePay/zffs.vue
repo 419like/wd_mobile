@@ -3,10 +3,14 @@
 	<div @click="closeWrap" class="zffs">
 		<div v-show="show" class="zfChoose" @click.stop>
 			<div class="zfxz">
-				<label for="wx">微信支付</label><input v-model="picked" checked="1" id="wx" type="radio" name="zffs" value="1">
+				<span class="icon_wx"></span>
+				<label for="wx">微信支付</label>
+				<input v-model="picked"  id="wx" type="radio" name="zffs" value="1">
 			</div>
 			<div class="zfxz">
-				<label for="zfb">支付宝支付</label><input v-model="picked" id="zfb" type="radio" name="zffs" value="2">
+				<span class="icon_alipay"></span>
+				<label for="zfb">支付宝支付</label>
+				<input v-model="picked" id="zfb" type="radio" name="zffs" value="2">
 			</div>
 			<div class="btnwrap">
 				<button @click="selectZffs" class="mint-button mint-button--primary mint-button--large green">
@@ -44,14 +48,18 @@
 .zffs{position: fixed;top: 0;z-index: 5;height: 100%;width: 100%;background: rgba(0,0,0,0.4)}
 .slide-fade-enter-active{transition:0.2s}  
 /*.slide-fade-enter{height: 0}*/
-.slide-fade-enter-active .zfChoose{transition: 0.3s}
+.slide-fade-enter-active .zfChoose{transition: 0.1s ease-in}
 .slide-fade-enter .zfChoose{transform: translateY(200px);}
 
 .zfChoose{position: fixed;bottom: 0;height: 200px;width:100%;background: #fff}
-.zfChoose .zfxz{height: 40px;line-height: 40px;padding: 5 25px;}
-.zfChoose .zfxz label{display: inline-block;height: 40px;width: 200px}
+.zfChoose .zfxz{position: relative;height: 40px;line-height: 40px;padding: 5 45px;}
+.zfChoose .zfxz span{position: absolute;display: inline-block;width: 32px;height: 32px;top: 8px}
+.zfChoose .zfxz label{display: inline-block;height: 40px;width: 200px;margin-left: 40px}
 .zfChoose .zfxz:not(:last-child){border-bottom: 1px solid #ccc}
 .zfChoose .zfxz input{float: right;height: 20px;width: 20px;vertical-align: middle;margin-top: 8px}
 .zfChoose .btnwrap{width: 200px;margin: 20px auto}
+
+.icon_wx{background-image:url(../../../static/img/wxpay.png); background-repeat:no-repeat; background-size:100% 100%}
+.icon_alipay{background-image:url(../../../static/img/alipay.png); background-repeat:no-repeat; background-size:100% 100%}
 
 </style>

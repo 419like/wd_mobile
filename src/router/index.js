@@ -65,6 +65,9 @@ const mzfymx  = resolve => {
 const alipay  = resolve => {
     require(['../components/onlinePay/alipay.vue'], resolve);
 }
+const centerActiveList  = resolve => {
+    require(['../components/centerActiveList/centerActiveList.vue'], resolve);
+}
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -125,6 +128,10 @@ const routes = [
             name:'alipay',
             path:'/index/alipay',
             component:alipay
+        },{
+            name:'centerActiveList',
+            path:'/index/centerActiveList',
+            component:centerActiveList
         }]
     },{
         path:'/treatmentCardBind',

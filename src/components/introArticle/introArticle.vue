@@ -2,6 +2,9 @@
     <div>
         <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;text-align: center;">{{article.wzbt}}</div>
         <!-- <div v-show="article.qyrq" style="font-size: 12px;color:#B3B3B3;text-align: center;">{{article.qyrq?article.qyrq.split(' ')[0]:''}}</div> -->
+        <div v-if="type==3" style="text-align: center;">
+            <img :src="article.zst" style="width:70px;height:auto;">
+        </div>
         <div class="html ql-editor acticleBox" style="height: auto;">
             <div v-html="article.nr">
             </div>
@@ -18,7 +21,8 @@ export default {
                     text: '文章'
                 },
                 items: [],
-                info:{}
+                info:{},
+                type:'',
             }
         },
         methods: {
@@ -55,6 +59,7 @@ export default {
         },
         mounted() {
             this.loadArticle(this.$route.query);
+            this.type = this.$route.query.lx;
             this.$store.commit('setPageTitle',this.$route.query.title);
         }
 }

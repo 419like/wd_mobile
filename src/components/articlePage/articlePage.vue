@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;text-align: center;">{{article.wzbt}}</div>
+        <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 24px;text-align: center;margin:5px;">{{article.wzbt}}</div>
         <div v-show="article.qyrq" style="font-size: 12px;color:#B3B3B3;text-align: center;">{{article.qyrq?article.qyrq.split(' ')[0]:''}}</div>
         <div class="html ql-editor acticleBox" style="height: auto;">
             <div v-html="article.nr">
@@ -44,9 +44,7 @@ export default {
                                 startTime: ''
                             }
                         }
-                        
                         this.article = data;
-                        
                     }
                 );
             }

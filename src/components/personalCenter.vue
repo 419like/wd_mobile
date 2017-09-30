@@ -5,16 +5,16 @@
                 <img class="imgBox" :src=headImg @click="editInfo()">
             </div>
             <div style="flex:1">
-                <div v-show="!loginState">
+                <div v-if="!loginState">
                     <span class="unLogin" @click="goUrl('/index/login')">点击登录</span>
                 </div>
-                <div v-show="loginState" @click="showInfo()">
+                <div v-if="loginState" @click="showInfo()">
                     <div class="row" style="margin-top:25px;">
                         <div style="flex:1">{{appUserInfo.xm}}</div>
-                        <div style="flex:1">{{userNum}}</div>
+                        <div style="flex:1">{{appUserInfo.userNum}}</div>
                     </div>
                     <div class="row">
-                        <div style="font-size: 12px;">{{appUserInfo.sfzh.replace(appUserInfo.sfzh.slice(appUserInfo.sfzh.length-7,appUserInfo.sfzh.length-1),'******')}}</div>
+                        <div style="font-size: 12px;">{{appUserInfo.sfzh}}</div>
                     </div>
                 </div>
             </div>
@@ -28,8 +28,8 @@
             <div>
                 <div class="boundItem flex" v-for="item in boundlist">
                     <div class="userTitle"  @click="boundEdit(item);" :class="{itemChoosed:(handleUser==item)}">{{item.hzxm}}</div>
-                    <div class="userChoosed" v-if="handleUser==item">默认用户&nbsp;&nbsp;&nbsp;</div>
-                    <div class="userNormal" v-if="handleUser!=item" @click="setHandleUser(item)">设为默认&nbsp;&nbsp;&nbsp;</div>
+                    <div class="userChoosed" v-if="handleUser.hzid==item.hzid">默认用户&nbsp;&nbsp;&nbsp;</div>
+                    <div class="userNormal" v-if="handleUser.hzid!=item.hzid" @click="setHandleUser(item)">设为默认&nbsp;&nbsp;&nbsp;</div>
                 </div>
             </div>
         </div>
@@ -112,6 +112,7 @@ export default {
                     );
             },
             loginOut(){
+                debugger
                 this.$store.commit('loginOut');
                 this.$emit('close');
             },
@@ -136,7 +137,6 @@ export default {
                 this.api.getUserInfo(params)
                 .then(
                         res=>{
-                            
                             res.data[0].id = params.id;
                             if(res.data[0].csrq){
                                 res.data[0].birthday = res.data[0].csrq.split(' ')[0];
@@ -191,13 +191,18 @@ export default {
                     path:'/treatmentCardBind',
                     query:{name:this.appUserInfo.xm,idCard:this.appUserInfo.sfzh}
                 })
+            },
+            backIndex(){
+                this.$router.push({
+                    path:'index/home'
+                })
             }
         },
         created() {
         },
         mounted() {
             this.$store.commit('setPageTitle',"个人信息");
-
+            this.$store.commit('defineBackFun',this.backIndex)
             if(!this.handleUser){
                 this.$store.commit('setHandleUser',this.boundlist[0]);
             }
@@ -216,7 +221,6 @@ export default {
                 return this.$store.getters.bindState;
             },
             boundlist(){
-                
                 return this.$store.getters.getBoundList;
             },
             handleUser() {

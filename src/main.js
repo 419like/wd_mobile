@@ -39,7 +39,14 @@ Vue.filter('formatAmount', v => {
 
 
 Vue.prototype.goback = function() {
-    router.back();
+    if(router.history.current.path=='/index/personalCenter'){
+        router.push({
+            path:'/index/home'
+        })
+    }else{
+        router.back();
+    }
+    
 }
 
 Vue.prototype.goUrl = function(url){

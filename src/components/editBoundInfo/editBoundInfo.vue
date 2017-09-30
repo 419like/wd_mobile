@@ -123,10 +123,12 @@ export default {
                 this.api.registHisUser(params)
                  .then(
                     res=>{
-                        
+                        debugger
                         if(res.code==1){
                             this.$toast('保存成功！');
                             this.boundUser(res.brid);
+                        }else{
+                            this.$toast(res.msg)
                         }
                     }
                 )

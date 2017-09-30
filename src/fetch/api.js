@@ -75,10 +75,22 @@ export function fetch(url, params, config) {
 }
 
 export default {
-  /**
-    * 处方缴费订单生成
+   /**
+    * 订单取消
     */
-  cfzfJf(params) {
+  OrderCancel(params) {
+    return fetch('/rest/commitData/080401/2', params) 
+  },
+   /**
+    * 订单更新
+    */
+  OrderUpdate(params) {
+    return fetch('/rest/commitData/080401/2', params) 
+  },
+  /**
+    * 订单生成
+    */
+  OrderGeneration(params) {
     return fetch('/rest/commitData/080401/2', params) 
   },
    /**

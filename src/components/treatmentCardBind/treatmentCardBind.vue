@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div v-if="promptVisible&&userList.length<=0" style="position: absolute;bottom: 10px;text-align: center;font-size: 20px;color: #B3B3B3;width:100%;" @click="addBoundInfo">
-                暂无记录，<a href="" style="text-decoration:none;color:rgb(61,187,170);">点击</a>添加
+                暂无记录，<span style="text-decoration:none;color:rgb(61,187,170);">点击</span>添加
             </div>
         </div>
     </div>

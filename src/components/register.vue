@@ -61,6 +61,10 @@ export default {
         },
         methods: {
             register() {
+                if(this.password.length<6){
+                    this.$toast('密码长度需六位以上！');
+                    return;
+                }
                 let password = this.passwordFix(this.password);
                 let params = {
                     sjh: this.number + '',
@@ -71,7 +75,6 @@ export default {
                 this.api.Regist(params)
                     .then(res => {
                         this.$toast('注册成功！')
-                        
                         let loginObj = {
                             userId:res.id,
                             userNum:this.number,
@@ -82,6 +85,13 @@ export default {
                     })
             },
             goStep(step) {
+                if(step==2){
+                    debugger
+                    if(this.number.length!=11||this.number.charAt(0)!=1){
+                        this.$toast('请输入正确的手机号！')
+                        return;
+                    }
+                }
                 this.step = step;
             },
             transShow() {

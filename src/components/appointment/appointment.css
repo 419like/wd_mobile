@@ -44,6 +44,8 @@
 
 .topLine1 {
     border-top: 2px solid #CCCCCC;
+    height:calc(100% - 40px - 52px);
+    overflow-y: auto;
 }
 .infoText2 {
     color: #CCCCCC;
@@ -55,7 +57,7 @@
 }
 
 .doctorItem {
-    height: 60px;
+    height: auto;
     border-bottom: 1px solid #CCCCCC;
 }
 
@@ -150,15 +152,15 @@
 }
 .t2{
 	display: inline-block;
-	font-size: 16px;
+	font-size: 14px;
 	color:#333333;
 	text-align: center;
     margin-right:5px;
-
+    min-width: 56px;
 }
 .t0{
 	display: inline-block;
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: bold;
 	color:#4C4C4C;
     margin-right:5px;

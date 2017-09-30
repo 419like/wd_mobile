@@ -2,7 +2,7 @@
     let browser = {
         versions: function () {
           let u = navigator.userAgent, app = navigator.appVersion;
-            return {   //移动终端浏览器版本信息
+            return {  
                 trident: u.indexOf('Trident') > -1, //IE内核
                 presto: u.indexOf('Presto') > -1, //opera内核
                 webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
@@ -30,8 +30,9 @@
             return '3';
       }
     }
-}
+};
 
 export  {
-  checkBrowser
+  checkBrowser,
+  bindEvent
 };

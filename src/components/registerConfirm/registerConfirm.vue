@@ -30,26 +30,29 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div style="margin-top:10px;">
                 <div  class="partTitle">
                     就诊人员信息
                 </div>
-                <div class="partContent">
+                <div class="partContent" style="position: relative;">
+                    <div style="position:absolute;right:10px;top:5px;color:#3dbbaa;" @click="changeHandleUser();">
+                        更换就诊人员
+                    </div>
                     <div>
                         <span>姓名：</span><span>{{handleUser.hzxm}}</span>
                     </div>
                     <div>
-                        <span>身份证号：</span><span>{{handleUser.kh}}</span>
+                        <span>身份证号：</span><span>{{handleUser.sfzh}}</span>
                     </div>
                     <div>
                         <span>手机号：</span><span>{{handleUser.lxdh}}</span>
                     </div>
                     <div>
-                        <span>地址：</span><span>{{handleUser.lxdz}}</span>
+                        <span>地址：</span><span>{{handleUser.mph}}</span>
                     </div>
                 </div>
             </div>
-            <div v-if="registerInfo.number">
+            <div v-if="registerInfo.number" style="margin-top:10px;">
                 <div  class="partTitle">
                     挂号结果
                 </div>
@@ -78,6 +81,7 @@
                 </button>
             </div>  
         </div>
+        
         <zffs @confirmZffs="selectZffs" v-if="ChooseZffsShow"></zffs>
     </div>
 </template>
@@ -94,6 +98,9 @@ export default {
             }
         },
         methods: {
+            changeHandleUser(){
+
+            },
             selectZffs(a) {
                 if (a == '1') {
                     this.param.lx = a;
@@ -129,7 +136,6 @@ export default {
                 console.log(this.timeValue);
             },
             sureCharge(item) {
-                
                 // if(this.registerInfo.ghfy!='0.00'){
                 //     this.$messagebox('收费项目尚未建设，请谅解。')
                 //     return;
@@ -161,7 +167,21 @@ export default {
                         console.log(res);
                     })
                 } else { // 金额不为0，调用支付
-                    this.ChooseZffsShow = true;
+                    // this.ChooseZffsShow = true;
+                    let param = {
+                        "ddlx": '1',
+                        "jgid": '70',
+                        "brid": '1406088',
+                        "zffs": '1',
+                        "total_fee": '0',
+                        "mxxx": [],
+                        "ghxx": JSON.stringify(params),
+                    }
+                    this.api.OrderGeneration(param)
+                    .then(res => {
+                        console.log(res);
+                    })
+   
                 }
             },
             toPayUrl(mweb_url) {

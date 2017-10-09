@@ -19,7 +19,7 @@
                     <div>{{item.mc}}</div>
                 </div>
             </div>
-            <div v-if="ableState=='appointmentSelect'">
+            <div v-if="ableState=='appointmentSelect'" class="selectBlock">
                 <div class="selectItem" @click="appointmentCondition('');">
                     <div>所有</div>
                 </div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <div v-if="dateChoose" v-for="item in evenScheduleList" class="flex doctorItem">
-                <div @click="" style="height:50px;width:50px;">
+                <div @click="" style="height:50px;width:42px;">
                     <svg v-if="!item.ystx" viewBox="0 0 1024 1024" class="svgIcon" style="margin:5px;height:40px;fill:#999999;">
                         <path d="M502.848 146.688c85.184-0.768 129.088 52.544 152.704 113.856l11.904 47.744c0.256 5.184 0.512 10.368 0.896 15.616l6.4 5.504c6.656 15.104 5.888 52.224 0.896 68.8-3.008 9.984-11.648 7.36-17.28 13.76-6.144 6.912-10.24 30.464-15.488 39.488-14.144 24.448-32.64 47.488-56.256 62.4 0.512 10.048 0.64 39.104 7.104 44.032 5.888 2.112 11.648 4.352 17.344 6.464 3.968 15.616-6.912 39.808-11.008 53.184-5.504 17.856-10.368 52.864-24.512 62.4-16.512 10.88-98.688 9.856-117.248 0.896-14.528-6.976-45.696-91.264-46.4-116.48l19.968-6.464L437.376 512c-26.88-14.848-47.488-45.952-60.928-74.368l-8.128-23.808c-4.8-7.104-16-4.544-19.072-14.656-5.12-16.576-6.016-54.784 0.896-69.76l8.192-8.256 4.544-34.88c7.04-28.16 18.88-54.336 33.6-75.264 16.576-23.488 41.664-44.8 70.08-56.064l36.288-8.256z m5.44 557.12c-0.512 28.608 3.712 100.992 18.24 112 12.736 9.6 49.92 10.752 70.912 7.232 13.376-2.24 27.392-0.768 36.352-7.232 19.392-14.4 11.392-77.632 19.008-106.624 32-5.632 22.144-47.488-3.648-55.872-35.648-11.776-46.528 49.728-14.528 55.872 0.512 20.992-2.88 85.248-12.736 92.864-19.52 11.392-65.152 5.376-85.504 0-7.744-28.224-9.344-63.872-11.776-98.24 20.352 0 48-1.152 60.928-10.112 20.224-14.144 38.4-89.6 42.752-122.112 51.52 19.008 102.976 38.016 154.496 56.896 21.12 7.872 53.376 13.632 64.512 31.232 8.64 13.504 7.488 36.224 11.008 54.144 7.616 40.512 20.096 119.872 8.128 162.496l-1.856 1.024-705.28-1.024c-1.728-1.28-0.576-0.128-1.856-1.856-10.368-16-1.472-88.64 1.856-108.224 5.248-31.36 3.072-84.224 17.28-106.496 11.2-17.6 43.392-23.488 64.512-31.232 51.456-18.88 103.04-37.888 154.496-56.896v1.856c29.504 65.792 13.184 131.328 112.704 130.304z m-190.848-20.224v50.496h-50.88v22.016h50.88v50.496h22.656v-50.496h50.944v-22.016h-50.944v-50.496H317.44z" p-id="2354"></path>
                     </svg>
@@ -112,9 +112,9 @@
                     <div class="" style="line-height: 35px;">
                         <div class="t2" style="display:inline-block;">{{item.ksmc.slice(0,4)}}</div>
                         <div class="t2" style="display:inline-block;">{{item.ysxm}}</div>
-                        <div class="t2" style="display:inline-block;min-width: 50px;">{{item[dateChoose.letter]}}</div>
-                        <div class="t2" style="display:inline-block;min-width: 40px;" v-if="isToday">余{{item.xhs-item.ygs}}</div>
-                        <div class="t2"  style="display:inline-block;min-width: 40px;" v-if="!isToday">余{{item.xys-item.ygs}}</div>
+                        <div class="t2" style="display:inline-block;min-width: 30px;">{{item[dateChoose.letter]}}</div>
+                        <div class="t2" style="display:inline-block;min-width: 30px;" v-if="isToday">余{{item.xhs-item.ygs}}</div>
+                        <div class="t2"  style="display:inline-block;min-width: 30px;" v-if="!isToday">余{{item.xys-item.ygs}}</div>
                     </div>
                     <div class="weekText">
                         <span style="white-space: nowrap;">{{item.xmmc.slice(0,4)}}({{item.zy?'一':''}}{{item.ze?'、二':''}}{{item.zs?'、三':''}}{{item.zsi?'、四':''}}{{item.zw?'、五':''}}{{item.zl?'、六':''}}{{item.zr?'、日':''}})</span>
@@ -128,7 +128,7 @@
                         <!-- <span>)</span> -->
                     </div>
                 </div>
-                <div style="width:60px;text-align: center;"  @click="register(item)" >
+                <div style="width:50px;text-align: center;"  @click="register(item)" >
                     <div style="line-height: 30px;color:rgb(62, 187, 170);">
                         挂号
                     </div>
@@ -302,6 +302,7 @@ export default {
             }
             console.log(item);
             let obj = {
+                    jgid:this.$route.query.jgid,
                     id:item.id,
                     ksmc:item.ksmc,
                     ysxm:item.ysxm?item.ysxm:'所有',

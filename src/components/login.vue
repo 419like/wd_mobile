@@ -84,7 +84,7 @@ export default {
                             res.appuser[0].userNum = loginObj.userNum;
                             res.appuser[0].password = loginObj.password;
                             this.$store.commit('setAppUserInfo',res.appuser[0]);
-                            this.goback();
+                            history.go(0);
                         }
                     })
             }

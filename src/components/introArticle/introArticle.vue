@@ -16,58 +16,60 @@
 import '@/assets/css/quill.core.css';
 export default {
     data() {
-            return {
-                article: {
-                    text: '文章'
-                },
-                items: [],
-                info:{},
-                type:'',
-            }
-        },
-        methods: {
-            loadArticle(item){
-                var params = {
-                    xgid:item.xgjgid,
-                    lx:item.lx
-                }
-                this.api.getIntro(params).then(
-                    res => {
-                        debugger
-                        console.log(res);
-                        let data = res.data;
-                        if (data.length) {
-                            data = data[0];
-                            data.nr = decodeURIComponent(data.nr)
-                            if(data.nr.indexOf('<')<0){
-                                data.nr = decodeURIComponent(data.nr)
-                            }
-                        } else {
-                            data = {
-                                nr: '',
-                                id: '',
-                                startTime: ''
-                            }
-                        }
-                        this.article = data;
-                    }
-                );
-            }
-        },
-        components: {
-
-        },
-        mounted() {
-            this.loadArticle(this.$route.query);
-            this.type = this.$route.query.lx;
-            this.$store.commit('setPageTitle',this.$route.query.title);
+        return {
+            article: {
+                text: '文章'
+            },
+            items: [],
+            info: {},
+            type: '',
         }
+    },
+    methods: {
+        loadArticle(item) {
+            var params = {
+                xgid: item.xgjgid,
+                lx: item.lx
+            }
+            this.api.getIntro(params).then(
+                res => {
+                    debugger
+                    console.log(res);
+                    let data = res.data;
+                    if (data.length) {
+                        data = data[0];
+                        data.nr = decodeURIComponent(data.nr)
+                        if (data.nr.indexOf('<') < 0) {
+                            data.nr = decodeURIComponent(data.nr)
+                        }
+                    } else {
+                        data = {
+                            nr: '',
+                            id: '',
+                            startTime: ''
+                        }
+                    }
+                    this.article = data;
+                }
+            );
+        }
+    },
+    components: {
+
+    },
+    mounted() {
+        this.loadArticle(this.$route.query);
+        this.type = this.$route.query.lx;
+        this.$store.commit('setPageTitle', this.$route.query.title);
+    }
 }
+
 </script>
 <style scoped>
-.acticleBox{
-    width:100%;
+.acticleBox {
+    width: 100%;
 }
+
 .borderB {
     border-bottom: 1px solid #CCCCCC
 }
@@ -98,4 +100,5 @@ export default {
     width: 100%;
     height: 150px;
 }
+
 </style>

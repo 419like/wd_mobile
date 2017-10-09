@@ -5,8 +5,8 @@ import store from '@/store'
 // axios.defaults.timeout = 5000;
 // axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
 // axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
-axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
-// axios.defaults.baseURL = 'http://tfxq.jw028.cn:7080/hisapi';
+// axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
+axios.defaults.baseURL = 'http://tfxq.jw028.cn:7080/hisapi';
 // axios.defaults.baseURL = 'http://192.168.1.84:8080/wdphis/';
 
 console.log(window.config.rootUrl);
@@ -75,17 +75,23 @@ export function fetch(url, params, config) {
 }
 
 export default {
+  /*
+   * 支付成功，通知后台，写入his
+   */
+  ConfirmPayment(params) {
+    return fetch('/rest/commitData/080401/5', params) 
+  },
    /**
     * 订单取消
     */
   OrderCancel(params) {
-    return fetch('/rest/commitData/080401/2', params) 
+    return fetch('/rest/commitData/080401/6', params) 
   },
    /**
     * 订单更新
     */
   OrderUpdate(params) {
-    return fetch('/rest/commitData/080401/2', params) 
+    return fetch('/rest/commitData/080401/4', params) 
   },
   /**
     * 订单生成
@@ -100,7 +106,19 @@ export default {
     return fetch ('/rest/queryDataBySql/080401/5', params);
   },
   /**
-   * 待支付记录
+   * 支付记录明细
+   */
+  GetZfjlmx(params) {
+    return fetch('/rest/queryDataBySql/080401/7', params)   
+  },
+  /**
+   * 支付记录
+   */
+  GetZfjl(params) {
+    return fetch('/rest/queryDataBySql/080401/6', params)   
+  },
+  /**
+   * 待支付记录  存储过程查询，并做相关处理 
    */
   GetDzfjl(params) {
     return fetch('/rest/commitData/080401/3', params)   
@@ -114,7 +132,7 @@ export default {
   /**
     * 微信支付
     */
-  getWxpay() {
+  getWxpay(params) {
 
   },
   /**

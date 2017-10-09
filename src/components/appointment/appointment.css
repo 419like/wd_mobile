@@ -44,7 +44,7 @@
 
 .topLine1 {
     border-top: 2px solid #CCCCCC;
-    height:calc(100% - 40px - 52px);
+    height:calc(100% - 40px - 54px);
     overflow-y: auto;
 }
 .infoText2 {
@@ -156,7 +156,7 @@
 	color:#333333;
 	text-align: center;
     margin-right:5px;
-    min-width: 56px;
+    min-width: 50px;
 }
 .t0{
 	display: inline-block;

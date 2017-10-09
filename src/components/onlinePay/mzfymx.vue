@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div class="footer">
-			<span @click="toMain">返回</span>
+			<span @click="back">返回</span>
 		</div>
 	</div>
 </template>
@@ -43,6 +43,9 @@
 			},
 			toMain() {
 				this.$router.push({'path':'/index/home'})
+			},
+			back() {
+				this.$router.go(-1);
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 				 v-for="(item, index) in navList">{{item.mc}}</li>
 			</ul>
 		</div>
-		<mt-loadmore  @top-status-change="handleTopChange" :autoFill=false :top-method="loadTop"  ref="loadmoreParent">
+		<!-- <mt-loadmore  @top-status-change="handleTopChange" :autoFill=false :top-method="loadTop"  ref="loadmoreParent"> -->
 			<div class="contain" ref="contain">	
 				<div  class="cfjf margin48" v-if="navCheckList[0]">
 					<ul>
@@ -22,7 +22,7 @@
 						<div class="detail">
 							<div @click="checkAll"  class="checkall-wrap">
 								<span class="circle" :class="{checked:iscffyAllCheck}">
-								</span><span class="ckall">全选</span>
+								</span><span class="ckall">{{iscffyAllCheck?'取消全选':'全选'}}</span>
 							</div>
 							共选择<span class="cfnum">{{xfcount}}</span>张处方 <span class="totalCost">￥{{jfzje|formatAmount}}</span>
 						</div>
@@ -64,11 +64,11 @@
 					</div>
 				</div>
 				<div class="record margin48" v-if="navCheckList[2]">
-					<mt-loadmore  :autoFill=false :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+					<mt-loadmore  :autoFill=false :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
 					  	<ul>
-						    <li @click="showDdxx(item, index)" v-for="(item, index) in zflList">
-								<p class="p1">订单号:{{item.no}}<span class="right">￥{{item.je}}</span></p>
-								<p class="p2">日期:{{item.date}}<span class="right">方式: {{item.fs}}</span></p>
+						    <li @click="showDdxx(item, index)" v-for="(item, index) in zfjlList">
+								<p class="p1">订单号:{{item.out_trade_no}}<span class="right">￥{{item.total_fee}}</span></p>
+								<p class="p2">创建日期:{{item.cjsj}}<span class="right">方式: {{item.zffs}}</span></p>
 								<ul @click.stop v-if="zfjlCheckList[index]">
 									<li v-if="item.mx" v-for="subItem in item.mx">
 										<p>No:{{subItem.no}}&nbsp;&nbsp;{{subItem.lx}}<span class="right">￥{{subItem.je}}</span></p>
@@ -107,11 +107,11 @@
 					</div>
 				</div>
 			</div>
-			<div slot="top" class="mint-loadmore-top">
+			<!-- <div slot="top" class="mint-loadmore-top">
 		       <span  v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop'  }">↓</span>
 		       <span v-show="topStatus === 'loading'">Loading...</span>
-		    </div>
-		</mt-loadmore>
+		    </div> -->
+		<!-- </mt-loadmore> -->
 		<zffs v-if="chooseZffsShow" @confirmZffs="selectZffs"></zffs>
 	</div>
 </template>
@@ -124,12 +124,15 @@
 		name: 'onlinePay',
 		data() {
 			return {
-				jgid: '',
-				isAllLoad: false,
+				// jgid: '',
+				// brid: '',
 				topStatus: '',
+				isAllLoad: false,
 				allLoaded: false, // 是否下拉加载完毕
 				iscffyAllCheck: false, // 处方费用是否已全选
 				chooseZffsShow: false,
+				pagesize: 10,
+				pageNumber: 1,
 				navList: [{"mc":"待缴费"},{"mc":"待支付"},{"mc":"支付记录"},{"mc":"异常处理"}],
 				navCheckList:[true, false, false, false],
 				/*待缴费*/
@@ -139,9 +142,7 @@
 				dzfList: [],
 				dzfCheckList: [],
 				/*支付记录*/
-				zflList: [{"no":"3432473487324324","je":"48.08","fs":"微信","date":"2017-09-21",
-				mx:[{"no":"201708230001","lx":"西药","je":"25.00","zxks":"全科","ysxm":"敬和荣","zz":"流行性感冒"},{"no":"201708230001","lx":"西药","je":"23.08","zxks":"全科","ysxm":"敬和荣","zz":"流行性感冒"}]},{"no":"3432473487324324","je":"25.00","fs":"支付宝","date":"2017-09-21",
-				mx:[{"no":"201708230001","lx":"西药","je":"25.00","zxks":"全科","ysxm":"敬和荣","zz":"流行性感冒"}]}],
+				zfjlList: [],
 				zfjlCheckList: [true,false,false,false],
 				/*异常记录*/
 				ycjlList: [{"no":"3432473487324324","je":"48.08","fs":"微信","date":"2017-09-19"},
@@ -153,15 +154,15 @@
 		},
 		created() {
 			this.jgid = this.$route.query.jgid
-			let handerUser = this.$store.getters.getHandleUser
-			this.$store.commit('setPageTitle',`医疗服务记录 -- ${handerUser.xm}`);
-			this.brid = handerUser.hzid;
-			this.loadCffyxx();
-		},
-		mounted() {
-			this.$nextTick(() => {
-	
-			});
+			console.log(this.jgid)
+			setTimeout(() => {
+				let handerUser = this.$store.getters.getHandleUser
+				console.log(handerUser)
+				this.$store.commit('setPageTitle',`医疗服务记录 -- ${handerUser.hzxm}`);
+				this.brid = handerUser.hzid;
+				this.loadCffyxx();
+			},0)
+			
 		},
 		computed: {
 			/*处方缴费总金额*/
@@ -178,7 +179,7 @@
 				this.djfCheckList.forEach((v, i) => {
 					if (v) count++;
 				});
-				if (count === this.djfList.length) this.iscffyAllCheck = true;
+				if (count && count === this.djfList.length) this.iscffyAllCheck = true;
 					else this.iscffyAllCheck = false;
 				return count;
 			},
@@ -198,7 +199,8 @@
 		    },
 		    // 下拉事件触发方法
 			loadTop() {
-				this.$refs.loadmoreParent.onTopLoaded();
+				// return;
+				this.$refs.loadmore.onTopLoaded();
 				this.dropRefresh();
 			},
 			// 刷新数据
@@ -296,7 +298,20 @@
 			},
 			// 加载支付记录信息
 			loadZfjlxx() {
-
+				let param = {
+					brid: '1406088',
+					jgid: '70',
+					rn_s: this.pagesize * (this.pageNumber - 1) + 1 + '',
+					rn_e: this.pagesize * this.pageNumber + ''
+				};
+				this.dzfCheckList = [];
+				this.api.GetZfjl(param).then(res => {
+				if (res.code == 1) {
+					console.log(res)
+					this.zfjlList.push(...res.data)
+					this.pageNumber ++;
+				} 
+				}, err => {})
 			},
 			// 加载异常订单
 			loadYcxx() {
@@ -315,6 +330,13 @@
 					this.loadCffyxx();
 				} else if (index === 1) {
 					this.loadDzfxx();
+				} else if (index === 2) {
+					this.pageNumber = 1;
+					this.zfjlList = [];
+					this.zfjlCheckList = [true];
+					this.loadZfjlxx();
+				} else if (index === 3) {
+
 				}
 			},
 			// 处方费用选择
@@ -367,11 +389,9 @@
 				let ckIndex = this.dzfCheckList.findIndex(v => !!v);
 				console.log(ckIndex)
 				let param = {
-					jlxx: [{
-						id: this.dzfList[ckIndex].id,
-						mxxx: []
-					}]
+					id: this.dzfList[ckIndex].id,
 				}
+				console.log(param)
 				this.api.OrderCancel(param)
 				.then(res => {
 					if (res.code == '1') {
@@ -385,19 +405,25 @@
 			},
 			// 待支付确认缴费
 			confirmDd() {
+				return;
 				let ckIndex = this.dzfCheckList.findIndex(v => !!v);
 				if (ckIndex === -1) return;
 				if (this.dzfList[ckIndex].zt != '0') return;
-				let Daje = this.dzfList[ckIndex].total_fee;
+				let data = this.dzfList[ckIndex];
+				let param = {
+					id: data.id
+				}
+				this.api.ConfirmPayment(param)
+				 	.then(res => {
+			 			console.log(res)
+				 	}, err => {
+				 		console.log(err)
+				 	})
 			},
 			// 异常记录确认退费
 			confirmYctf() {
 				let ckIndex = this.ycjlCheckList.findIndex(v => !!v);
 				if (ckIndex === -1) return;
-			},
-			// load更多支付记录
-			loadZfjl() {
-
 			},
 			// 上拉加载
 			loadBottom() {
@@ -406,7 +432,19 @@
 			},	
 			// 展开关闭支付记录详情
 			showDdxx(item, index) {
-				this.$set(this.zfjlCheckList, index, !this.zfjlCheckList[index]);
+				let param = {
+					id: item.id
+				}
+				item.mx = [];
+
+				this.api.GetZfjlmx(param)
+					.then(res => {
+						console.log(res)
+						this.$set(this.zfjlList, index, item.push({}));
+						// this.$set(this.zfjlCheckList, index, !this.zfjlCheckList[index]);
+					})
+				
+				// this.$set(this.zfjlCheckList, index, !this.zfjlCheckList[index]);
 			}
 		},
 		components:{
@@ -458,7 +496,7 @@
 .waitpay .footer{position: absolute; width: 100%;bottom: 0; height: 60px;background-color: #fff} 
 .waitpay .btn-wrap{width: 100%; text-align: center}
 .waitpay .btn-wrap div{display: inline-block;width:100px;padding: 5px 15px}
-.waitpay{padding-bottom: 50px}
+.waitpay{padding-bottom: 60px}
 .waitpay li{position: relative; padding: 10px 0 2px 2px; border-bottom: 1px solid #ccc}
 .waitpay li p{box-sizing: border-box; height: 24px; line-height: 24px; margin-left: 30px; padding:2px 4px}
 .waitpay li p:last-child{display: inline-block;width: 85%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}

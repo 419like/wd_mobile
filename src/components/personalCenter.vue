@@ -130,9 +130,8 @@ export default {
                 })
             },
             showInfo() {
-                let obj = JSON.parse(window.localStorage.getItem("userInfo"));
                 let params = {
-                    id:obj.userId,
+                    id:this.$store.getters.userId,
                 }
                 this.api.getUserInfo(params)
                 .then(
@@ -186,7 +185,6 @@ export default {
                 this.personConfigVisible = false;
             },
             showTreatmentCard(){
-                
                 this.$router.push({
                     path:'/treatmentCardBind',
                     query:{name:this.appUserInfo.xm,idCard:this.appUserInfo.sfzh}
@@ -201,6 +199,7 @@ export default {
         created() {
         },
         mounted() {
+            debugger
             this.$store.commit('setPageTitle',"个人信息");
             this.$store.commit('defineBackFun',this.backIndex)
             if(!this.handleUser){

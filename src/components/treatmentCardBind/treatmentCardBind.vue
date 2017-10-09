@@ -183,7 +183,7 @@ export default {
         },
         mounted() {
             this.card = this.$route.query;
-            if(!this.$store.getters.userId){
+            if(!this.$store.getters.loginState){
                 this.$router.push({
                     path:'/index/login'
                 })

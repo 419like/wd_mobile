@@ -63,6 +63,7 @@ const store = new Vuex.Store({
                         return;
                 }
             }
+            window.localStorage.setItem("boundList",JSON.stringify(state.boundList));
         },
         setHandleUser(state,value){
             window.localStorage.setItem("handleUser",JSON.stringify(value));
@@ -94,7 +95,12 @@ const store = new Vuex.Store({
         loginState(state, getters){
             let appUserInfo = JSON.parse(window.localStorage.getItem("appUserInfo"));
             state.appUserInfo = appUserInfo;
-            let loginState = !!(state.appUserInfo.userId);
+            let loginState;
+            if(state.appUserInfo&&state.appUserInfo.userId){
+                loginState = state.appUserInfo.userId;
+            }else{
+                loginState = false;
+            }
             return loginState;
         },
     	userNum(state,getters){
@@ -104,7 +110,9 @@ const store = new Vuex.Store({
             return JSON.parse(window.localStorage.getItem("userInfo"));
         },
         userId(state, getters){
-            let userId = state.userInfo.userId;
+            debugger
+            let userInfo = JSON.parse(window.localStorage.getItem("appUserInfo"))
+            let userId = userInfo.userId?userInfo.userId:'';
             return userId;
         },
         userInfo(state, getters){
@@ -117,16 +125,26 @@ const store = new Vuex.Store({
         },
         getBoundList(state,getters){
             let boundList = JSON.parse(window.localStorage.getItem("boundList"));
+            if(!boundList){
+                boundList = [];
+            }
             state.boundList = boundList;
             return state.boundList;
         },
         getHandleUser(state,getters){
             let handleUser = JSON.parse(window.localStorage.getItem("handleUser"));
+            if(!handleUser){
+                handleUser = {};
+            }
             state.handleUser = handleUser;
             return state.handleUser;
         },
         getAppUserInfo(state,getters){
             let appUserInfo = JSON.parse(window.localStorage.getItem("appUserInfo"));
+            if(!appUserInfo){
+                appUserInfo = {};
+            }
+            debugger
             state.appUserInfo = appUserInfo;
             return appUserInfo;
         },

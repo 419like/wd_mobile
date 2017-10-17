@@ -20,7 +20,7 @@
             </div>
         </div>
         <div>
-            <div class="flex">
+            <div class="flex" v-if="loginState">
                 <div class="flex2 title">人员绑定</div>
                 <div class="flex2 center"></div>
                 <div class="flex1 center addIcon" @click="showTreatmentCard">新增</div>
@@ -58,7 +58,7 @@
         </div>
         <div class="footBar"></div>
         <mt-popup class="holePage" v-model="personinfoVisible" position="right">
-            <personinfo @close="closeInfo" v-model="userInfo"/>
+            <personinfo ref="personinfo" @close="closeInfo"/>
         </mt-popup>
         <mt-popup class="holePage" v-model="personConfigVisible" position="right">
             <person-config @close="closeConfig" />
@@ -115,6 +115,7 @@ export default {
                 debugger
                 this.$store.commit('loginOut');
                 this.$emit('close');
+                window.history.go(0);
             },
             editInfo() {
                 let _this = this;
@@ -170,8 +171,9 @@ export default {
                                 userInfo.holeAreaArray = holeAreaArray;
                                 userInfo.currentLevel = res.data.length;
                                 this.userInfo = userInfo;
-                                
                                 this.personinfoVisible = true;
+                                debugger
+                                this.$refs.personinfo.init(this.userInfo);
                             }
                         )
             },

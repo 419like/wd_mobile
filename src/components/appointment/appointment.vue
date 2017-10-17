@@ -7,7 +7,7 @@
                 <div class="selectItem" @click="departmentCondition('');">
                     <div>所有</div>
                 </div>
-                <div class="selectItem"  v-for="item in departmentSelectList" @click="departmentCondition(item.mc);">
+                <div class="selectItem" v-for="item in departmentSelectList" @click="departmentCondition(item.mc);">
                     <div>{{item.mc}}</div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="selectItem" @click="doctorCondition('');">
                     <div>所有</div>
                 </div>
-                <div class="selectItem"  v-for="item in doctorSelectList" @click="doctorCondition(item.mc);">
+                <div class="selectItem" v-for="item in doctorSelectList" @click="doctorCondition(item.mc);">
                     <div>{{item.mc}}</div>
                 </div>
             </div>
@@ -46,19 +46,20 @@
             </div>
         </div>
         <div style="display:flex;width:100%;">
-                <div style="width:13%;" :class="{'choose':(!dateChoose.time)}" @click="clearDate();">
-                    <div class="dateText1">查看</div>
-                    <div class="dateText2">排班</div>
-                </div>
-                <div style="width:87%;">
-                    <div style="display:flex;width:100%;">
-                        <div class="dateBox" :class="{'choose':(item==dateChoose)}" v-for="(item,index) in dateArray" @click="chooseDate(item,index);">
+            <div style="width:40px;" :class="{'choose':(!dateChoose.time)}" @click="clearDate();">
+                <div class="dateText1">查看</div>
+                <div class="dateText2">排班</div>
+            </div>
+            <div style="width:87%;">
+                <div style="width:100%;overflow-x:auto;display:flex;">
+                    <div style="width:40px;" class="" :class="{'choose':(item==dateChoose)}" v-for="(item,index) in dateArray" @click="chooseDate(item,index);">
+                        <div style="width:40px;">
                             <div class="dateText1">{{item.date}}</div>
                             <div class="dateText2">{{item.day}}</div>
                         </div>
                     </div>
                 </div>
-                
+            </div>
         </div>
         <div class="topLine1">
             <div v-if="!dateChoose" v-for="item in evenScheduleList" class="flex doctorItem" @click="selectTimeToast()">
@@ -97,7 +98,6 @@
                         <span :class="{current:(dateChoose.day=='周日')}">{{item.zr?item.zr:''}}</span>
                     </div>
                     <div style="height:5px;">
-                        
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                         <div class="t2" style="display:inline-block;">{{item.ysxm}}</div>
                         <div class="t2" style="display:inline-block;min-width: 30px;">{{item[dateChoose.letter]}}</div>
                         <div class="t2" style="display:inline-block;min-width: 30px;" v-if="isToday">余{{item.xhs-item.ygs}}</div>
-                        <div class="t2"  style="display:inline-block;min-width: 30px;" v-if="!isToday">余{{item.xys-item.ygs}}</div>
+                        <div class="t2" style="display:inline-block;min-width: 30px;" v-if="!isToday">余{{item.xys-item.ygs}}</div>
                     </div>
                     <div class="weekText">
                         <span style="white-space: nowrap;">{{item.xmmc.slice(0,4)}}({{item.zy?'一':''}}{{item.ze?'、二':''}}{{item.zs?'、三':''}}{{item.zsi?'、四':''}}{{item.zw?'、五':''}}{{item.zl?'、六':''}}{{item.zr?'、日':''}})</span>
@@ -128,7 +128,7 @@
                         <!-- <span>)</span> -->
                     </div>
                 </div>
-                <div style="width:50px;text-align: center;"  @click="register(item)" >
+                <div style="width:50px;text-align: center;" @click="register(item)">
                     <div style="line-height: 30px;color:rgb(62, 187, 170);">
                         挂号
                     </div>
@@ -162,7 +162,9 @@
                     </div>
                     <div class="flex">
                         <div>上下午：</div>
-                        <div class="box1"><mt-switch class="scaleY" v-model="timeValue" @change="timeChange()"></mt-switch></div>
+                        <div class="box1">
+                            <mt-switch class="scaleY" v-model="timeValue" @change="timeChange()"></mt-switch>
+                        </div>
                         <div>{{timeValue?'上午':'下午'}}</div>
                     </div>
                     <div>
@@ -191,8 +193,8 @@ let doctorList = [];
 export default {
     data() {
         return {
-            ableState:'',
-            doctorSelectList:[{text:'张医生'},{text:'张医生'}],
+            ableState: '',
+            doctorSelectList: [{ text: '张医生' }, { text: '张医生' }],
             dateValue: '',
             pickerValue: '',
             doctor: '',
@@ -219,68 +221,68 @@ export default {
             dateChoose: '',
             scheduleList: [],
             chargeChoose: {},
-            timeValue:true,
-            doctorConditionCrt:'',
-            appointmentConditionCrt:'',
-            departmentConditionCrt:'',
-            isToday:false,
+            timeValue: true,
+            doctorConditionCrt: '',
+            appointmentConditionCrt: '',
+            departmentConditionCrt: '',
+            isToday: false,
         }
     },
     methods: {
-        selectTimeToast(){
+        selectTimeToast() {
             this.$toast('请选择预约日期。');
         },
-        clearCondition(){
+        clearCondition() {
             let mc = '';
             this.departmentConditionCrt = mc;
             this.appointmentConditionCrt = mc;
             this.doctorConditionCrt = mc;
         },
-        departmentCondition(mc){
+        departmentCondition(mc) {
             this.clearCondition();
             this.departmentConditionCrt = mc;
             this.outSelectCondition();
         },
-        appointmentCondition(mc){
+        appointmentCondition(mc) {
             this.clearCondition();
             this.appointmentConditionCrt = mc;
             this.outSelectCondition();
         },
-        doctorCondition(mc){
+        doctorCondition(mc) {
             this.clearCondition();
             this.doctorConditionCrt = mc;
             this.outSelectCondition();
         },
-        outSelectCondition(){
+        outSelectCondition() {
             this.ableState = '';
         },
-        clearDate(){
+        clearDate() {
             this.clearCondition();
             this.loadDepartmentList();
             this.dateChoose = '';
         },
-        appointmentListSelect(){
-            if(this.ableState == 'appointmentSelect'){
+        appointmentListSelect() {
+            if (this.ableState == 'appointmentSelect') {
                 this.ableState = '';
-            }else{
+            } else {
                 this.ableState = 'appointmentSelect'
             }
         },
-        departmentSelect(){
-            if(this.ableState == 'departmentSelect'){
+        departmentSelect() {
+            if (this.ableState == 'departmentSelect') {
                 this.ableState = '';
-            }else{
+            } else {
                 this.ableState = 'departmentSelect'
             }
         },
-        doctorSelect(){
-            if(this.ableState == 'doctorSelect'){
+        doctorSelect() {
+            if (this.ableState == 'doctorSelect') {
                 this.ableState = '';
-            }else{
+            } else {
                 this.ableState = 'doctorSelect'
             }
         },
-        timeChange(){
+        timeChange() {
             console.log(this.timeValue);
         },
         cancelCharge() {
@@ -289,31 +291,51 @@ export default {
         register(item) {
             // this.chargeVisible = true;
             // this.chargeChoose = item;
-            if(this.isToday){
-                if(item.xhs-item.ygs==0){
+            if (!this.$store.getters.loginState) {
+                this.$router.push({
+                    name: 'login',
+                })
+                return;
+            }
+            let patient = this.$store.getters.getHandleUser;
+            if (!patient.hzid) {
+                this.$messagebox.confirm('', {
+                    message: '是否去绑定就医人员？',
+                    title: '提示',
+                    confirmButtonText: '去绑定',
+                    cancelButtonText: '留在本页'
+                }).then(() => {
+                    this.$router.push({
+                        name: 'personalCenter',
+                    })
+                });
+                return;
+            }
+            if (this.isToday) {
+                if (item.xhs - item.ygs == 0) {
                     this.$toast('选择的号别无剩余号。');
                     return;
                 }
-            }else{
-                if(item.xys-item.ygs==0){
+            } else {
+                if (item.xys - item.ygs == 0) {
                     this.$toast('选择的号别无剩余号。');
                     return;
                 }
             }
             console.log(item);
             let obj = {
-                    jgid:this.$route.query.jgid,
-                    id:item.id,
-                    ksmc:item.ksmc,
-                    ysxm:item.ysxm?item.ysxm:'所有',
-                    xmmc:item.xmmc,
-                    shortDay:this.dateChoose.shortDay,
-                    day:this.dateChoose.day,
-                    ghfy:item.ghfy,
-                }
+                jgid: this.$route.query.jgid,
+                id: item.id,
+                ksmc: item.ksmc,
+                ysxm: item.ysxm ? item.ysxm : '所有',
+                xmmc: item.xmmc,
+                shortDay: this.dateChoose.shortDay,
+                day: this.dateChoose.day,
+                ghfy: item.ghfy,
+            }
             this.$router.push({
-                path:'/index/registerConfirm',
-                query:obj
+                path: '/index/registerConfirm',
+                query: obj
             });
 
         },
@@ -365,8 +387,8 @@ export default {
                 ksid: "",
                 jgid: this.$route.query.jgid
             }
-            if(time){
-                params.yysj=time;
+            if (time) {
+                params.yysj = time;
             }
             this.api.getWorkList(params).then(
                 res => {
@@ -375,36 +397,36 @@ export default {
                     this.scheduleList = res.data;
                     this.selectConfig.options = [];
                     debugger
-                    if(!time){
+                    if (!time) {
                         let departmentSelectList = [];
                         let appointmentSelectList = [];
                         let doctorSelectList = [];
                         for (var i = 0; i < res.data.length; i++) {
                             let item = res.data[i];
-                            if(!item.ygs){
+                            if (!item.ygs) {
                                 item.ygs = 0;
                             }
-                            if(!item.xhs){
+                            if (!item.xhs) {
                                 item.ygs = 0;
                             }
-                            if(!item.xys){
+                            if (!item.xys) {
                                 item.ygs = 0;
                             }
-                            if(res.data[i].ksmc){
-                                departmentSelectList = addToList(departmentSelectList,{
-                                    mc:res.data[i].ksmc,
-                                    id:res.data[i].ksid
+                            if (res.data[i].ksmc) {
+                                departmentSelectList = addToList(departmentSelectList, {
+                                    mc: res.data[i].ksmc,
+                                    id: res.data[i].ksid
                                 })
                             }
-                            if(res.data[i].ysxm){
-                                doctorSelectList = addToList(doctorSelectList,{
-                                    mc:res.data[i].ysxm,
-                                    id:res.data[i].ysid
+                            if (res.data[i].ysxm) {
+                                doctorSelectList = addToList(doctorSelectList, {
+                                    mc: res.data[i].ysxm,
+                                    id: res.data[i].ysid
                                 })
                             }
-                            if(res.data[i].xmmc){
-                                appointmentSelectList = addToList(appointmentSelectList,{
-                                    mc:res.data[i].xmmc
+                            if (res.data[i].xmmc) {
+                                appointmentSelectList = addToList(appointmentSelectList, {
+                                    mc: res.data[i].xmmc
                                 })
                             }
                             item.ghfy = Number(item.ghfy).toFixed(2);
@@ -417,16 +439,17 @@ export default {
                         this.appointmentSelectList = appointmentSelectList;
                         this.doctorSelectList = doctorSelectList;
                     }
-                    
+
                 })
         },
         sureCharge(item) {
-            if(this.chargeChoose.ghfy!='0.00'){
+            debugger
+            if (this.chargeChoose.ghfy != '0.00') {
                 this.$messagebox('收费项目尚未建设，请谅解。')
                 return;
             }
-            if(!this.timeValue){
-                this.dateChoose.time = this.dateChoose.shortDay+' 15:00:00'
+            if (!this.timeValue) {
+                this.dateChoose.time = this.dateChoose.shortDay + ' 15:00:00'
             }
             let params = {
                 brxx: {
@@ -436,18 +459,18 @@ export default {
                     ghapid: this.chargeChoose.id,
                     jsfs: '现金',
                     ysje: this.chargeChoose.ghfy,
-                    yysj:this.dateChoose.time
+                    yysj: this.dateChoose.time
                 }
             }
             console.log(params);
             this.api.register(params)
                 .then(res => {
-                    if (res.code=='1') {
+                    if (res.code == '1') {
                         this.$toast('挂号成功！');
-                    }else{
-                        this.$toast('挂号失败,'+res.msg);
+                    } else {
+                        this.$toast('挂号失败,' + res.msg);
                     }
-                    this.$set(this.$data.chargeChoose, 'number',res.no);
+                    this.$set(this.$data.chargeChoose, 'number', res.no);
                     console.log(res);
                 })
         },
@@ -455,7 +478,7 @@ export default {
             let dayArr = ['日', '一', '二', '三', '四', '五', '六']
             let letterArr = ['zr', 'zy', 'ze', 'zs', 'zsi', 'zw', 'zl']
             let arr = [];
-            let days = 7;
+            let days = 60;
             let today = new Date().getTime();
             for (var i = 0; i < days; i++) {
                 let tDay = today + i * 24 * 60 * 60 * 1000;
@@ -471,7 +494,7 @@ export default {
                 }
                 let day = thatDay.getDay();
                 let dateObj = {
-                    letter:letterArr[day],
+                    letter: letterArr[day],
                     date: m + '_' + d,
                     day: '周' + dayArr[day],
                     time: year + "-" + m + "-" + d + " " + "09:00:00",
@@ -481,34 +504,34 @@ export default {
             }
             return arr;
         },
-        chooseDate(item,index) {
+        chooseDate(item, index) {
             debugger
-            if(index==0){
+            if (index == 0) {
                 this.isToday = true;
-            }else{
+            } else {
                 this.isToday = false;
             }
             this.dateChoose = item;
             this.loadDepartmentList(item.time)
         },
-        loadDepartmentSelectList(){
+        loadDepartmentSelectList() {
             let params = {
-                jgid:this.$route.query.jgid
+                jgid: this.$route.query.jgid
             }
             this.api.getDepartmentSelectList(params)
-            .then(
-                    res=>{
+                .then(
+                    res => {
                         this.departmentSelectList = res.data;
                     }
                 )
         },
-        loadDoctorSelectList(){
+        loadDoctorSelectList() {
             let params = {
-                jgid:this.$route.query.jgid
+                jgid: this.$route.query.jgid
             }
             this.api.getDoctorSelectList(params)
-            .then(
-                    res=>{
+                .then(
+                    res => {
                         this.doctorSelectList = res.data;
                     }
                 )
@@ -526,66 +549,73 @@ export default {
         let user = this.$store.getters.getAppUserInfo;
         let his = this.$store.getters.getCurrentHis;
         debugger
-        this.$store.commit('setPageTitle',(his.jc+'-'+(user.xm?user.xm:'未登录')));
+        this.$store.commit('setPageTitle', (his.jc + '-' + (user.xm ? user.xm : '未登录')));
     },
-    computed:{
-        evenScheduleList(){
-            return this.scheduleList.filter((schedule)=>{
-                if(this.doctorConditionCrt){
-                    if(schedule.ysxm==this.doctorConditionCrt)
-                    return schedule;
-                }else if(this.departmentConditionCrt){
-                    if(schedule.ksmc==this.departmentConditionCrt)
-                    return schedule;
-                }else if(this.appointmentConditionCrt){
-                    if(schedule.xmmc==this.appointmentConditionCrt)
-                    return schedule;
-                }else{
+    computed: {
+        evenScheduleList() {
+            return this.scheduleList.filter((schedule) => {
+                if (this.doctorConditionCrt) {
+                    if (schedule.ysxm == this.doctorConditionCrt)
+                        return schedule;
+                } else if (this.departmentConditionCrt) {
+                    if (schedule.ksmc == this.departmentConditionCrt)
+                        return schedule;
+                } else if (this.appointmentConditionCrt) {
+                    if (schedule.xmmc == this.appointmentConditionCrt)
+                        return schedule;
+                } else {
                     return schedule;
                 }
             })
         }
     }
 }
-function addToList(list,item){
+
+function addToList(list, item) {
     for (var i = 0; i < list.length; i++) {
-        if(list[i].mc == item.mc){
+        if (list[i].mc == item.mc) {
             return list;
         }
     }
     list.push(item);
     return list;
 }
+
 </script>
 <style scoped>
-.weekText{
+.weekText {
     display: inline-block;
 }
-.selectBlock{
-    width:100%;
+
+.selectBlock {
+    width: 100%;
     margin-bottom: 32px;
     padding-left: 16px;
 }
-.selectItem{
-    color:#3a3a3a;
+
+.selectItem {
+    color: #3a3a3a;
     /*background: #d7d7d7;*/
     text-align: center;
-    width:auto;
-    border:0px;
-    margin-right:10px;
+    width: auto;
+    border: 0px;
+    margin-right: 10px;
     display: inline-block;
 }
-.conditionSelect{
+
+.conditionSelect {
     border-top: 1px solid #E6E6E6;
     position: absolute;
-    top:80px;
-    left:0px;
+    top: 80px;
+    left: 0px;
     display: flex;
-    width:100%;
+    width: 100%;
     background: #d7d7d7;
 }
-.selected{
-    height:40px;
+
+.selected {
+    height: 40px;
     line-height: 40px;
 }
+
 </style>

@@ -132,7 +132,6 @@ export default {
                 }
                 this.api.GetHisList(params).then(
                     res=>{
-                        
                         console.log(res);
                         this.items = res.data;
                     }, err=>{
@@ -141,7 +140,7 @@ export default {
             }
         },
         mounted() {
-            this.$store.commit('setPageTitle',window.config.indexTitle);
+            this.$store.commit('setPageTitle',this.api.indexTitle);
             this.$store.commit('setBackBtn',false);
             this.loadHisList();
             this.loadNewsList();

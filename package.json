@@ -13,10 +13,12 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "ftp": "npm run build && node ftpUpload/index.js"
+    "ftp": "node ftpUpload/index.js",
+    "public": "npm run build && npm run ftp"
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-polyfill": "^6.26.0",
     "js-base64": "^2.1.9",
     "js-md5": "^0.4.2",
     "mint-ui": "^2.2.7",

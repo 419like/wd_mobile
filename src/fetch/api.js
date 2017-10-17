@@ -1,23 +1,11 @@
 import axios from 'axios'
 import store from '@/store'
+import sysConfig from '../../static/sysConfig/config.json'
 
-// axios 配置
-// axios.defaults.timeout = 5000;
-// axios.defaults.baseURL = 'http://125.69.67.12:7080/hisapi';
-// axios.defaults.baseURL = 'http://172.16.110.168:8080/testapi';
-// axios.defaults.baseURL = 'http://172.16.110.41:8080/testapi';
-axios.defaults.baseURL = 'http://tfxq.jw028.cn:7080/hisapi';
-// axios.defaults.baseURL = 'http://192.168.1.84:8080/wdphis/';
 
-console.log(window.config.rootUrl);
-if(window.config&&window.config.rootUrl){
-  axios.defaults.baseURL = window.config.rootUrl;
+if(sysConfig.rootUrl){
+  axios.defaults.baseURL = sysConfig.rootUrl;
 }
-
-
-
-
-
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
@@ -34,6 +22,24 @@ axios.interceptors.response.use((res) => {
 }, (error) => {
   return Promise.reject(error);
 });
+
+export function get(url) {
+  return new Promise((resolve, reject) => {
+    axios.get(url)
+    .then(function(response) {
+      console.log(response)
+      resolve(response.data);
+    })
+    .catch(function(error) {
+       console.log(error)
+      store.commit('maskShow', false)
+      if (error.message.indexOf('timeout')>=0) {
+        store.commit('systemMessage', '连接超时，请检查网络。');
+      }
+      reject(error);
+    });
+  })
+}
 
 export function fetch(url, params, config) {
   if (!config) {
@@ -75,11 +81,24 @@ export function fetch(url, params, config) {
 }
 
 export default {
+  indexTitle:sysConfig.indexTitle,
   /*
-   * 支付成功，通知后台，写入his
+   * 获取个人所有门诊费用详情
    */
-  ConfirmPayment(params) {
-    return fetch('/rest/commitData/080401/5', params) 
+  getMzfyAll(params) {
+    return fetch('/rest/queryDataBySql/080401/12', params) 
+  },
+  /*
+   * 获取个人所有门诊费用记录
+   */
+  getMzfyjl(params) {
+    return fetch('/rest/queryDataBySql/080401/11', params) 
+  },
+  /*
+   * 获取APPID
+   */
+  GetAppId(params) {
+    return fetch('/rest/queryDataBySql/080401/10', params) 
   },
    /**
     * 订单取消
@@ -98,6 +117,12 @@ export default {
     */
   OrderGeneration(params) {
     return fetch('/rest/commitData/080401/2', params) 
+  },
+  /**
+   * 异常订单
+   */
+  GetYcjl(params) {
+    return fetch ('/rest/queryDataBySql/080401/9', params);
   },
    /**
    * 门诊费用明细
@@ -130,16 +155,27 @@ export default {
     return fetch ('/rest/queryDataBySql/080401/4', params);
   },
   /**
-    * 微信支付
+    * 获取支付结果
     */
-  getWxpay(params) {
-
+  getResultPay(param) {
+    return fetch ('/rest/queryDataBySql/080401/8', params);
   },
   /**
-    * 支付宝支付
+    * 支付退款
+    * @params {JSON} 参数id
     */
-  getAlipay() {
-
+  payRefund(params) {
+   
+  },
+  /**
+    * 在线支付
+    * @params {JSON} 参数id,return_url
+    */
+  getOnlinePay(params) {
+    // let baseurl = 'http://jw.tunnel.qydev.com/wdphis/rest/h5pay';
+    let baseurl = 'http://172.16.110.37:8080/wdphis/rest/h5pay';
+    let url = baseurl+`?code=${params.code}&bz=${params.bz}&id=${params.id}&returnurl=${encodeURIComponent(params.returnurl)}`;
+    return get(url);
   },
   /**
    * 用户注册
@@ -323,5 +359,11 @@ export default {
    */
   getHisInfo(params, config) {
     return fetch('/rest/queryDataBySql/080101/3', params)
+  },
+  /**
+   * 获取短信验证
+   */
+  getSms(params, config) {
+    return fetch('/rest/sendSms', params)
   },
 }

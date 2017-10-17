@@ -45,5 +45,9 @@ c.connect({
 
 
 
-
+for (var i = 0; i < list.lenght; i++) {
+  if(list[i].newValue){
+    // 写入你要存的数据
+  }
+}
 

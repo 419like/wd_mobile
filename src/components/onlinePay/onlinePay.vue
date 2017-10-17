@@ -6,9 +6,9 @@
 				 v-for="(item, index) in navList">{{item.mc}}</li>
 			</ul>
 		</div>
-		<!-- <mt-loadmore  @top-status-change="handleTopChange" :autoFill=false :top-method="loadTop"  ref="loadmoreParent"> -->
-			<div class="contain" ref="contain">	
-				<div  class="cfjf margin48" v-if="navCheckList[0]">
+		<div class="contain" ref="contain">	
+			<div  class="cfjf margin48" v-if="navCheckList[0]">
+				<mt-loadmore  :autoFill=false :top-method="loadTop"  ref="loadmoreCfjf">
 					<ul>
 						<li @click="showCfDetail(item)" v-for="(item, index) in djfList">
 							<div  @click.stop="selectFyjl(item, index)" class="cfjl-circle-wrap left">
@@ -18,27 +18,29 @@
 							<p>{{item.kdbmmc}}&nbsp;&nbsp;{{item.kdrxm}}&nbsp;&nbsp;{{item.lczd}}</p>
 						</li>
 					</ul>
-					<div class="footer">
-						<div class="detail">
-							<div @click="checkAll"  class="checkall-wrap">
-								<span class="circle" :class="{checked:iscffyAllCheck}">
-								</span><span class="ckall">{{iscffyAllCheck?'取消全选':'全选'}}</span>
-							</div>
-							共选择<span class="cfnum">{{xfcount}}</span>张处方 <span class="totalCost">￥{{jfzje|formatAmount}}</span>
+				</mt-loadmore>
+				<div class="footer">
+					<div class="detail">
+						<div @click="checkAll"  class="checkall-wrap">
+							<span class="circle" :class="{checked:iscffyAllCheck}">
+							</span><span class="ckall">{{iscffyAllCheck?'取消全选':'全选'}}</span>
 						</div>
-						<div class="btn-wrap">
-							<button class="mint-button mint-button--primary mint-button--large green" :class="{'disable-gray': !xfcount}"  @click="confirmCfjf()">
-		                    	<label class="mint-button-text font18">确认缴费</label>
-		                	</button>
-						</div>
-					</div>		
-				</div>
-				<div class="waitpay margin48" v-if="navCheckList[1]">
+						共选择<span class="cfnum">{{xfcount}}</span>张处方 <span class="totalCost">￥{{jfzje|formatAmount}}</span>
+					</div>
+					<div class="btn-wrap">
+						<button class="mint-button mint-button--primary mint-button--large green" :class="{'disable-gray': !xfcount}"  @click="confirmCfjf()">
+	                    	<label class="mint-button-text font18">确认缴费</label>
+	                	</button>
+					</div>
+				</div>		
+			</div>
+			<div class="waitpay margin48" v-if="navCheckList[1]">
+				<mt-loadmore  :autoFill=false :top-method="loadTop"  ref="loadmoreWaitpay">
 					<ul>
 						<li @click="selectDzfjl(item, index)" v-for="(item, index) in dzfList">
 							<span class="circle" :class="{checked: dzfCheckList[index]}">
 							</span>
-							<p class="p1"><span id="tradeNo">订单号:{{item.out_trade_no}}</span><span class="right">￥{{item.total_fee|formatAmount}}</span></p>
+							<p class="p1"><span class="tradeNo">订单号:{{item.out_trade_no}}</span><span class="right">￥{{item.total_fee|formatAmount}}</span></p>
 							<p class="p2">日期:{{item.cjsj}}<span class="right">状态: {{item.zt==0?'待支付':'已关闭'}}</span></p>
 							<ul  @click.stop>
 								<li v-if="item.mx" v-for="subItem in item.mx">
@@ -48,87 +50,83 @@
 							</ul>
 						</li>
 					</ul>
-					<div class="footer">
-						<div class="btn-wrap">
-							<div>
-								<button :class="{'disable-gray': !dzfCk}"  class="mint-button mint-button--primary mint-button--large green" @click="cancleDd()">
-		                    		<label class="mint-button-text">取消订单</label>
-		                		</button>
-							</div>
-							<div>
-								<button :class="{'disable-gray': !dzfCk}"  class="mint-button mint-button--primary mint-button--large green" @click="confirmDd()">
-		                    		<label class="mint-button-text">确认缴费</label>
-		                		</button>
-							</div>
+				</mt-loadmore>
+				<div class="footer">
+					<div class="btn-wrap">
+						<div>
+							<button :class="{'disable-gray': !dzfCk}"  class="mint-button mint-button--primary mint-button--large green" @click="cancleDd()">
+	                    		<label class="mint-button-text">取消订单</label>
+	                		</button>
 						</div>
-					</div>
-				</div>
-				<div class="record margin48" v-if="navCheckList[2]">
-					<mt-loadmore  :autoFill=false :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-					  	<ul>
-						    <li @click="showDdxx(item, index)" v-for="(item, index) in zfjlList">
-								<p class="p1">订单号:{{item.out_trade_no}}<span class="right">￥{{item.total_fee}}</span></p>
-								<p class="p2">创建日期:{{item.cjsj}}<span class="right">方式: {{item.zffs}}</span></p>
-								<ul @click.stop v-if="zfjlCheckList[index]">
-									<li v-if="item.mx" v-for="subItem in item.mx">
-										<p>No:{{subItem.no}}&nbsp;&nbsp;{{subItem.lx}}<span class="right">￥{{subItem.je}}</span></p>
-										<p>{{subItem.zxks}}&nbsp;&nbsp;{{subItem.ysxm}}&nbsp;&nbsp;{{subItem.zz}}</p>
-									</li>
-								</ul>
-							</li>
-					  	</ul>
-				  	</mt-loadmore>
-	  				<!-- <div v-if="isAllLoad" class="loadmore-tip">
-				  		------无更多记录------
-				  	</div> -->
-				</div>
-				<div class="abnormal margin48" v-if="navCheckList[3]">
-					<p class="warn-tip">已支付成功但医院处理失败的记录，请点击退费</p>
-					<ul @touchmove.stop>
-						<li @click="selectYcjl(item, index)" v-for="(item, index) in ycjlList">
-							<span class="circle" :class="{checked: ycjlCheckList[index]}">
-							</span>
-							<p class="p1">订单号:{{item.no}}<span class="right">￥{{item.je}}</span></p>
-							<p class="p2">日期:{{item.date}}<span class="right">方式:{{item.fs}}</span></p>
-							<ul  @click.stop>
-								<li v-if="item.mx" v-for="subItem in item.mx">
-									<p>No:{{subItem.no}}&nbsp;&nbsp;{{subItem.lx}}<span class="right">￥{{subItem.je}}</span></p>
-									<p>{{subItem.zxks}}&nbsp;&nbsp;{{subItem.ysxm}}&nbsp;&nbsp;{{subItem.zz}}</p>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<div class="footer">
-						<div class="btn-wrap">
-							<button :class="{'disable-gray': !ycCk}" class="mint-button mint-button--primary mint-button--large green" @click="confirmYctf()">
-	                    		<label class="mint-button-text">退 费</label>
+						<div>
+							<button :class="{'disable-gray': !dzfCk}"  class="mint-button mint-button--primary mint-button--large green" @click="confirmDd()">
+	                    		<label class="mint-button-text">确认缴费</label>
 	                		</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- <div slot="top" class="mint-loadmore-top">
-		       <span  v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop'  }">↓</span>
-		       <span v-show="topStatus === 'loading'">Loading...</span>
-		    </div> -->
-		<!-- </mt-loadmore> -->
+			<div class="record margin48" v-if="navCheckList[2]">
+				<mt-loadmore  :autoFill=false :top-method="loadTop" :bottom-method="loadBottom" ref="loadmoreZfjl">
+				  	<ul>
+					    <li @click="showDdxx(item, index)" v-for="(item, index) in zfjlList">
+							<p class="p1"><span class="tradeNo_record">订单号:{{item.out_trade_no}}</span><span class="right">￥{{item.total_fee|formatAmount}}</span></p>
+							<p class="p2">创建日期:{{item.cjsj}}<span class="right">方式: {{item.zffs}}</span></p>
+							<ul @click.stop v-if="zfjlCheckList[index]">
+								<li v-if="item.mx" v-for="subItem in item.mx">
+									<p>No:{{subItem.no}}&nbsp;&nbsp;{{subItem.lx}}<span class="right">￥{{subItem.ssje|formatAmount}}</span></p>
+									<p>{{subItem.kdbmmc}}&nbsp;&nbsp;{{subItem.kdrxm}}&nbsp;&nbsp;{{subItem.lczd}}</p>
+								</li>
+							</ul>
+						</li>
+				  	</ul>
+			  	</mt-loadmore>
+			</div>
+			<div class="abnormal margin48" v-if="navCheckList[3]">
+				<mt-loadmore  :autoFill=false :top-method="loadTop"  ref="loadmoreAbnormal">
+					<p class="warn-tip">已支付成功但医院处理失败的记录，请点击退费</p>
+					<ul>
+						<li @click="selectYcjl(item, index)" v-for="(item, index) in ycjlList">
+							<span class="circle" :class="{checked: ycjlCheckList[index]}">
+							</span>
+							<p class="p1" ><span class="tradeNo">订单号:{{item.out_trade_no}}</span><span class="right">￥{{item.total_fee|formatAmount}}</span></p>
+							<p class="p2">日期:{{item.zfsj}}<span class="right">方式:{{item.zffs}}</span></p>
+							<!-- <ul  @click.stop>
+								<li v-if="item.mx" v-for="subItem in item.mx">
+									<p>No:{{subItem.no}}&nbsp;&nbsp;{{subItem.lx}}<span class="right">￥{{subItem.ssje|formatAmount}}</span></p>
+									<p>{{subItem.kdbmmc}}&nbsp;&nbsp;{{subItem.kdrxm}}&nbsp;&nbsp;{{subItem.lczd}}</p>
+								</li>
+							</ul> -->
+						</li>
+					</ul>
+				</mt-loadmore>
+				<div class="footer">
+					<div class="btn-wrap">
+						<button :class="{'disable-gray': !ycCk}" class="mint-button mint-button--primary mint-button--large green" @click="confirmYctf()">
+                    		<label class="mint-button-text">退 费</label>
+                		</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<zffs v-if="chooseZffsShow" @confirmZffs="selectZffs"></zffs>
 	</div>
 </template>
 
 <script>
 	import zffs from './zffs.vue';
-	import {checkBrowser,bindEvent} from '@/util/util.js'
+	import {checkBrowser} from '@/util/util.js'
 
 	export default {
 		name: 'onlinePay',
 		data() {
 			return {
-				// jgid: '',
-				// brid: '',
+				ddid: '',
+				code: '',
+				jgid: '',
+				brid: '',
 				topStatus: '',
 				isAllLoad: false,
-				allLoaded: false, // 是否下拉加载完毕
 				iscffyAllCheck: false, // 处方费用是否已全选
 				chooseZffsShow: false,
 				pagesize: 10,
@@ -143,26 +141,28 @@
 				dzfCheckList: [],
 				/*支付记录*/
 				zfjlList: [],
-				zfjlCheckList: [true,false,false,false],
+				zfjlCheckList: [],
 				/*异常记录*/
-				ycjlList: [{"no":"3432473487324324","je":"48.08","fs":"微信","date":"2017-09-19"},
-				{"no":"3432473487324324","je":"20.00","fs":"支付宝","date":"2017-09-21"},
-				{"no":"3432473487324324","je":"48.08","fs":"微信","date":"2017-09-18"}],
+				ycjlList: [],
 				ycjlCheckList: [],
 	
 			}
 		},
 		created() {
+			let lx = checkBrowser();
+			let params = this.$route.query;
+			if (lx === '1') {
+				if(params.code == '' || params.code == null) {
+	            	this.getCode(params.jgid);
+		        }
+			}
 			this.jgid = this.$route.query.jgid
-			console.log(this.jgid)
-			setTimeout(() => {
-				let handerUser = this.$store.getters.getHandleUser
-				console.log(handerUser)
-				this.$store.commit('setPageTitle',`医疗服务记录 -- ${handerUser.hzxm}`);
-				this.brid = handerUser.hzid;
-				this.loadCffyxx();
-			},0)
-			
+			let handerUser = this.$store.getters.getHandleUser
+			this.$store.commit('setPageTitle',`医疗服务记录 -- ${handerUser.hzxm}`);
+			this.brid = handerUser.hzid;
+			this.jgid = '70';
+			this.brid = '1423114'; 
+			this.loadCffyxx();       
 		},
 		computed: {
 			/*处方缴费总金额*/
@@ -193,83 +193,150 @@
 			}
 		},
 		methods: {
-			// 下拉刷新handle
-			handleTopChange(status) {
-		        this.topStatus = status;
+			getCode(jgid) {
+	            this.api.GetAppId({"jgid": jgid})
+	                .then(res => {
+	                    if (res.code === '1') {
+	                        if (res.data.length) {
+	                            this.requestCode(res.data[0].appid);
+	                        } else {
+	                            this.$messagebox('此机构未开通微信公众号')
+	                        }
+	                    } else {
+	                        this.$toast('系统异常')
+	                    }
+	                }, err => {})  
+			},
+			requestCode(appid) {
+	            let redirect_uri = encodeURIComponent(location.href);
+	            let url=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;  
+	            location.href=url; 
+        	},
+		    wxBridge(data) {
+		    	 WeixinJSBridge.invoke('getBrandWCPayRequest',data, res => {
+				   		if(res.err_msg === 'get_brand_wcpay_request:ok'){
+				   			this.$messagebox('支付成功！');
+					    } else if(res.err_msg === 'get_brand_wcpay_request:cancel'){
+					   		this.$toast('取消支付！');
+					   	} else {
+					   		this.$messagebox(res.err_msg);
+					   	}
+			  		});
 		    },
 		    // 下拉事件触发方法
 			loadTop() {
-				// return;
-				this.$refs.loadmore.onTopLoaded();
-				this.dropRefresh();
-			},
-			// 刷新数据
-			dropRefresh() {
-				let scrollTop = this.$refs.contain.scrollTop;
-				if(this.navCheckList.length > 0 && scrollTop < 100) {
-					if (this.navCheckList[0]) {
-						this.loadCffyxx();
-					} else if (this.navCheckList[1]) {
-						this.loadDzfxx();
-					} else if (this.navCheckList[2]) {
-
-					} else if (this.navCheckList[3]) {
-
-					}
+				if(this.navCheckList[0]) {
+					this.$refs.loadmoreCfjf.onTopLoaded();
+					this.loadCffyxx();
+				}
+				if(this.navCheckList[1]) {
+					this.$refs.loadmoreWaitpay.onTopLoaded();
+					this.loadDzfxx();
+				}
+				if(this.navCheckList[2]) {
+					this.$refs.loadmoreZfjl.onTopLoaded();
+					this.loadZfjlxx();
+				}
+				if(this.navCheckList[3]) {
+					this.$refs.loadmoreAbnormal.onTopLoaded();
+					this.loadYcxx();
 				}
 			},
 			// 发起生成订单请求
-			startDdqq(a) {
-				// if (!this.hzid) {
-				// 	this.$messagebox('此账户未绑定人员！');
-				// 	return;
-				// }
+			startDdqq(a, cb) {
+				if (!this.$store.getters.getHandleUser.hzid) {
+					this.$messagebox('此账户未绑定人员！');
+					return;
+				}
 				let arr = [];
 				this.djfCheckList.forEach((v,i) => {
 					if (v) arr.push({"hjid":this.djfList[i].id,"no":this.djfList[i].no});
 				})
 				let param = {
 					"ddlx": '2', 
-					"jgid": '70',
-					"brid": '1406088',
+					"jgid": this.jgid,
+					"brid": this.brid,
 					"zffs": a,
 					"total_fee": this.jfzje+'',
+					"body": '',
+                	"scene_info": '门诊缴费',
 					"mxxx": arr,
 				};
-				console.log(param);
 				this.api.OrderGeneration(param)
 				.then(res => {
-					console.log(res)
 					if (res.code == '1') {
 						this.$toast('下单成功，订单号:'+res.Trade_No)
 						this.loadCffyxx();
+						cb(a, res);
+					} else {
+						this.$messagebox(err.msg);
 					}
-				}, err => {})
+				}, err => {
+					this.$messagebox(err);
+				})
+			},
+			// 发送支付请求
+			sendPay(a, res) {
+				let lx = checkBrowser();
+                let param = {
+                    id: res.id,
+                    returnurl: location.href
+                }
+                if (lx == '1' && a == '1') {
+                    param.bz = '1';
+                }
+                if (this.code) {
+                	param.code = code;
+                }
+                this.api.getOnlinePay(param)
+                    .then(res => {
+                        if (res.code === '1') {
+                            this.startPay(res, lx);
+                        } else {
+                        	this.$messagebox(err.data);
+                        }
+                    }, err => {
+                        this.$messagebox(err);
+                    });
+			},
+			// 启动支付
+			startPay(res, a) {
+				if (lx == '1') {
+                	this.wxBridge(res.data);
+	            } else {
+	                location.href = res.data;
+	            }
 			},
 			// 待支付缴费
 			dzfjf(a) {
-				if (!this.hzid) {
+				if (!this.$store.getters.getHandleUser.hzid) {
 					this.$messagebox('此账户未绑定人员！');
 					return;
 				}
 				let ckIndex = this.dzfCheckList.findIndex(v => !!v);
+				console.log(this.dzfList[ckIndex]);
 				let param = {
+					id: this.dzfList[ckIndex].id,
+					zffs: a,
 				}
+				this.api.OrderUpdate(param)
+					.then(res => {
+						if (res.code === '1') {
+							this.sendPay(a, param);
+						} else {
+							this.$messagebox('系统异常');
+						}
+					})
+
 			},
 			// 选择支付方式
 			selectZffs(a) {
 				!a && (this.chooseZffsShow = false);
 				if (a) {
-					if (a == '1') {
-						if (this.navCheckList[0]) {
-							this.startDdqq(a);
-						} else if (this.navCheckList[1]) {
-							this.dzfjf(a);
-						}
-					} else if (a == '2') { // 选择支付宝方式支付
-						var o = {"mc":"hadf","dm":"2131","xm":"张三"};
-						let data  = encodeURI(JSON.stringify(o))
-						this.$router.push({name:'alipay', query: {"data":data}})
+					if (this.navCheckList[0]) {
+						this.startDdqq(a, this.sendPay);
+					} else if (this.navCheckList[1]) {
+						this.dzfjf(a);
 					}
 					this.chooseZffsShow = false;
 				}
@@ -277,8 +344,8 @@
 			// 加载处方缴费信息
 			loadCffyxx() {
 				let param = {
-					hzid: '1406088',
-					dqjgid: '70'
+					hzid: this.brid,
+					dqjgid: this.jgid
 				};
 				this.djfCheckList = [];
 				this.api.GetCffy(param).then(res => {
@@ -288,8 +355,8 @@
 			// 加载待支付信息
 			loadDzfxx() {
 				let param = {
-					brid: '1406088',
-					jgid: '70'
+					brid: this.brid,
+					jgid: this.jgid
 				};
 				this.dzfCheckList = [];
 				this.api.GetDzfjl(param).then(res => {
@@ -299,8 +366,8 @@
 			// 加载支付记录信息
 			loadZfjlxx() {
 				let param = {
-					brid: '1406088',
-					jgid: '70',
+					brid: this.brid,
+					jgid: this.jgid,
 					rn_s: this.pagesize * (this.pageNumber - 1) + 1 + '',
 					rn_e: this.pagesize * this.pageNumber + ''
 				};
@@ -315,7 +382,16 @@
 			},
 			// 加载异常订单
 			loadYcxx() {
-
+				let param = {
+					brid: this.brid
+				};
+				this.ycjlList = [];
+				this.api.GetYcjl(param).then(res => {
+				if (res.code == 1) {
+					console.log(res)
+					this.ycjlList.push(...res.data)
+				} 
+				}, err => {})
 			},
 			// 展示处方详情
 			showCfDetail(item) {
@@ -333,10 +409,12 @@
 				} else if (index === 2) {
 					this.pageNumber = 1;
 					this.zfjlList = [];
-					this.zfjlCheckList = [true];
+					this.zfjlCheckList = [];
 					this.loadZfjlxx();
 				} else if (index === 3) {
-
+					this.ycjlList = [];
+					this.ycjlCheckList = [];
+					this.loadYcxx();
 				}
 			},
 			// 处方费用选择
@@ -374,6 +452,10 @@
 					this.iscffyAllCheck = true;
 					let arr = new Array(this.djfList.length);
 					this.djfCheckList = arr.fill(true);
+					
+					// this.djfCheckList = arr.join().split(',').map(v => {
+					// 	return true;
+					// })
 				}
 			},
 			// 处方缴费确认
@@ -387,11 +469,9 @@
 				let checkOne = this.dzfCheckList.some(v => !!v);
 				if (!checkOne) return;
 				let ckIndex = this.dzfCheckList.findIndex(v => !!v);
-				console.log(ckIndex)
 				let param = {
 					id: this.dzfList[ckIndex].id,
 				}
-				console.log(param)
 				this.api.OrderCancel(param)
 				.then(res => {
 					if (res.code == '1') {
@@ -399,13 +479,11 @@
 						this.loadDzfxx();
 					}
 				}, err => {
-					console.log(err)
 				})
 
 			},
 			// 待支付确认缴费
 			confirmDd() {
-				return;
 				let ckIndex = this.dzfCheckList.findIndex(v => !!v);
 				if (ckIndex === -1) return;
 				if (this.dzfList[ckIndex].zt != '0') return;
@@ -413,38 +491,35 @@
 				let param = {
 					id: data.id
 				}
-				this.api.ConfirmPayment(param)
-				 	.then(res => {
-			 			console.log(res)
-				 	}, err => {
-				 		console.log(err)
-				 	})
+				this.chooseZffsShow = true;
 			},
 			// 异常记录确认退费
 			confirmYctf() {
 				let ckIndex = this.ycjlCheckList.findIndex(v => !!v);
 				if (ckIndex === -1) return;
+				let params = {
+					id: this.ycjlList[ckIndex].id
+				}
+				// this.api.payRefund(params)
+				// 	.then()
 			},
 			// 上拉加载
 			loadBottom() {
-				this.$refs.loadmore.onBottomLoaded();
-				this.isAllLoad = true;
+				this.$refs.loadmoreZfjl.onBottomLoaded();
+				// this.isAllLoad = true;
 			},	
 			// 展开关闭支付记录详情
 			showDdxx(item, index) {
+				this.zfjlCheckList[index] = !this.zfjlCheckList[index];
 				let param = {
 					id: item.id
 				}
 				item.mx = [];
-
 				this.api.GetZfjlmx(param)
 					.then(res => {
-						console.log(res)
-						this.$set(this.zfjlList, index, item.push({}));
-						// this.$set(this.zfjlCheckList, index, !this.zfjlCheckList[index]);
+						item.mx.push(...res.data);
+						this.$set(this.zfjlList, index, item);
 					})
-				
-				// this.$set(this.zfjlCheckList, index, !this.zfjlCheckList[index]);
 			}
 		},
 		components:{
@@ -460,7 +535,7 @@
 .margin48{margin-top: 48px}
 .left{float:left}
 .right{float: right}
-.p1{font-size: 16px; font-weight:bold}
+.p1{font-size: 16px; font-weight: bold}
 .p2{font-size: 14px; font-weight: bold}
 .circle{display: inline-block; position: absolute; left: 5px; top: 24px; height:18px; width:18px; border:1px solid #ccc; border-radius: 10px}
 .circle:after{border: 2px solid transparent; border-left: 0; border-top: 0; content: ""; top: 3px; left: 6px; position: absolute; width: 4px; height: 8px; border-color: #fff; transform: rotate(45deg) scale(0); -webkit-transition: -webkit-transform 0.2s; transition: -webkit-transform 0.2s; transition: transform 0.2s}
@@ -474,7 +549,7 @@
 .title{position: absolute; top: 0px; width: 100%; background: #fff; z-index: 2}
 .title ul {border-bottom: 1px solid #ccc} 
 .title .current {border-bottom: 3px solid #3399ff}
-.title li {display: inline-block; width:25%; height: 45px; line-height: 45px; font-size:18px; text-align: center}
+.title li {display: inline-block; width:25%; height: 45px; line-height: 45px; font-size:16px; text-align: center}
 
 /* 处方待缴费记录 */
 .cfjl-circle-wrap{position: absolute;top: 1px;width: 45px;height: 65px}
@@ -485,12 +560,12 @@
 .cfjf li p:last-child{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .cfjf .footer{position: absolute; width: 100%; bottom: 0; height: 100px; background-color: #fff}
 .cfjf .btn-wrap{width: 200px; margin: 0 auto 5px} 
-.ckall{margin-left: 28px; margin-right: 10px}
+.ckall{margin-left: 28px;}
 .cfnum{color: red}
 .detail{height: 40px; line-height: 40px; padding: 0 0 8px; border-top: 1px solid #ccc}
-.checkall-wrap{display: inline-block;position: relative;padding-left: 15px}
-.checkall-wrap .circle{position: absolute;top: 10px;left: 14px}
-.totalCost{color: red; font-size:18px;  margin-left: 10px}
+.checkall-wrap{display: inline-block;position: relative;padding-left: 10px}
+.checkall-wrap .circle{position: absolute;top: 10px;left: 10px}
+.totalCost{color: red; font-size:18px;  padding-right: 5px;float: right}
 
 /* 待支付 */
 .waitpay .footer{position: absolute; width: 100%;bottom: 0; height: 60px;background-color: #fff} 
@@ -501,7 +576,8 @@
 .waitpay li p{box-sizing: border-box; height: 24px; line-height: 24px; margin-left: 30px; padding:2px 4px}
 .waitpay li p:last-child{display: inline-block;width: 85%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}
 /*.watipay li p .tradeNo{display: inline-block;width: 120px;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}*/
-#tradeNo {display: inline-block;width: 180px;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}
+.tradeNo {display: inline-block;width: 180px;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}
+.tradeNo_record{display: inline-block;width: 240px;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}
 .waitpay li ul{margin-top:10px; font-size:14px}
 .waitpay li ul li{border-bottom:0;border-top: 1px solid #ccc;padding:0}
 
@@ -511,6 +587,7 @@
 .record li ul{font-size:14px}
 .record li ul li{border-bottom:0;border-top: 1px solid #ccc;padding:0;font-weight: normal}
 .record li ul li p{box-sizing: border-box; height: 24px; line-height: 24px; margin-left: 35px; padding:2px 4px}
+.record li ul li p:last-child{display: inline-block;width: 85%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;}
 .record .loadmore-tip{height: 45px;line-height: 45px;text-align: center;}
 
 /* 异常处理 */

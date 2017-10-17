@@ -101,6 +101,7 @@ const store = new Vuex.Store({
             }else{
                 loginState = false;
             }
+            debugger
             return loginState;
         },
     	userNum(state,getters){

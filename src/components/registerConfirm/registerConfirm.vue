@@ -65,7 +65,7 @@
                     <div v-if="registerInfo.no">
                         <span>挂号单号：</span><span>{{registerInfo.no}}</span>
                     </div>
-                    <div>
+                    <div v-if="registerInfo.no">
                         <span>结果：</span><span class="red">{{registerInfo.type?'成功': registerInfo.warnMsg}}</span>
                     </div>
                     <div v-if="registerInfo.no">
@@ -80,7 +80,7 @@
                 </button>
             </div>
             <div v-if="registerInfo.no" style="margin-left:10%;width:80%;position: absolute;bottom: 10px;">
-                <button class="mint-button mint-button--primary mint-button--large green" @click="sureCharge()">
+                <button class="mint-button mint-button--primary mint-button--large green">
                     <!---->
                     <label class="mint-button-text font18">查看记录</label>
                 </button>
@@ -95,9 +95,11 @@
 <script type="text/javascript">
 import treatManSelect from '@/components/treatManSelect/treatManSelect.vue'
 import zffs from '@/components/onlinePay/zffs.vue'
+import { getUrlParams, checkBrowser }  from '@/util/util.js'
 export default {
     data() {
         return {
+            code: '',
             registerInfo: {},
             timeValue: true,
             ChooseZffsShow: false,
@@ -108,7 +110,38 @@ export default {
             tempHandleUser: {},
         }
     },
+    created() {
+        let lx = checkBrowser();
+        let params = this.$route.query;
+        if (lx !== '1') {
+            if(params.code == '' || params.code == null) {
+                this.getCode(params.jgid);
+            } else {
+                this.code = params.code;
+            }
+        } 
+    },
     methods: {
+        getCode(jgid) {
+            this.api.GetAppId({"jgid": jgid})
+                .then(res => {
+                    if (res.code === '1') {
+                        if (res.data.length) {
+                            this.requestCode(res.data[0].appid);
+                        } else {
+                            this.$messagebox('此机构未开通微信公众号支付')
+                        }
+                    } else {
+                        this.$toast('系统异常')
+                    }
+                }, err => {})
+ 
+        },
+        requestCode(appid) {
+            let redirect_uri = encodeURIComponent(location.href);
+            let url=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;  
+            location.href=url; 
+        },
         treatManChange(hzid) {
             debugger
             let treatManOption = this.$store.getters.getBoundList;
@@ -138,47 +171,93 @@ export default {
             this.treatManSelectVisible = true;
         },
         selectZffs(a) {
-            if (a == '1') {
-                this.param.lx = a;
-                // this.payForWx();
-            } else if (a == '2') {
-                this.param.lx = a;
-                this.payForAlipay();
-            } else if (!a) {
-
+            let params = this.getGhxx(a);
+                params.total_fee = '0.01';
+            if (a === '1') {
+                this.payForWx(params);
+            } else if(a === '2') {
+                this.payForAlipay(params);
             }
             this.ChooseZffsShow = false;
         },
-        payForAlipay() {
-            var o = { "mc": "hadf", "dm": "2131", "xm": "张三" };
-            let data = encodeURI(JSON.stringify(o))
-            this.$router.push({ name: 'alipay', params: { "data": data } })
-        },
-        payForWx() {
-            this.api.getWxpay(this.param)
+        payForAlipay(params) {
+            this.api.OrderGeneration(params)
                 .then(res => {
-                    if (!res) {
-                        this.$toast('服务器繁忙');
-                        if (res.data.respCode == 'fail') {
-                            this.$toast(res.data.respMsg);
-                        } else {
-                            let param = res.data;
-                            this.onBridgeReady(param);
+                    if (res.code === '1' && res.msg === '成功') {
+                        this.$set(this.registerInfo, 'ddh', res.Trade_No);
+                        location.href = `http://localhost:3000/alipay.html?id=${res.id}`;
+                        // this.$router.push({ name: 'alipay', query: { "data": data }})
+                    } else if (res.code === '0') {
+                        this.$messagebox(res.msg);
+                    }
+                }, err => {
+                   this.$messagebox('挂号异常,请再次尝试或到窗口挂号');
+                })
+        },
+        payForWx(params) {
+            this.api.OrderGeneration(params)
+                .then(res => {
+                    if (res.code === '1' && res.msg === '成功') {
+                        this.$set(this.registerInfo, 'ddh',res.Trade_No);
+                        let lx = checkBrowser();
+                        let param = {
+                            id: res.id,
+                            returnurl: location.href
                         }
+                        if (lx == '1') {
+                            param.bz = '1';
+                        }
+                        if (this.code) {
+                            param.code = code;
+                        }
+                        this.api.getOnlinePay(param)
+                            .then(res => {
+                                if (res.code === '1') {
+                                    this.startPay(res, lx);
+                                }
+                            }, err => {
+                                this.$messagebox(err);
+                            })
+                    } else if (res.code === '0') {
+                        this.$messagebox(res.msg);
+                    }
+                }, err => {
+                   this.$messagebox('挂号异常,请再次尝试或到窗口挂号');
+                })
+        },
+        startPay(res, lx) {
+            if (lx == '1') {
+                this.wxBridge(res.data);
+            } else {
+                location.href = res.data;
+            }
+        },
+        wxBridge(data) {
+            WeixinJSBridge.invoke('getBrandWCPayRequest',data, res => {
+                    if(res.err_msg === 'get_brand_wcpay_request:ok'){
+                        this.$messagebox('支付成功，返回订单列表！');
+                        this.paySuccess();
+                    } else if(res.err_msg === 'get_brand_wcpay_request:cancel'){
+                        this.$toast('取消支付！');
+                    } else {
+                        alert(JSON.stringify(res));
                     }
                 });
+        },
+        paySuccess() {
+
         },
         timeChange() {
             console.log(this.timeValue);
         },
         confirmPayment(data) {
             let param = {
-                id: data.id,
-                out_trade_no: data.Trade_No,
-                return_code: '',
-                return_data: '',
-                result_code: '',
-                result_data: '',
+                id: this.param.id,
+                out_trade_no:  this.param.Trade_No,
+                return_code: data?data.return_code:'',
+                return_data: data?data.return_data:'',
+                result_code: data?data.result_code:'',
+                result_data: data?data.result_data:'',
             }
             this.api.ConfirmPayment(param)
                 .then(res => {
@@ -186,21 +265,16 @@ export default {
                     if (res.code == '1') {
                         this.$set(this.registerInfo, 'no', res.msg);
                     } else {
-                            if (res.msg.indexOf('重复挂号')) {
-                                this.$set(this.registerInfo, 'warnMsg','失败, 今天已经挂过该号别，不能重复挂号');
-                            } else {
-                                this.$set(this.registerInfo, 'warnMsg','失败, 请到窗口挂号');
-                            }
+                        if (res.msg.indexOf('重复挂号')) {
+                            this.$set(this.registerInfo, 'warnMsg','失败, 今天已经挂过该号别，不能重复挂号');
+                        } else {
+                            this.$set(this.registerInfo, 'warnMsg','失败, 请到窗口挂号');
                         }
-                    }, err => {
-                        // console.log(err);
-                    })
+                    }
+                }, err => {
+                })
         },
-        sureCharge(item) {
-            // if(this.registerInfo.ghfy!='0'){
-            //     this.$messagebox('收费项目尚未建设，请谅解。')
-            //     return;
-            // }
+        getGhxx(zffs) {
             if (!this.timeValue) {
                 this.registerInfo.time = this.registerInfo.shortDay + ' 15:00:00'
             } else {
@@ -212,58 +286,43 @@ export default {
                 },
                 ghxx: {
                     ghapid: this.registerInfo.id,
-                    jsfs: '现金',
+                    jsfs: '在线支付',
                     ysje: this.registerInfo.ghfy,
                     yysj: this.registerInfo.time
                 }
             }
-            console.log(params);
-            // return;
-            if (params.ghxx.ysje == '0') { // 金额为0，直接调用his
-                let param = {
-                    "ddlx": '1',
-                    "jgid": '70',
-                    "brid": '1406088',
-                    "zffs": '1',
-                    "total_fee": '0',
-                    "mxxx": [],
-                    "ghxx": JSON.stringify(params),
-                }
-                this.api.OrderGeneration(param)
-                    .then(res => {
-                        if (res.code === '1' && res.msg === '成功') {
-                            this.$set(this.registerInfo, 'ddh',res.Trade_No);
-                            this.confirmPayment(res);
-                        }
-                    })
-
-            } else { // 金额不为0，调用支付
+            return {
+                "ddlx": '1',
+                "jgid": this.registerInfo.jgid,
+                "brid": this.tempHandleUser.hzid,
+                "zffs": zffs?zffs:'1',
+                "total_fee": params.ghxx.ysje,
+                "body": '预约挂号',
+                "scene_info": '预约挂号',
+                "mxxx": [],
+                "ghxx": JSON.stringify(params),
+            }
+        },
+        sureCharge() {
+            if (this.registerInfo.ghfy == '0.00' || this.registerInfo.ghfy == '0') { 
+                let params = this.getGhxx();
+                this.api.OrderGeneration(params)
+                .then(res => {
+                    if (res.code === '1' && res.msg === '成功') {
+                        this.$set(this.registerInfo, 'ddh',res.Trade_No);
+                        this.param = res;
+                        this.confirmPayment(res);
+                    }
+                }, err => {
+                    this.$messagebox(err);
+                })
+            } else {
                 this.ChooseZffsShow = true;
             }
         },
         toPayUrl(mweb_url) {
             window.location.href = mweb_url;
-        },
-        onBridgeReady(param) {
-            WeixinJSBridge.invoke(
-                'getBrandWCPayRequest', {
-                    "appId": param.appid,
-                    "timeStamp": param.timeStamp,
-                    "nonceStr": param.nonceStr,
-                    "package": param.prepay_id,
-                    "signType": "MD5",
-                    "paySign": param.sign
-                },
-                function(res) {
-                    if (res.err_msg == "get_brand_wcpay_request:ok") {
-                        this.$messagebox('支付成功');
-                    } else {
-                        this.registerInfo = this.$route.query;
-                        // console.log(this.handleUser); 
-                    }
-                }
-            );
-        },
+        }
     },
     components: {
         zffs,
@@ -299,7 +358,6 @@ export default {
     margin-left: 10px;
     border-bottom: 1px solid #B3B3B3
 }
-<<<<<<< .mine
 .red{color:red;}
 .t2{
     width:100%;

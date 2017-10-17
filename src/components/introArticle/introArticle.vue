@@ -3,7 +3,7 @@
         <div v-show="article.wzbt" style="font-size: 22px;font-weight: bold;line-height: 40px;height:40px;text-align: center;">{{article.wzbt}}</div>
         <!-- <div v-show="article.qyrq" style="font-size: 12px;color:#B3B3B3;text-align: center;">{{article.qyrq?article.qyrq.split(' ')[0]:''}}</div> -->
         <div v-if="type==3" style="text-align: center;">
-            <img :src="article.zst" style="width:70px;height:auto;">
+            <img :src="article.zst" style="width:33%;height:auto;">
         </div>
         <div class="html ql-editor acticleBox" style="height: auto;">
             <div v-html="article.nr">
@@ -42,6 +42,7 @@ export default {
                         if (data.nr.indexOf('<') < 0) {
                             data.nr = decodeURIComponent(data.nr)
                         }
+                        // data.nr = this.completeImgSrc(data.nr, this.axios.defaults.baseURL)
                     } else {
                         data = {
                             nr: '',

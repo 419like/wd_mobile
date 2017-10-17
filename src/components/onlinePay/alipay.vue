@@ -3,6 +3,9 @@
 		<div v-if="!tipShow" class="help">
 			<p>请点击右上角用外部浏览器打开支付！</p>
 		</div>
+		<div v-if="paySuccess">
+			<p>支付成功！</p>
+		</div>
 	</div>
 </template>
 
@@ -13,7 +16,8 @@
 		data() {
 			return {
 				data: {},
-				tipShow: true
+				tipShow: true,
+				paySuccess: false
 			}
 		},
 		mounted() {
@@ -33,11 +37,34 @@
 					this.tipShow = false;
 				} else if (lx == '2' || lx == '3') {
 					this.tipShow = true;
-					this.startpay()
+					if (this.data.Trade_No) {
+						this.startpay();
+					} else {
+						this.getResult();
+					}			
 				}
 			},
 			startpay() {
-
+				let param = {
+					id: this.data.id,
+					returnurl: location.href+`?id=${this.data.id}`
+				}
+				this.api.getOnlinePay(param)
+					.then(res => {
+						if (res.code === '1') {
+							location.href = res.data;
+						}
+					}, err => {
+						this.$toast(err);
+					})
+			},
+			getResult() {
+				let timer = setInterval(() => {
+					console.log(111)
+				}, 3000);
+			},
+			polling() {
+				
 			}
 		}
 	}

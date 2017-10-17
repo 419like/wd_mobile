@@ -20,43 +20,38 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src'),
         }
     },
     module: {
-        rules: [
-            // {
-            //   test: /\.(js|vue)$/,
-            //   loader: 'eslint-loader',
-            //   enforce: 'pre',
-            //   include: [resolve('src'), resolve('test')],
-            //   options: {
-            //     formatter: require('eslint-friendly-formatter')
-            //   }
-            // },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: vueLoaderConfig
-            }, {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                include: [resolve('src'), resolve('test')]
-            }, {
-                test: /\.(svg|png|jpe?g|gif)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 1,
-                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
-                }
-            }, {
-                test: /\.(svg|woff2|woff|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 50000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-                }
+        rules: [{
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+        }, {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            include: [resolve('src'), resolve('test')]
+        }, {
+            test: /\.json$/,
+            loader: 'json-loader',
+            options: {
+                name: utils.assetsPath('json/[name].[ext]')
             }
-        ]
+        }, {
+            test: /\.(svg|png|jpe?g|gif)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+                limit: 1,
+                name: utils.assetsPath('img/[name].[hash:7].[ext]')
+            }
+        }, {
+            test: /\.(svg|woff2|woff|eot|ttf|otf)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+                limit: 50000,
+                name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+            }
+        }]
     }
 }

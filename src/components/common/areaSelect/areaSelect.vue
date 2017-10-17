@@ -50,8 +50,6 @@ export default {
                 .then(
                         res=>{
                             this.areaList = res.data;
-                            // this.content = this.$refs.areaContent;
-                            // this.content.scrollTop = 0;
                         }
                     )
             },
@@ -84,6 +82,7 @@ export default {
                         )
             },
             init(value){
+                debugger
                 if(value){
                     this.loadAreaHoleInfo(value);
                 }else{
@@ -125,7 +124,7 @@ export default {
             },
         },
         mounted() {
-            this.init(this.value);
+            // this.init(this.value);
         },
         components: {
 

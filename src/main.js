@@ -26,6 +26,7 @@ Vue.use(MintUI);
 
 import md5 from 'js-md5';
 
+import 'babel-polyfill';
 const app = new Vue({
     router,
     store,
@@ -48,7 +49,22 @@ Vue.prototype.goback = function() {
     }
     
 }
-
+Vue.prototype.completeImgSrc = function(content,addStr) {
+    let imgReg = /<img.*?(?:>|\/>)/gi;
+    let srcReg = /src=[\'"]?([^\'"]*)[\'"]?/i;
+    let tarr = content.match(imgReg);
+    if(!tarr){
+        tarr = [];
+    }
+    for (var i = 0; i < tarr.length; i++) {
+        let src = tarr[i].match(srcReg);
+        if (src[1].indexOf('http') < 0) {
+            let tempStr = addStr + src[1];
+            content = content.replace(src[1], tempStr);
+        }
+    }
+    return content;
+}
 Vue.prototype.goUrl = function(url){
     this.$router.push({
         path:'/index/'+url

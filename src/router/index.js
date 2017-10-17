@@ -68,6 +68,9 @@ const alipay  = resolve => {
 const centerActiveList  = resolve => {
     require(['../components/centerActiveList/centerActiveList.vue'], resolve);
 }
+const recordDetails  = resolve => {
+    require(['../components/medicalRecord/recordDetails.vue'], resolve);
+}
 const routes = [
     { path: '/', redirect: '/index' },
     { path: '/login', component: login },
@@ -84,6 +87,7 @@ const routes = [
             path: '/index/healthRecord',
             component: healthRecord
         }, {
+            name:'personalCenter',
             path: '/index/personalCenter',
             component: personalCenter
         }, {
@@ -106,6 +110,7 @@ const routes = [
             path:'/index/newsList',
             component:newsList
         }, {
+            name:'login',
             path:'/index/login',
             component:login
         }, {
@@ -132,6 +137,10 @@ const routes = [
             name:'centerActiveList',
             path:'/index/centerActiveList',
             component:centerActiveList
+        },{
+            name:'recordDetails',
+            path:'/index/recordDetails',
+            component:recordDetails
         }]
     },{
         path:'/treatmentCardBind',

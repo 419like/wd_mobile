@@ -28,8 +28,6 @@ export default {
                 }
                 this.api.getActicleDetail(params).then(
                     res => {
-                        debugger
-                        console.log(res);
                         let data = res.data;
                         if (data.length) {
                             data = data[0];
@@ -37,6 +35,7 @@ export default {
                             if(data.nr.indexOf('<')<0){
                                 data.nr = decodeURIComponent(data.nr)
                             }
+                            data.nr = this.completeImgSrc(data.nr,this.axios.defaults.baseURL)
                         } else {
                             data = {
                                 nr: '',

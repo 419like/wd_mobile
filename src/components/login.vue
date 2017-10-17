@@ -16,7 +16,7 @@
             <span class="register" @click="register()">注册</span>
         </div>
         <div class="otherLoginBox flex">
-           <!--  <div class="flex1 center">
+            <!--  <div class="flex1 center">
                 <img class="icon" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=309984969,696636847&fm=58">
                 <div class="tip">微信</div>
             </div>
@@ -30,74 +30,77 @@
 <script type="text/javascript">
 export default {
     data() {
-            return {
-                msg: '登录',
-                list: [],
-                number: '',
-                password: ''
-            }
+        return {
+            msg: '登录',
+            list: [],
+            number: '',
+            password: ''
+        }
+    },
+    methods: {
+        goIndex() {
+            this.$router.push({
+                path: '/index'
+            })
         },
-        methods: {
-            goIndex(){
-                this.$router.push({
-                    path:'/index'
-                })
-            },
-            register() {
-                this.$router.push({
-                    path: '/index/register'
-                })
-            },
-            login() {
-                if(!this.number){
-                    this.$toast('账号不能为空');
-                    return;
-                }
-                if(!this.password){
-                    this.$toast('密码不能为空');
-                    return;
-                }
-                let password = this.passwordFix(this.password);
-                let params = {
-                    sjh: this.number + '',
-                    mm: password
-                }
-                this.api.Login(params)
-                    .then(res => {
-                        if(res.code==1){
-                            let loginObj = {
-                                userId:res.appid,
-                                userNum:params.sjh,
-                                password:password
-                            }
-                            if(res.user){
-                                this.$store.commit('setBoundList',res.user);
-                                for (var i = res.user.length - 1; i >= 0; i--) {
-                                    if(res.user[i].gxmc == '本人'){
-                                        this.$store.commit('setHandleUser',res.user[i]);
-                                        break;
-                                    }
+        register() {
+            this.$router.push({
+                path: '/index/register'
+            })
+        },
+        login() {
+            if (!this.number) {
+                this.$toast('账号不能为空');
+                return;
+            }
+            if (!this.password) {
+                this.$toast('密码不能为空');
+                return;
+            }
+            let password = this.passwordFix(this.password);
+            let params = {
+                sjh: this.number + '',
+                mm: password
+            }
+            this.api.Login(params)
+                .then(res => {
+                    if (res.code == 1) {
+                        let loginObj = {
+                            userId: res.appid,
+                            userNum: params.sjh,
+                            password: password
+                        }
+                        if (res.user) {
+                            this.$store.commit('setBoundList', res.user);
+                            for (var i = res.user.length - 1; i >= 0; i--) {
+                                if (res.user[i].gxmc == '本人') {
+                                    this.$store.commit('setHandleUser', res.user[i]);
+                                    break;
                                 }
                             }
-                            this.$toast('登录成功！');
-                            res.appuser[0].userId = loginObj.userId;
-                            res.appuser[0].userNum = loginObj.userNum;
-                            res.appuser[0].password = loginObj.password;
-                            this.$store.commit('setAppUserInfo',res.appuser[0]);
-                            history.go(0);
                         }
-                    })
-            }
-        },
-        created() {
-            if (this.$store.getters.loginState) {
-                this.$router.back();
-            }
-        },
-        components: {
+                        this.$toast('登录成功！');
+                        res.appuser[0].userId = loginObj.userId;
+                        res.appuser[0].userNum = loginObj.userNum;
+                        res.appuser[0].password = loginObj.password;
+                        this.$store.commit('setAppUserInfo', res.appuser[0]);
+                        history.go(0);
+                    }
+                })
+        }
+    },
+    created() {
+        if (this.$store.getters.loginState) {
+            this.$router.push({
+                name: 'index'
+            })
+        }
+    },
+    components: {
 
-        },
+    },
 }
+
 </script>
 <style scoped>
 .logoImg {
@@ -144,4 +147,5 @@ export default {
 .footBar {
     height: 44px;
 }
+
 </style>

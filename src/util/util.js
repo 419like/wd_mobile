@@ -31,8 +31,21 @@
       }
     }
 };
+const getUrlParams = (str) => {
+    var url = decodeURI(str); 
+    var params = {};
+    if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        var datas = str.split("&");
+        for(var i = 0 ; i < datas.length ; i++){
+            var tempData = datas[i].split("=");
+            params[tempData[0]]=tempData[1];
+        }
+    }
+    return params;
+}
 
 export  {
   checkBrowser,
-  bindEvent
+  getUrlParams
 };

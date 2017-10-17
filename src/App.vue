@@ -7,6 +7,8 @@
     </div>
 </template>
 <script type="text/javascript">
+// import sysConfig from '../../../static/sysConfig/config.json'
+
 export default {
     data() {
         return {}
@@ -14,36 +16,8 @@ export default {
         let _this = this;
         setTimeout(() => {
             document.getElementById('mask').style.display = 'none';
+            // document.title = sysConfig.indexTitle;
         });
-        
-        // let userInfo = this.$store.getters.getUserInfo;
-        
-        // if (userInfo && userInfo.userId) {
-        //     let params = {
-        //         sjh: userInfo.userNum + '',
-        //         mm: userInfo.password
-        //     }
-        //     this.api.Login(params)
-        //         .then(res => {
-        //             debugger
-        //             let loginObj = {
-        //                 userId: res.appid,
-        //                 userNum: userInfo.userNum,
-        //                 password: userInfo.password
-        //             }
-        //             if(res.user&&res.user.length){
-        //                 this.$store.commit('setBoundList',res.user);
-        //                 for (var i = res.user.length - 1; i >= 0; i--) {
-        //                     if(res.user[i].gxmc == '本人'){
-        //                         this.$store.commit('setHandleUser',res.user[i]);
-        //                         break;
-        //                     }
-        //                 }
-        //             }
-        //             this.$store.commit('login',loginObj);
-        //             this.$store.commit('setAppUserInfo',res.appuser[0]);
-        //         })
-        // }
     }, computed: {
         maskShow() {
             return this.$store.state.maskShow;

@@ -45,18 +45,16 @@
                 </div>
             </div>
         </div>
-        <div style="display:flex;width:100%;">
-            <div style="width:40px;" :class="{'choose':(!dateChoose.time)}" @click="clearDate();">
+        <div style="display:flex;">
+            <div style="width:40px;display:inline-block;height:45px;" :class="{'choose':(!dateChoose.time)}" @click="clearDate();">
                 <div class="dateText1">查看</div>
                 <div class="dateText2">排班</div>
             </div>
-            <div style="width:87%;">
-                <div style="width:100%;overflow-x:auto;display:flex;">
-                    <div style="width:40px;" class="" :class="{'choose':(item==dateChoose)}" v-for="(item,index) in dateArray" @click="chooseDate(item,index);">
-                        <div style="width:40px;">
-                            <div class="dateText1">{{item.date}}</div>
-                            <div class="dateText2">{{item.day}}</div>
-                        </div>
+            <div style="display:flex; width:calc(100% - 40px);overflow-x: auto;">
+                <div style="min-width:14.285714285714286%;" :class="{'choose':(item==dateChoose)}" v-for="(item,index) in dateArray" @click="chooseDate(item,index);">
+                    <div style="width:100%;">
+                        <div class="dateText1">{{item.date}}</div>
+                        <div class="dateText2">{{item.day}}</div>
                     </div>
                 </div>
             </div>
@@ -322,7 +320,6 @@ export default {
                     return;
                 }
             }
-            console.log(item);
             let obj = {
                 jgid: this.$route.query.jgid,
                 id: item.id,
@@ -343,7 +340,6 @@ export default {
             this.$refs.picker.open();
         },
         handleConfirm() {
-            console.log(this.pickerValue);
             var date = new Date(this.pickerValue);
             var year = date.getFullYear();
             var month = date.getMonth() + 1;
@@ -379,7 +375,7 @@ export default {
             this.doctor = doctorList[0];
         },
         doctorSelected() {
-            console.log(this.doctor);
+
         },
         loadDepartmentList(time) {
             let params = {
@@ -389,14 +385,17 @@ export default {
             }
             if (time) {
                 params.yysj = time;
+            }else{
+                params.yysj = '2017-08-03';
             }
             this.api.getWorkList(params).then(
                 res => {
-                    debugger
+                    
                     console.log(res);
+
                     this.scheduleList = res.data;
                     this.selectConfig.options = [];
-                    debugger
+
                     if (!time) {
                         let departmentSelectList = [];
                         let appointmentSelectList = [];
@@ -443,7 +442,7 @@ export default {
                 })
         },
         sureCharge(item) {
-            debugger
+
             if (this.chargeChoose.ghfy != '0.00') {
                 this.$messagebox('收费项目尚未建设，请谅解。')
                 return;
@@ -462,7 +461,6 @@ export default {
                     yysj: this.dateChoose.time
                 }
             }
-            console.log(params);
             this.api.register(params)
                 .then(res => {
                     if (res.code == '1') {
@@ -471,7 +469,6 @@ export default {
                         this.$toast('挂号失败,' + res.msg);
                     }
                     this.$set(this.$data.chargeChoose, 'number', res.no);
-                    console.log(res);
                 })
         },
         initDate() {
@@ -495,7 +492,7 @@ export default {
                 let day = thatDay.getDay();
                 let dateObj = {
                     letter: letterArr[day],
-                    date: m + '_' + d,
+                    date: m+'-' + d,
                     day: '周' + dayArr[day],
                     time: year + "-" + m + "-" + d + " " + "09:00:00",
                     shortDay: year + "-" + m + "-" + d,
@@ -505,7 +502,7 @@ export default {
             return arr;
         },
         chooseDate(item, index) {
-            debugger
+
             if (index == 0) {
                 this.isToday = true;
             } else {
@@ -548,7 +545,7 @@ export default {
         // this.loadDoctorSelectList();
         let user = this.$store.getters.getAppUserInfo;
         let his = this.$store.getters.getCurrentHis;
-        debugger
+
         this.$store.commit('setPageTitle', (his.jc + '-' + (user.xm ? user.xm : '未登录')));
     },
     computed: {

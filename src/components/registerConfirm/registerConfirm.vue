@@ -73,6 +73,9 @@
                     </div>
                 </div>
             </div>
+            <div v-if="registerInfo.type == 0">
+                <span class="red">{{registerInfo.warnMsg}}</span>
+            </div>
             <div v-if="!registerInfo.no" style="margin-left:10%;width:80%;position: absolute;bottom: 10px;">
                 <button class="mint-button mint-button--primary mint-button--large green" @click="sureCharge()">
                     <!---->
@@ -112,16 +115,39 @@ export default {
     },
     created() {
         let lx = checkBrowser();
-        let params = this.$route.query;
-        if (lx !== '1') {
+        let urlArr = location.href.split('?');
+        let params= getUrlParams(urlArr[1]);
+        let param_ = getUrlParams(urlArr[2]);
+        Object.assign(params, param_);
+        if (lx === '1') {
             if(params.code == '' || params.code == null) {
                 this.getCode(params.jgid);
             } else {
                 this.code = params.code;
             }
         } 
+        if (params.payBack) {
+            this.getPayResult(params.ddid);
+        }
     },
     methods: {
+        getPayResult(id) {
+            let param = {"id": id}
+            this.api.getResultPay(param)
+                .then(res => {
+                    if (res.code === '1') {
+                        if (res.data[0] && res.data[0].zt == '1' && res.data[0].hiszt == '1') {
+                            this.$messagebox('挂号成功！');
+                         } else if (res.data[0] && res.data[0].zt == '1' && res.data[0].hiszt != '1'){
+                            setMsg('支付成功，挂号异常!,请到在线缴费异常记录查看并退费');
+                        } else if (res.data[0] && res.data[0].zt == '0' && res.data[0].hiszt != '0') {
+                            this.getPayResult(param.id);
+                        }
+                    } else {
+                        this.$messagebox('系统异常！');
+                    }
+                })
+        },
         getCode(jgid) {
             this.api.GetAppId({"jgid": jgid})
                 .then(res => {
@@ -135,19 +161,16 @@ export default {
                         this.$toast('系统异常')
                     }
                 }, err => {})
- 
         },
         requestCode(appid) {
             let redirect_uri = encodeURIComponent(location.href);
-            let url=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;  
-            location.href=url; 
+            let url=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;
+            location.href=url;
         },
         treatManChange(hzid) {
-            debugger
             let treatManOption = this.$store.getters.getBoundList;
             for (var i = 0; i < treatManOption.length; i++) {
                 if (treatManOption[i].hzid == hzid) {
-                    debugger
                     this.tempHandleUser = treatManOption[i];
                     this.treatManSelectVisible = false;
                     return;
@@ -185,8 +208,7 @@ export default {
                 .then(res => {
                     if (res.code === '1' && res.msg === '成功') {
                         this.$set(this.registerInfo, 'ddh', res.Trade_No);
-                        location.href = `http://localhost:3000/alipay.html?id=${res.id}`;
-                        // this.$router.push({ name: 'alipay', query: { "data": data }})
+                        location.href = `static/alipay.html?id=${res.id}`;
                     } else if (res.code === '0') {
                         this.$messagebox(res.msg);
                     }
@@ -202,7 +224,7 @@ export default {
                         let lx = checkBrowser();
                         let param = {
                             id: res.id,
-                            returnurl: location.href
+                            returnurl: location.href+`&ddid=${res.id}&payBack=true`
                         }
                         if (lx == '1') {
                             param.bz = '1';
@@ -312,6 +334,9 @@ export default {
                         this.$set(this.registerInfo, 'ddh',res.Trade_No);
                         this.param = res;
                         this.confirmPayment(res);
+                    } else if (res.code == '0'){
+                        this.registerInfo.type = res.code;
+                        this.registerInfo.warnMsg = res.msg
                     }
                 }, err => {
                     this.$messagebox(err);
@@ -322,7 +347,7 @@ export default {
         },
         toPayUrl(mweb_url) {
             window.location.href = mweb_url;
-        }
+        },
     },
     components: {
         zffs,
@@ -330,7 +355,6 @@ export default {
     },
     mounted() {
         this.$store.commit('setPageTitle', '预约挂号确认');
-
         this.registerInfo = this.$route.query;
         this.tempHandleUser = this.handleUser;
     },

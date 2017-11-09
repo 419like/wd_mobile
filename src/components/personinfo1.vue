@@ -18,7 +18,7 @@
                 </div>
                 <div ref="areaContent" style="height: calc(100% - 41px);overflow-y: auto;">
                     <mt-cell v-if="currentLevel>0" title="返回上一级" @click.native="backLevel"></mt-cell>
-                    <mt-cell v-for="item in areaList" :title="item.mc" @click.native="listItemClick(item)"></mt-cell>
+                    <mt-cell v-for="item in areaList" :title="item.mc" @click.native="listItemClick(item)" :key="item.id"></mt-cell>
                 </div>
             </div>
             <div style="height:40px;background: #CCCCCC;text-align: center;">

@@ -22,13 +22,13 @@
                     <div class="t2">
                         {{item.mc}}{{item.jtdz}}
                     </div>
-                    <div style="position:absolute;right:5px;top:5px;color:#FF6666;">
+                    <div v-if="item.has" style="position:absolute;right:5px;top:5px;color:#FF6666;">
                         此人已绑定
                     </div>
                 </div>
             </div>
-            <div v-if="promptVisible&&userList.length<=0" style="position: absolute;bottom: 10px;text-align: center;font-size: 20px;color: #B3B3B3;width:100%;" @click="addBoundInfo">
-                暂无记录，<span style="text-decoration:none;color:rgb(61,187,170);">点击</span>添加
+            <div v-if="promptVisible&&userList.length<=0" style="text-align: center;font-size: 20px;color: #B3B3B3;width:100%;" @click="addBoundInfo">
+                暂无记录，<span style="text-decoration:none;color:rgb(61,187,170);">自助添加</span>
             </div>
         </div>
     </div>

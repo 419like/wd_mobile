@@ -152,7 +152,6 @@ export default {
                 this.api.getPatientInfo(params)
                     .then(
                             res=>{
-                                
                                 // this.patient = res.data[0];
                                 this.$set(this.$data,'patient',res.data[0]);
                                 this.$set(this.$data.patient,'jtqhdm',res.data[0].jtqhdm);

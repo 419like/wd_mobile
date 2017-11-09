@@ -14,12 +14,13 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "ftp": "node ftpUpload/index.js",
-    "public": "npm run build && npm run ftp"
+    "sftp": "node ftpUpload/sftpUpload.js",
+    "public": "npm run build && npm run sftp"
   },
   "dependencies": {
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
-    "js-base64": "^2.1.9",
+    "js-base64": "^2.3.2",
     "js-md5": "^0.4.2",
     "mint-ui": "^2.2.7",
     "vue": "^2.3.3",
@@ -82,6 +83,7 @@
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "ora": "^1.2.0",
     "phantomjs-prebuilt": "^2.1.14",
+    "raw-loader": "^0.5.1",
     "remove": "^0.1.5",
     "replace": "^0.3.0",
     "rimraf": "^2.6.0",
@@ -90,6 +92,7 @@
     "shelljs": "^0.7.6",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.8.0",
+    "ssh2-sftp-client": "^2.0.1",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.8",
     "vue-loader": "^12.1.0",

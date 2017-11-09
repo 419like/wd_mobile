@@ -6,29 +6,73 @@
 		<div v-if="paySuccess">
 			<p>支付成功！</p>
 		</div>
+		<div>
+			<items  :model='model' v-for='model in treeData'></items>
+		</div>
 	</div>
 </template>
 
 <script type="text/javascript">
 	import {checkBrowser} from '@/util/util.js'
 
+console.log(items)
 	export default {
 		data() {
 			return {
 				data: {},
 				tipShow: true,
-				paySuccess: false
+				paySuccess: false,
+				treeData:[{
+		                "id": "1",
+		                "data": {
+		                    "menuName": "项目管理",
+		                    "menuCode": "",
+		                },
+		                "childTreeNode": [{
+		                    "data": {
+		                        "menuName": "项目",
+		                        "menuCode": "BusProject",
+		                    },
+		                    "childTreeNode": [{
+		                    	"data": {
+		                    		"nemuName": "哈哈"
+		                    	}
+		                    }]
+		                }, {
+		                    "data": {
+		                        "menuName": "我的任务",
+		                        "menuCode": "BusProject",
+		                    },
+		                    "childTreeNode": []
+		                }, {
+		                    "data": {
+		                        "menuName": "人员周报",
+		                        "menuCode": "BusProject",
+		                    },
+		                    "childTreeNode": []
+		                }]
+		            }, {
+		                "id": "2",
+		                "data": {
+		                    "menuName": "数据统计",
+		                    "menuCode": "BusClock",
+		                },
+		                "childTreeNode": []
+		            }]
 			}
 		},
 		mounted() {
-			this.$nextTick(function(){
-				this.$store.commit('setPageTitle', '支付宝支付')
-				let param = this.$route.query;
-				if (param.data) {
-					this.data = JSON.parse(decodeURI(param.data));
-				}
-				this.checkLx();
-			})
+			// this.$nextTick(function(){
+			// 	this.$store.commit('setPageTitle', '支付宝支付')
+			// 	let param = this.$route.query;
+			// 	if (param.data) {
+			// 		this.data = JSON.parse(decodeURI(param.data));
+			// 	}
+			// 	this.checkLx();
+			// })
+		},
+		components: {
+			items
 		},
 		methods: {
 			checkLx() {

@@ -21,7 +21,7 @@
                 <label class="mint-button-text font18">绑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</label>
             </button>
         </div>
-        <area-select :visible="areaEditVisible" :value="info.jtqhdm" @closeWin="closeAreaWin" @getAreaText="setAreaText" @sureValue="setAreaValue"></area-select>
+        <area-select ref="areaSelect" :visible="areaEditVisible" :value="info.jtqhdm" @closeWin="closeAreaWin" @getAreaText="setAreaText" @sureValue="setAreaValue"></area-select>
     </div>
 </template>
 <script type="text/javascript">
@@ -109,7 +109,6 @@ export default {
                 this.relation = item;
             },
             confireUser(){
-                
                 let params = {
                     brxx:{
                         lxdh:this.info.lxdh?this.info.lxdh:'',
@@ -123,7 +122,7 @@ export default {
                 this.api.registHisUser(params)
                  .then(
                     res=>{
-                        debugger
+                        
                         if(res.code==1){
                             this.$toast('保存成功！');
                             this.boundUser(res.brid);
@@ -142,7 +141,6 @@ export default {
                 }
                 this.api.treatmentCardBind(params).then(res=>{
                     if(res.code==1){
-                        
                         this.$store.commit('pushBoundItem',res);
                         this.$toast('绑定成功！');
                         this.$router.push({
@@ -187,6 +185,7 @@ export default {
         mounted() {
             this.info = this.$route.query;
             this.getInfoFromId(this.info)
+            this.$refs.areaSelect.init(this.info.jtqhdm);
         },
         components: {
             mbSelect,areaSelect

@@ -1,10 +1,7 @@
 <template>
     <div>
         <div v-if="!noticeList.length" style="text-align: center;">暂无。</div>
-        <div v-if="noticeList.length" v-for="item in noticeList" @click="goArticle(item.id,'就诊须知')" class="flex" style="border:1px solid #CCCCCC;">
-            <!-- <div style="width:50px;">
-                <img :src="item.zst" style="margin:5px;width:30px;height:30px;">
-            </div> -->
+        <div v-if="noticeList.length" v-for="item in noticeList" @click="goArticle(item.id,'就诊须知')" class="flex" style="border:1px solid #CCCCCC;height:40px;line-height: 40px;">
             <div class="flex1">
                 <div class="flex ">
                     <div class="flex1 singleRow" style="font-size: 20px;color:#666666;" >
@@ -18,7 +15,6 @@
                     &nbsp;{{item.wzjj}}
                 </div> -->
             </div>
-            
         </div>
     </div>
 </template>

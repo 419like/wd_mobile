@@ -68,7 +68,7 @@ export default {
     methods: {
         reSendSms(){
             this.confirmCode = parseInt(Math.random() * 10000) + ''
-                    debugger
+                    
                     let params = {
                         "xxlx": "PUB",
                         "jgid": "0",
@@ -129,14 +129,14 @@ export default {
             },1000)
         },
         goStep(step) {
-            debugger
+            
             if (step == 2) {
                 if (this.number.length != 11 || this.number.charAt(0) != 1) {
                     this.$toast('请输入正确的手机号！')
                     return;
                 } else {
                     this.confirmCode = parseInt(Math.random() * 10000) + ''
-                    debugger
+                    
                     let params = {
                         "xxlx": "PUB",
                         "jgid": "0",

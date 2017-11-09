@@ -10,7 +10,7 @@
             <div class="mzRecord margin48" v-if="navCheckList[0]">
                 <mt-loadmore  :autoFill=false :top-method="loadTop" :bottom-method="loadBottom" ref="loadmoreMzjl">
                     <ul>
-                        <li @click="toDetail(item)" v-for="item in mzjlList">
+                        <li @click="toMzDetail(item)" v-for="item in mzjlList">
                             <p><span class="no">No:{{item.no}}</span>
                                 <span class="right">{{item.jgjc}}</span></p>
                             <p><span>{{item.jzzt}}</span>
@@ -24,16 +24,18 @@
             <div class="zyRecord margin48" v-if="navCheckList[1]">
                 <mt-loadmore  :autoFill=false :top-method="loadTop" :bottom-method="loadBottom" ref="loadmoreZyjl">
                     <ul>
-                        <li v-for="item in mzjlList">
-                            
+                        <li @click="toZyDetail(item)" v-for="item in zyjlList">
+                            <p><span>{{item.rysj}}~{{item.cysj?item.cysj:'在院'}}</span>
+                                <span class="right">{{item.jgjc}}</span>
+                            </p>
+                            <p><span>No:{{item.zyh}}</span>
+                                <span>{{item.ryksmc}}</span>
+                                <span>{{item.zyysxm}}</span>
+                                <span>{{item.zd}}</span>
+                            </p>
                         </li>
                     </ul>
                 </mt-loadmore>
-                <div class="footer">
-                    <span @click="choosePre" class="preday">前一天</span>
-                    <span class="curdate">{{curdate}}</span>
-                    <span @click="chooseNext" class="nextday">后一天</span>
-                </div>
             </div>
             <div class="margin48" v-if="navCheckList[2]"></div>
             <div class="margin48" v-if="navCheckList[3]"></div>
@@ -50,21 +52,28 @@
             return {
                 jgid: '',
                 brid: '',
-                minDate: '2017-02-15',
-                maxDate: '2017-05-25',
-                curdate: '2017-02-21',
                 config: {
                     "mzjlPageSize":10,"mzjlPageNum":1,
+                    "zyjlPageSize":10,"zyjlPageNum":1,
                 },
-                navList: [{"mc":"门诊记录"},{"mc":"住院记录"},{"mc":"检查报告"},{"mc":"检验报告"}],
+                navList: [{"mc":"门诊记录"},{"mc":"住院记录"}],
                 navCheckList:[true, false, false, false],
                 /*门诊记录*/
                 mzjlList: [],
+                /*住院记录*/
+                zyjlList: [],
             }
         },
         created() {
             let handerUser = this.$store.getters.getHandleUser
-            this.$store.commit('setPageTitle',`医疗服务记录 -- ${handerUser.hzxm}`);
+            if (handerUser && !handerUser.hzid) {
+                this.$store.commit('setPageTitle',``);
+                this.$router.push({
+                    path: '/index/login'
+                })
+                return;
+            }
+            this.$store.commit('setPageTitle',`就诊记录查询 - ${handerUser.hzxm}`);
             this.brid = handerUser.hzid;
             this.loadMzfyjl();
         },
@@ -78,7 +87,10 @@
                     this.$refs.loadmoreMzjl.onTopLoaded();
                 }
                 if(this.navCheckList[1]) {
-                   
+                    this.config.zyjlPageNum = 1;
+                    this.zyjlList = [];
+                    this.loadZyfyjl();
+                    this.$refs.loadmoreZyjl.onTopLoaded();
                 }
                 if(this.navCheckList[2]) {
                     
@@ -94,7 +106,8 @@
                     this.$refs.loadmoreMzjl.onBottomLoaded();
                 }
                 if(this.navCheckList[1]) {
-                   
+                    this.loadZyfyjl();
+                    this.$refs.loadmoreZyjl.onBottomLoaded();
                 }
                 if(this.navCheckList[2]) {
                     
@@ -113,20 +126,38 @@
                     this.mzjlList = [];
                     this.loadMzfyjl();
                 } else if (index === 1) {
-                   
+                    this.config.zyjlPageNum = 1;
+                    this.zyjlList = [];
+                    this.loadZyfyjl();
                 } else if (index === 2) {
                     
                 } else if (index === 3) {
                  
                 }
             }, 
+            loadZyfyjl() {
+                let param = {
+                    brid: this.brid,
+                    rn_s: this.config.zyjlPageSize * (this.config.zyjlPageNum - 1) + 1 + '',
+                    rn_e: this.config.zyjlPageSize * this.config.zyjlPageNum + '',
+                }
+                this.api.getZyfyjl(param)
+                    .then(res => {
+                        if (res.data.length) {
+                            this.config.zyjlPageNum ++;
+                            this.zyjlList.push(...res.data);
+                        } else {
+                            this.$toast({message:'未查询到更多数据！',duration: 800})
+                        }
+                    }, err => {this.$toast({message:'查询失败！',duration: 800})})
+            },
             loadMzfyjl() {
                 let param = {
                     brid: this.brid,
                     rn_s: this.config.mzjlPageSize * (this.config.mzjlPageNum - 1) + 1 + '',
                     rn_e: this.config.mzjlPageSize * this.config.mzjlPageNum + '',
                 }
-                this.api.getMzfyjl(param)
+                this.api.getMzjzjl(param)
                     .then(res => {
                         if (res.data.length) {
                             this.config.mzjlPageNum ++;
@@ -136,42 +167,14 @@
                         }
                     }, err => {this.$toast({message:'查询失败！',duration: 800})})
             },
-            toDetail(item) {
+            toMzDetail(item) {
                 item = JSON.stringify(item);
-                console.log(item)
-                this.$router.push({name: 'recordDetails', query: {data: item}});
+                this.$router.push({name: 'mzRecordDetails', query: {data: item}});
             },
-            checkDateLimit(a) {
-                // -1 前一天  1 后一天
-                if (a === '-1') {
-                    return new Date(this.curdate) - new Date(this.minDate) > 0
-                } else if (a === '1') {
-                    return new Date(this.maxDate) - new Date(this.curdate)  > 0
-                }
+            toZyDetail(item) {
+                item = JSON.stringify(item);
+                this.$router.push({name: 'zyRecordDetails', query: {data: item}});
             },
-            FillTwo(n) {
-                return n < 10 ? '0' + n : n;
-            },
-            setCurDate(a) {
-                let d = new Date(this.curdate); 
-                d.setDate(d.getDate() + a); 
-                let m = d.getMonth() + 1; 
-                this.curdate =  d.getFullYear() + '-' + this.FillTwo(m) + '-' + this.FillTwo(d.getDate()); 
-            },
-            choosePre() {
-                if (this.checkDateLimit('-1')) {
-                    this.setCurDate(-1);
-                } else {
-                    this.$toast({message:'已是第一天',duration: 800})
-                }
-            },
-            chooseNext() {
-                if (this.checkDateLimit('1')) {
-                    this.setCurDate(1);
-                } else {
-                    this.$toast({message:'已是最后一天',duration: 800})
-                }
-            }
         }
     }
 </script>
@@ -196,11 +199,6 @@
 .mzRecord li p{min-height: 20px; line-height: 20px; margin-left: 5px; padding:2px 4px}
 
 /*住院费用记录*/
-.zyRecord{padding-bottom: 52px}
-.zyRecord .footer{position: absolute;bottom: 0;text-align: center;height: 52px;width: 100%;line-height: 52px}
-.zyRecord .footer span{display: inline-block;float: left;box-sizing: border-box}
-.zyRecord .preday{width:30%;background: #fc9}
-.zyRecord .nextday{width:30%;background: #cf9}
-.zyRecord .curdate{width:40%;background: #9c9}
-.pay{background: #ccc}
+.zyRecord li{position: relative; padding: 5px 2px; border-bottom: 1px solid #ccc;font-size:14px}
+.zyRecord li p{min-height: 20px; line-height: 20px; margin-left: 5px; padding:2px 4px}
 </style>

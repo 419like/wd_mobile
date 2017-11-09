@@ -1,4 +1,20 @@
 {
-  "rootUrl": "http://tfxq.jw028.cn/hisapi",
-  "indexTitle": "健康天府1"
+	"currentServer1":
+	{
+		"rootUrl": "http://172.16.110.41:8080/testapi",
+		"jgid":"1",
+		"imgUrl": "http://172.16.110.41:8080/testapi",
+		"indexTitle": "健康金牛"
+	},
+	"currentServer":
+	{
+		"rootUrl": "http://tfxq.wonderscd.com/hisapi",
+		"jgid":"110",
+		"imgUrl": "http://tfxq.wonderscd.com/hisapi",
+		"indexTitle": "健康天府"
+	},
+	"currentPayServer":
+	{
+		"baseUrl": "http://www.hw-family.com/hisapi/rest/h5pay"
+	}
 }

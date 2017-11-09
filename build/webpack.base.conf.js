@@ -17,7 +17,7 @@ module.exports = {
         publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.vue','.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
@@ -33,12 +33,6 @@ module.exports = {
             loader: 'babel-loader',
             include: [resolve('src'), resolve('test')]
         }, {
-            test: /\.json$/,
-            loader: 'json-loader',
-            options: {
-                name: utils.assetsPath('json/[name].[ext]')
-            }
-        }, {
             test: /\.(svg|png|jpe?g|gif)(\?.*)?$/,
             loader: 'url-loader',
             options: {
@@ -53,5 +47,8 @@ module.exports = {
                 name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
             }
         }]
+    },
+    externals: {
+        // sysConfig1:'./static/sysConfig/config.js'
     }
 }

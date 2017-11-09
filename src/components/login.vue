@@ -1,7 +1,7 @@
 <template>
     <div class="login">
-        <div class="center">
-            <img class="logoImg" src="http://www.wondersgroup.com/wp-content/themes/wonders2016/images/logo.png">
+        <div class="center" style="margin-bottom: 25px;">
+            <span style="font-size: 34px;color:#666666;font-weight: bold;">{{api.indexTitle}}</span>
         </div>
         <mt-field label="用户名" placeholder="请输入电话号码" v-model="number"></mt-field>
         <mt-field label="密码" placeholder="请输入密码" v-model="password" type="password"></mt-field>
@@ -12,19 +12,10 @@
             </button>
         </div>
         <div class="extra">
-            <span class="">忘记密码</span>
+            <span style="color:#7F7F7F;" @click="forgetPassword();">忘记密码</span>
             <span class="register" @click="register()">注册</span>
         </div>
-        <div class="otherLoginBox flex">
-            <!--  <div class="flex1 center">
-                <img class="icon" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=309984969,696636847&fm=58">
-                <div class="tip">微信</div>
-            </div>
-            <div class="flex1 center">
-                <img class="icon" src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=535659886,848368851&fm=58">
-                <div class="tip">QQ</div>
-            </div> -->
-        </div>
+        <img src="../assets/company_logo.png" style="width:60%;position: absolute;bottom: 10px;left:20%;">
     </div>
 </template>
 <script type="text/javascript">
@@ -38,6 +29,11 @@ export default {
         }
     },
     methods: {
+        forgetPassword() {
+            this.$router.push({
+                name: 'rePassword'
+            })
+        },
         goIndex() {
             this.$router.push({
                 path: '/index'
@@ -64,6 +60,7 @@ export default {
             }
             this.api.Login(params)
                 .then(res => {
+                    
                     if (res.code == 1) {
                         let loginObj = {
                             userId: res.appid,
@@ -84,16 +81,77 @@ export default {
                         res.appuser[0].userNum = loginObj.userNum;
                         res.appuser[0].password = loginObj.password;
                         this.$store.commit('setAppUserInfo', res.appuser[0]);
-                        history.go(0);
+                        
+                        this.$emit('loginoutEvent');
+                        if (this.$store.getters.getOpenId) {
+                            let param = {
+                                sjh: this.number,
+                                bsh: this.$store.getters.getOpenId,
+                                lx: '2',
+                            }
+                            this.bondOpenid(param);
+                        } else {
+                            this.$router.push({
+                                name: 'home'
+                            })
+                        }
+
+                    } else {
+                        this.$toast(res.msg);
                     }
                 })
+        },
+        bondOpenid(params) {
+            this.api.bondOpenid(params)
+                .then(
+                    res => {
+                        
+                        if (res.code == 1) {
+                            this.$toast('绑定微信账号成功！');
+
+                        } else {
+                            this.$toast('绑定微信账号失败！' + res.msg)
+                        }
+                        this.checkMode()
+                    })
+        },
+        checkMode() {
+            if (this.$store.getters.getEnterMode == 1) {
+                this.$router.push({
+                    name: 'hospitalPage',
+                    query: {
+                        id: this.$store.getters.getCurrentHis.id,
+                        dyms: 1
+                    }
+                })
+                return;
+            }
+            this.$router.push({
+                name: 'home'
+            })
         }
     },
     created() {
+        if (this.$route.query.number) {
+            this.number = this.$route.query.number;
+        }
+        ;
+        console.log(this.$store.getters.getAppUserInfo);
         if (this.$store.getters.loginState) {
-            this.$router.push({
-                name: 'index'
-            })
+            if (this.$store.getters.getOpenId) {
+                
+                let param = {
+                    sjh: this.$store.getters.getAppUserInfo.userNum,
+                    bsh: this.$store.getters.getOpenId,
+                    lx: '2',
+                }
+                this.bondOpenid(param);
+            } else {
+                this.$router.push({
+                    name: 'home'
+                })
+            }
+
         }
     },
     components: {

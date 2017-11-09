@@ -11,6 +11,7 @@
 </template>
 <script type="text/javascript">
 import '@/assets/css/quill.core.css';
+let Base64 = require('js-base64').Base64;
 export default {
     data() {
             return {
@@ -31,11 +32,12 @@ export default {
                         let data = res.data;
                         if (data.length) {
                             data = data[0];
-                            data.nr = decodeURIComponent(data.nr)
-                            if(data.nr.indexOf('<')<0){
-                                data.nr = decodeURIComponent(data.nr)
+                            if(!data.nr){
+                                data.nr = '';
                             }
-                            data.nr = this.completeImgSrc(data.nr,this.axios.defaults.baseURL)
+                            data.nr = Base64.decode(data.nr)
+                            
+                            data.nr = this.completeImgSrc(data.nr,this.axios.defaults.imgUrl)
                         } else {
                             data = {
                                 nr: '',

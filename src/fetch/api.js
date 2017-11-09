@@ -1,11 +1,11 @@
 import axios from 'axios'
 import store from '@/store'
-import sysConfig from '../../static/sysConfig/config.json'
 
 
-if(sysConfig.rootUrl){
-  axios.defaults.baseURL = sysConfig.rootUrl;
-}
+// import sysConfig1 from 'sysConfig1'
+// let sysConfig = JSON.parse(eval(sysConfigText.split("=")[1]));
+
+
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
@@ -26,18 +26,18 @@ axios.interceptors.response.use((res) => {
 export function get(url) {
   return new Promise((resolve, reject) => {
     axios.get(url)
-    .then(function(response) {
-      console.log(response)
-      resolve(response.data);
-    })
-    .catch(function(error) {
-       console.log(error)
-      store.commit('maskShow', false)
-      if (error.message.indexOf('timeout')>=0) {
-        store.commit('systemMessage', '连接超时，请检查网络。');
-      }
-      reject(error);
-    });
+      .then(function(response) {
+        console.log(response)
+        resolve(response.data);
+      })
+      .catch(function(error) {
+        console.log(error)
+        store.commit('maskShow', false)
+        if (error.message.indexOf('timeout') >= 0) {
+          store.commit('systemMessage', '连接超时，请检查网络。');
+        }
+        reject(error);
+      });
   })
 }
 
@@ -72,109 +72,161 @@ export function fetch(url, params, config) {
         resolve(response.data);
       }).catch(function(error) {
         store.commit('maskShow', false)
-        if (error.message.indexOf('timeout')>=0) {
+        if (error.message.indexOf('timeout') >= 0) {
           store.commit('systemMessage', '连接超时，请检查网络。');
         }
         reject(error);
       });
   })
 }
-
+let sysConfig;
 export default {
-  indexTitle:sysConfig.indexTitle,
-  /*
-   * 获取个人所有门诊费用详情
-   */
-  getMzfyAll(params) {
-    return fetch('/rest/queryDataBySql/080401/12', params) 
+  initConfig(data) {
+    debugger
+    sysConfig = data;
+    if (sysConfig.currentServer.rootUrl) {
+      axios.defaults.baseURL = sysConfig.currentServer.rootUrl;
+      axios.defaults.imgUrl = sysConfig.currentServer.imgUrl;
+      axios.defaults.jgid = sysConfig.currentServer.jgid;
+
+      store.commit('setCurrentHis', { id: axios.defaults.jgid });
+      // document.title = sysConfig.currentServer.indexTitle;
+      document.title = '健康门户';
+    }
+  },
+  indexTitle() {
+    return sysConfig.currentServer.indexTitle;
+  },
+  getPersonArchives(params) {
+    return fetch('/rest/queryDataBySql/080501/1', params)
   },
   /*
-   * 获取个人所有门诊费用记录
+   * 获取个人一天住院费用详情
+   */
+  getZyfyOneDay(params) {
+    return fetch('/rest/queryDataBySql/080401/14', params)
+  },
+  /*
+   * 获取个人所有住院费用记录
+   */
+  getZyfyjl(params) {
+    return fetch('/rest/queryDataBySql/080401/13', params)
+  },
+  /*
+   * 获取个人门诊费用记录明细
+   */
+  getMzfymx(params) {
+    return fetch('/rest/queryDataBySql/080401/15', params)
+  },
+  /*
+   * 获取个人门诊费用记录
    */
   getMzfyjl(params) {
-    return fetch('/rest/queryDataBySql/080401/11', params) 
+    return fetch('/rest/queryDataBySql/080401/12', params)
+  },
+  /*
+   * 获取个人所有门诊就诊记录
+   */
+  getMzjzjl(params) {
+    return fetch('/rest/queryDataBySql/080401/11', params)
   },
   /*
    * 获取APPID
    */
   GetAppId(params) {
-    return fetch('/rest/queryDataBySql/080401/10', params) 
+    return fetch('/rest/queryDataBySql/080401/10', params)
   },
-   /**
-    * 订单取消
-    */
-  OrderCancel(params) {
-    return fetch('/rest/commitData/080401/6', params) 
-  },
-   /**
-    * 订单更新
-    */
-  OrderUpdate(params) {
-    return fetch('/rest/commitData/080401/4', params) 
+  /*
+   * 支付成功，通知后台，写入his
+   */
+  ConfirmPayment(params) {
+    return fetch('/rest/commitData/080401/5', params)
   },
   /**
-    * 订单生成
-    */
+   * 订单取消
+   */
+  OrderCancel(params) {
+    return fetch('/rest/commitData/080401/6', params)
+  },
+  /**
+   * 订单更新
+   */
+  OrderUpdate(params) {
+    return fetch('/rest/commitData/080401/4', params)
+  },
+  /**
+   * 订单生成
+   */
   OrderGeneration(params) {
-    return fetch('/rest/commitData/080401/2', params) 
+    return fetch('/rest/commitData/080401/2', params)
   },
   /**
    * 异常订单
    */
   GetYcjl(params) {
-    return fetch ('/rest/queryDataBySql/080401/9', params);
+    return fetch('/rest/queryDataBySql/080401/9', params);
   },
-   /**
+  /**
    * 门诊费用明细
    */
   GetMzfymx(params) {
-    return fetch ('/rest/queryDataBySql/080401/5', params);
+    return fetch('/rest/queryDataBySql/080401/5', params);
   },
   /**
    * 支付记录明细
    */
   GetZfjlmx(params) {
-    return fetch('/rest/queryDataBySql/080401/7', params)   
+    return fetch('/rest/queryDataBySql/080401/7', params)
   },
   /**
    * 支付记录
    */
   GetZfjl(params) {
-    return fetch('/rest/queryDataBySql/080401/6', params)   
+    return fetch('/rest/queryDataBySql/080401/6', params)
   },
   /**
    * 待支付记录  存储过程查询，并做相关处理 
    */
   GetDzfjl(params) {
-    return fetch('/rest/commitData/080401/3', params)   
+    return fetch('/rest/commitData/080401/3', params)
   },
   /**
    * 待缴费记录
    */
   GetCffy(params) {
-    return fetch ('/rest/queryDataBySql/080401/4', params);
+    return fetch('/rest/queryDataBySql/080401/4', params);
   },
   /**
-    * 获取支付结果
-    */
-  getResultPay(param) {
-    return fetch ('/rest/queryDataBySql/080401/8', params);
+   * 获取支付结果
+   */
+  getResultPay(params) {
+    return fetch('/rest/queryDataBySql/080401/8', params);
   },
   /**
-    * 支付退款
-    * @params {JSON} 参数id
-    */
+   * 支付退款
+   * @params {JSON} 参数id
+   */
   payRefund(params) {
-   
+
   },
   /**
-    * 在线支付
-    * @params {JSON} 参数id,return_url
-    */
+   * 在线支付
+   * @params {JSON} 参数id,return_url
+   */
   getOnlinePay(params) {
-    // let baseurl = 'http://jw.tunnel.qydev.com/wdphis/rest/h5pay';
-    let baseurl = 'http://172.16.110.37:8080/wdphis/rest/h5pay';
-    let url = baseurl+`?code=${params.code}&bz=${params.bz}&id=${params.id}&returnurl=${encodeURIComponent(params.returnurl)}`;
+
+    // let baseurl = 'http://www.hw-family.com/hisapi/rest/h5payopenid';
+    let url = sysConfig.currentPayServer.baseUrl + `?code=${params.code}&bz=${params.bz}&id=${params.id}&returnurl=${encodeURIComponent(params.returnurl)}`;
+    return get(url);
+  },
+
+  /**
+   * 获取微信openid
+   * 
+   */
+  getOpenid(params) {
+    // let baseurl = 'http://www.hw-family.com/hisapi/rest/h5payopenid';
+    let url = sysConfig.currentPayServer.baseUrl + `openid?code=${params.code}&jgid=${params.jgid}`;
     return get(url);
   },
   /**
@@ -365,5 +417,35 @@ export default {
    */
   getSms(params, config) {
     return fetch('/rest/sendSms', params)
+  },
+  /**
+   * 修改用户密码
+   */
+  reSetPassword(params, config) {
+    return fetch('rest/commitData/080201/5', params)
+  },
+  /**
+   * 用旧密码修改用户密码
+   */
+  resetPasswordWithOld(params, config) {
+    return fetch('rest/commitData/080201/6', params)
+  },
+  /**
+   * 检查号码是否已注册
+   */
+  checkNumRegister(params, config) {
+    return fetch('rest/queryDataBySql/080201/8', params)
+  },
+  /**
+   * 微信openid登录
+   */
+  searchOpenid(params, config) {
+    return fetch('rest/commitData/080301/3', params)
+  },
+  /**
+   * 微信openid登录
+   */
+  bondOpenid(params, config) {
+    return fetch('rest/commitData/080301/4', params)
   },
 }

@@ -115,7 +115,7 @@
 
 <script>
 	import zffs from './zffs.vue';
-	import {checkBrowser} from '@/util/util.js'
+	import { getUrlParams, checkBrowser } from '@/util/util.js'
 
 	export default {
 		name: 'onlinePay',
@@ -150,18 +150,22 @@
 		},
 		created() {
 			let lx = checkBrowser();
-			let params = this.$route.query;
+			let urlArr = location.href.split('?');
+	        let params= getUrlParams(urlArr[1]);
+	        let param_ = getUrlParams(urlArr[2]);
+	        Object.assign(params, param_);
 			if (lx === '1') {
 				if(params.code == '' || params.code == null) {
 	            	this.getCode(params.jgid);
 		        }
 			}
+			if (params.payBack) {
+	        	this.getPayResult(params.ddid);
+	        }
 			this.jgid = this.$route.query.jgid
 			let handerUser = this.$store.getters.getHandleUser
-			this.$store.commit('setPageTitle',`医疗服务记录 -- ${handerUser.hzxm}`);
+			this.$store.commit('setPageTitle',`医疗服务记录 - ${handerUser.hzxm}`);
 			this.brid = handerUser.hzid;
-			this.jgid = '70';
-			this.brid = '1423114'; 
 			this.loadCffyxx();       
 		},
 		computed: {
@@ -193,6 +197,23 @@
 			}
 		},
 		methods: {
+			getPayResult(id) {
+        		let param = {"id": id}
+        		this.api.getResultPay(param)
+        			.then(res => {
+        				if (res.code === '1') {
+	                        if (res.data[0] && res.data[0].zt == '1' && res.data[0].hiszt == '1') {
+	                            this.$messagebox('挂号成功！');
+	                        } else if (res.data[0] && res.data[0].zt == '1' && res.data[0].hiszt != '1'){
+	                            setMsg('支付成功，挂号异常!,请到在线缴费异常记录查看并退费');
+	                        } else if (res.data[0] && res.data[0].zt == '0' && res.data[0].hiszt != '0') {
+	                            this.getPayResult(param.id);
+	                        }
+	                    } else {
+	                        this.$messagebox('系统异常！');
+	                    }
+        			})
+			},
 			getCode(jgid) {
 	            this.api.GetAppId({"jgid": jgid})
 	                .then(res => {
@@ -265,7 +286,7 @@
 				this.api.OrderGeneration(param)
 				.then(res => {
 					if (res.code == '1') {
-						this.$toast('下单成功，订单号:'+res.Trade_No)
+						// this.$toast('下单成功，订单号:'+res.Trade_No)
 						this.loadCffyxx();
 						cb(a, res);
 					} else {
@@ -280,27 +301,31 @@
 				let lx = checkBrowser();
                 let param = {
                     id: res.id,
-                    returnurl: location.href
+                    returnurl: location.href+`?ddid=${res.id}&payBack=true`
                 }
-                if (lx == '1' && a == '1') {
-                    param.bz = '1';
+                if (a == '1') { // 微信支付方式
+	                if (lx == '1' && a == '1') {
+	                    param.bz = '1';
+	                }
+	                if (this.code) {
+	                	param.code = code;
+	                }
+	                this.api.getOnlinePay(param)
+	                    .then(res => {
+	                        if (res.code === '1') {
+	                            this.startPay(res, lx);
+	                        } else {
+	                        	this.$messagebox(err.data);
+	                        }
+	                    }, err => {
+	                        this.$messagebox(err);
+	                    });
+                } else { // 支付宝支付
+                	location.href = `static/alipay.html?id=${param.id}`;
                 }
-                if (this.code) {
-                	param.code = code;
-                }
-                this.api.getOnlinePay(param)
-                    .then(res => {
-                        if (res.code === '1') {
-                            this.startPay(res, lx);
-                        } else {
-                        	this.$messagebox(err.data);
-                        }
-                    }, err => {
-                        this.$messagebox(err);
-                    });
 			},
 			// 启动支付
-			startPay(res, a) {
+			startPay(res, lx) {
 				if (lx == '1') {
                 	this.wxBridge(res.data);
 	            } else {
@@ -510,7 +535,7 @@
 			},	
 			// 展开关闭支付记录详情
 			showDdxx(item, index) {
-				this.zfjlCheckList[index] = !this.zfjlCheckList[index];
+				this.$set(this.zfjlCheckList, index, !this.zfjlCheckList[index])
 				let param = {
 					id: item.id
 				}

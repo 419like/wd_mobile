@@ -32,6 +32,10 @@
             <mt-field label="出生日期" v-model="value.birthday" disabled></mt-field>
             <mt-field label="家庭地址" v-model="areaText" disabled @click.native="editArea()" :state="value.dzqh?'':'warning'"></mt-field>
             <mt-field label="门牌号地址" v-model="value.dz"></mt-field>
+            <div style="text-align: center;">
+                <mt-button type="default" @click="resetPassword">修改密码</mt-button>
+            </div>
+            
             <div style="position: absolute;bottom: 10px;margin-left: 10%;width:80%;">
                 <button class="mint-button mint-button--primary mint-button--large green" @click="save()">
                     <label class="mint-button-text font18">保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存</label>
@@ -59,10 +63,15 @@ export default {
             areaObj: {},
             areaText: '请选择',
             areaEditVisible: false,
-            value:{},
+            value: {},
         }
     },
     methods: {
+        resetPassword(){
+            this.$router.push({
+                name:'resetPasswordWithOld'
+            })
+        },
         getInfoFromId() {
             if (this.value.sfzh.length == 18) {
                 let tempday = this.value.sfzh.substring(6, 14)
@@ -101,7 +110,7 @@ export default {
             this.areaEditVisible = false;
         },
         setAreaText(value) {
-            debugger
+            
             this.areaText = value;
         },
         closeAreaWin() {
@@ -127,11 +136,15 @@ export default {
             }
             this.api.Regist(params)
                 .then(res => {
-                    this.$toast('修改成功！')
-                    debugger
-                    params.userId = params.id;
-                    this.$store.commit('setAppUserInfo', params);
-                    this.quit();
+                    if (res.code == 1) {
+                        this.$toast('修改成功！')
+                        params.userId = params.id;
+                        params.userNum = params.sjh;
+                        this.$store.commit('setAppUserInfo', params);
+                        this.quit();
+                    }else{
+                        this.$messagebox('修改失败！'+res.msg);
+                    }
                 })
         },
         init(value) {
